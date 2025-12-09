@@ -27,7 +27,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         hasScrolled ? "bg-[#180109]" : ""
-      } hover:bg-[#180109]`}
+      }`}
     >
       <div
         className={`flex items-center justify-between px-8 max-w-7xl mx-auto w-full transition-all duration-500 ${
