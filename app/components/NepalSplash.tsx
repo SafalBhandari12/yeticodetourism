@@ -10,8 +10,8 @@ export default function NepalSplash({
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Total duration: 2.5s hold at high opacity + 1s enlarge + 1s fade out = 4.5s
-    const duration = 4500;
+    // Total duration: 1.2s hold at high opacity + 1s enlarge + 1s fade out = 3.2s
+    const duration = 3200;
     const timer = setTimeout(() => {
       setIsVisible(false);
       onAnimationComplete();
@@ -35,7 +35,7 @@ export default function NepalSplash({
         className='w-full h-full flex items-center justify-center overflow-hidden'
         style={{
           animation:
-            "nepalSplash 4.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+            "nepalSplash 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
         }}
       >
         <img
@@ -54,7 +54,7 @@ export default function NepalSplash({
             transform: scale(1);
             opacity: 1;
           }
-          60% {
+          37.5% {
             transform: scale(1);
             opacity: 1;
           }
