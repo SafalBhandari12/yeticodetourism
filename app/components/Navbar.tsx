@@ -1,7 +1,21 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navItems = [
     { label: "Destinations", href: "/destinations" },
     { label: "Experiences", href: "/experiences" },
@@ -10,36 +24,62 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className='fixed top-0 left-0 right-0 z-50 transition-colors duration-300 hover:bg-[#180109]'>
-      <div className='flex items-center justify-between px-8 py-4 max-w-7xl mx-auto w-full'>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        hasScrolled ? "bg-[#180109]" : ""
+      } hover:bg-[#180109]`}
+    >
+      <div
+        className={`flex items-center justify-between px-8 max-w-7xl mx-auto w-full transition-all duration-500 ${
+          hasScrolled ? "py-2" : "py-4"
+        }`}
+      >
         {/* Logo */}
         <Link href='/' className='flex items-center gap-2 group'>
-          <div className='relative w-12 h-12'>
+          <div
+            className={`relative transition-all duration-500 ${
+              hasScrolled ? "w-10 h-10" : "w-12 h-12"
+            }`}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src='https://www.myswitzerland.com/assets/img/graphics/apple-touch-icon-180x180.png'
+              src='/flag.svg'
               alt='Logo'
               className='object-contain w-full h-full'
             />
           </div>
-          <span className='text-xl font-bold tracking-tight text-white group-hover:text-slate-200 transition-colors duration-300'>
-            switzerland
+          <span
+            className={`font-bold tracking-tight text-white group-hover:text-slate-200 transition-all duration-500 ${
+              hasScrolled ? "text-lg" : "text-xl"
+            }`}
+          >
+            Nepal
           </span>
         </Link>
         {/* Navigation Items */}
-        <div className='hidden md:flex items-center gap-8'>
+        <div
+          className={`hidden md:flex items-center transition-all duration-500 ${
+            hasScrolled ? "gap-6" : "gap-8"
+          }`}
+        >
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className='relative text-white font-medium text-lg tracking-wide group overflow-hidden hover:text-(--accent-hover) active:text-(--accent-hover) transition-colors duration-300'
+              className={`relative text-white font-medium tracking-wide group overflow-hidden hover:text-(--accent-hover) active:text-(--accent-hover) transition-all duration-300 ${
+                hasScrolled ? "text-base" : "text-lg"
+              }`}
             >
               <span className='relative inline-block'>{item.label}</span>
             </Link>
           ))}
         </div>
         |{/* Right Actions */}
-        <div className='flex items-center gap-6 md:gap-8 '>
+        <div
+          className={`flex items-center transition-all duration-500 ${
+            hasScrolled ? "gap-4 md:gap-6" : "gap-6 md:gap-8"
+          }`}
+        >
           {/* Search */}
           <button className='flex items-center gap-2 text-white hover:text-(--accent-hover) active:text-(--accent-hover) transition-colors duration-300 group hover:cursor-pointer'>
             <svg
@@ -60,8 +100,8 @@ export default function Navbar() {
           </button>
 
           {/* Meetings */}
-          <button className='hidden md:flex items-center gap-2 text-white hover:text-slate-300 transition-colors duration-300 group hover:cursor-pointer'>
-            <span className='text-sm font-medium'>Meetings</span>
+          <button className='hidden md:flex items-center gap-2 text-whitetransition-colors duration-300 group hover:cursor-pointer hover:text-(--accent-hover) active:text-(--accent-hover)'>
+            <span className='text-sm font-medium'>Mountains</span>
           </button>
 
           {/* Language Dropdown */}

@@ -3,18 +3,18 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 
 const BASE_MONTHS = [
-  { num: "01", name: "jan" },
-  { num: "02", name: "feb" },
-  { num: "03", name: "mar" },
-  { num: "04", name: "apr" },
-  { num: "05", name: "may" },
-  { num: "06", name: "jun" },
-  { num: "07", name: "jul" },
-  { num: "08", name: "aug" },
-  { num: "09", name: "sep" },
-  { num: "10", name: "oct" },
-  { num: "11", name: "nov" },
-  { num: "12", name: "dec" },
+  { num: "01", name: "jan", displayName: "Himalayas" },
+  { num: "02", name: "feb", displayName: "Heritage" },
+  { num: "03", name: "mar", displayName: "Spirituality" },
+  { num: "04", name: "apr", displayName: "Adventure" },
+  { num: "05", name: "may", displayName: "Wildlife" },
+  { num: "06", name: "jun", displayName: "Trekking" },
+  { num: "07", name: "jul", displayName: "Culture" },
+  { num: "08", name: "aug", displayName: "Festivals" },
+  { num: "09", name: "sep", displayName: "Cuisine" },
+  { num: "10", name: "oct", displayName: "Hospitality" },
+  { num: "11", name: "nov", displayName: "Diversity" },
+  { num: "12", name: "dec", displayName: "Serenity" },
 ];
 
 const LOOP_MULTIPLIER = 25;
@@ -25,7 +25,12 @@ export default function Hero() {
   const initialMonthIndex = 11;
   const initialVideoSrc = `https://calendar.myswitzerland.com/20190321/month/${BASE_MONTHS[initialMonthIndex].num}_${BASE_MONTHS[initialMonthIndex].name}_1920x1080.mp4`;
   const extendedMonths = useMemo(() => {
-    const months = [] as { num: string; name: string; baseIndex: number }[];
+    const months = [] as {
+      num: string;
+      name: string;
+      displayName: string;
+      baseIndex: number;
+    }[];
     for (let loop = 0; loop < LOOP_MULTIPLIER; loop++) {
       BASE_MONTHS.forEach((month, baseIndex) => {
         months.push({ ...month, baseIndex });
@@ -113,7 +118,7 @@ export default function Hero() {
       return;
     }
 
-    const duration = 1800;
+    const duration = 2400;
     let startTime: number | null = null;
 
     if (scrollAnimationRef.current) {
@@ -196,14 +201,7 @@ export default function Hero() {
 
       <div className='absolute inset-0 bg-black/20 z-10'></div>
 
-      <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white z-20 px-4'>
-        <h1 className='text-6xl md:text-8xl font-extrabold mb-6 drop-shadow-2xl tracking-tight'>
-          We need Switzerland.
-        </h1>
-        <p className='text-2xl md:text-3xl mb-10 font-light drop-shadow-lg tracking-wide'>
-          Get inspired now!
-        </p>
-      </div>
+      <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white z-20 px-4'></div>
 
       {/* Month Selector Slider */}
       <div className='absolute bottom-0 left-0 z-30 py-8 px-8 w-1/2'>
@@ -268,7 +266,7 @@ export default function Hero() {
                           : "text-white/60 hover:text-white"
                       }`}
                     >
-                      {month.name.charAt(0).toUpperCase() + month.name.slice(1)}
+                      {month.displayName}
                     </button>
                     {isActive && (
                       <div
