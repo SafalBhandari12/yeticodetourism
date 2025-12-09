@@ -14,7 +14,7 @@ export default function CloseButton({
   return (
     <button
       onClick={onClick}
-      className={`relative group transition-all duration-300 ${className}`}
+      className={`relative group transition-all duration-300 ${className} hover:cursor-pointer active:cursor-pointer`}
       aria-label={ariaLabel}
     >
       {/* X Icon with smooth animation */}
