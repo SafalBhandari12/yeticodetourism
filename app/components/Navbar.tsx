@@ -3,9 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import NavDropdown from "./NavDropdown";
 
 export default function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,173 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const dropdownContent = {
+    Destinations: [
+      {
+        name: "Holiday destinations",
+        items: [
+          "Cities",
+          "Summer holiday destinations",
+          "Winter sports & ski resorts",
+          "Family destinations",
+          "Regions",
+          "Beach Destinations",
+          "Mountain Retreats",
+          "Read all",
+        ],
+      },
+      {
+        name: "Attractions",
+        items: [
+          "Top attractions",
+          "UNESCO World Heritage sites / biospheres",
+          "Travel by train, bus or boat",
+          "Top museums",
+          "Culture",
+          "Historical Monuments",
+          "Religious Sites",
+          "Read all",
+        ],
+      },
+      {
+        name: "Popular Routes",
+        items: [
+          "Kathmandu Valley Circuit",
+          "Everest Base Camp Trek",
+          "Annapurna Circuit",
+          "Pokhara Valley Tour",
+          "Chitwan Safari Route",
+          "Kathmandu to Pokhara",
+          "Mountain Flight Routes",
+          "Read all",
+        ],
+      },
+    ],
+    Experiences: [
+      {
+        name: "Adventure",
+        items: [
+          "Trekking",
+          "Paragliding",
+          "Rafting",
+          "Mountain Climbing",
+          "Rock Climbing",
+          "Canyoning",
+          "Mountaineering",
+          "Read all",
+        ],
+      },
+      {
+        name: "Cultural",
+        items: [
+          "Cultural Tours",
+          "Festival Celebrations",
+          "Temple Visits",
+          "Local Markets",
+          "Art Galleries",
+          "Photography Tours",
+          "Spiritual Retreats",
+          "Read all",
+        ],
+      },
+      {
+        name: "Nature",
+        items: [
+          "Wildlife Safari",
+          "Birdwatching",
+          "Jungle Treks",
+          "Mountain Biking",
+          "Hiking",
+          "Nature Photography",
+          "Botanical Gardens",
+          "Read all",
+        ],
+      },
+    ],
+    Accommodation: [
+      {
+        name: "Luxury",
+        items: [
+          "5-Star Hotels",
+          "Luxury Resorts",
+          "Premium Lodges",
+          "Luxury Camps",
+          "Heritage Properties",
+          "Boutique Hotels",
+          "Palace Stays",
+          "Read all",
+        ],
+      },
+      {
+        name: "Mid-Range",
+        items: [
+          "3-4 Star Hotels",
+          "Mountain Lodges",
+          "Resort Hotels",
+          "Guesthouses",
+          "Inns",
+          "Homestays",
+          "Riverside Camps",
+          "Read all",
+        ],
+      },
+      {
+        name: "Budget & Experience",
+        items: [
+          "Budget Hostels",
+          "Eco-lodges",
+          "Farm Stays",
+          "Temple Stays",
+          "Community Lodges",
+          "Backpacker Hostels",
+          "Treehouse Stays",
+          "Read all",
+        ],
+      },
+    ],
+    Planning: [
+      {
+        name: "Getting Started",
+        items: [
+          "Best Time to Visit",
+          "Visa Information",
+          "Travel Duration",
+          "Budget Guide",
+          "Health & Safety",
+          "Local Customs",
+          "Required Documents",
+          "Read all",
+        ],
+      },
+      {
+        name: "Practical Info",
+        items: [
+          "Transportation",
+          "Currency & Money",
+          "Language Guide",
+          "Local SIM Cards",
+          "Travel Insurance",
+          "Emergency Contacts",
+          "Banking & ATMs",
+          "Read all",
+        ],
+      },
+      {
+        name: "Travel Tips",
+        items: [
+          "Packing Checklist",
+          "Itineraries",
+          "Day Trips",
+          "Responsible Tourism",
+          "Local Cuisine",
+          "Shopping Guide",
+          "Photography Tips",
+          "Read all",
+        ],
+      },
+    ],
+  };
+
   const navItems = [
     { label: "Destinations", href: "/destinations" },
     { label: "Experiences", href: "/experiences" },
@@ -25,7 +194,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 hover:bg-[#180109] ${
         hasScrolled ? "bg-[#180109]" : ""
       }`}
     >
@@ -62,17 +231,31 @@ export default function Navbar() {
             hasScrolled ? "gap-6" : "gap-8"
           }`}
         >
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`relative text-white font-medium tracking-wide group overflow-hidden hover:text-(--accent-hover) active:text-(--accent-hover) transition-all duration-300 ${
-                hasScrolled ? "text-base" : "text-lg"
-              }`}
-            >
-              <span className='relative inline-block'>{item.label}</span>
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeDropdown === item.label;
+            return (
+              <button
+                key={item.href}
+                onClick={() => setActiveDropdown(item.label)}
+                className={`relative font-medium tracking-wide group overflow-hidden transition-all duration-300 ${
+                  hasScrolled ? "text-base" : "text-lg"
+                } ${
+                  isActive
+                    ? "text-[#c41e3a]"
+                    : "text-white hover:text-[#c41e3a]"
+                }`}
+              >
+                <span className='relative inline-block hover:cursor-pointer'>
+                  {item.label}
+                </span>
+                <span
+                  className={`absolute bottom-0 left-0 h-0.5 bg-linear-to-r from-red-600 to-pink-600 transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </button>
+            );
+          })}
         </div>
         |{/* Right Actions */}
         <div
@@ -172,6 +355,19 @@ export default function Navbar() {
           </button>
         </div>
       </div>
+
+      {/* Dropdowns */}
+      {navItems.map((item) => (
+        <NavDropdown
+          key={item.label}
+          isOpen={activeDropdown === item.label}
+          onClose={() => setActiveDropdown(null)}
+          title={item.label}
+          categories={
+            dropdownContent[item.label as keyof typeof dropdownContent]
+          }
+        />
+      ))}
     </nav>
   );
 }
