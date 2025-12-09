@@ -1,89 +1,198 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+
+const BASE_MONTHS = [
+  { num: "01", name: "jan" },
+  { num: "02", name: "feb" },
+  { num: "03", name: "mar" },
+  { num: "04", name: "apr" },
+  { num: "05", name: "may" },
+  { num: "06", name: "jun" },
+  { num: "07", name: "jul" },
+  { num: "08", name: "aug" },
+  { num: "09", name: "sep" },
+  { num: "10", name: "oct" },
+  { num: "11", name: "nov" },
+  { num: "12", name: "dec" },
+];
+
+const LOOP_MULTIPLIER = 25;
+const MONTH_COUNT = BASE_MONTHS.length;
+const MIDDLE_LOOP_OFFSET = MONTH_COUNT * Math.floor(LOOP_MULTIPLIER / 2);
 
 export default function Hero() {
-  const baseMonths = [
-    { num: "01", name: "jan" },
-    { num: "02", name: "feb" },
-    { num: "03", name: "mar" },
-    { num: "04", name: "apr" },
-    { num: "05", name: "may" },
-    { num: "06", name: "jun" },
-    { num: "07", name: "jul" },
-    { num: "08", name: "aug" },
-    { num: "09", name: "sep" },
-    { num: "10", name: "oct" },
-    { num: "11", name: "nov" },
-    { num: "12", name: "dec" },
-  ];
-
-  const [selectedMonth, setSelectedMonth] = useState(11); // December (0-11)
-  const [videoOpacity, setVideoOpacity] = useState(1);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  // Get months to display (selected month + 2 before and 2 after for centering)
-  const getDisplayMonths = () => {
-    const display = [];
-    for (let i = -2; i <= 2; i++) {
-      const monthIndex = (selectedMonth + i + 12) % 12;
-      display.push({
-        ...baseMonths[monthIndex],
-        actualIndex: monthIndex,
-        offsetFromSelected: i,
+  const initialMonthIndex = 11;
+  const initialVideoSrc = `https://calendar.myswitzerland.com/20190321/month/${BASE_MONTHS[initialMonthIndex].num}_${BASE_MONTHS[initialMonthIndex].name}_1920x1080.mp4`;
+  const extendedMonths = useMemo(() => {
+    const months = [] as { num: string; name: string; baseIndex: number }[];
+    for (let loop = 0; loop < LOOP_MULTIPLIER; loop++) {
+      BASE_MONTHS.forEach((month, baseIndex) => {
+        months.push({ ...month, baseIndex });
       });
     }
-    return display;
-  };
+    return months;
+  }, []);
 
-  const displayMonths = getDisplayMonths();
+  const initialIndex = MIDDLE_LOOP_OFFSET + initialMonthIndex;
+  const [selectedIndex, setSelectedIndex] = useState(initialIndex);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollAnimationRef = useRef<number | null>(null);
+  const initialScrollSetRef = useRef(false);
+  const [sliderReady, setSliderReady] = useState(false);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const activeVideoRef = useRef(0);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const [videoSources, setVideoSources] = useState<[string, string]>([
+    initialVideoSrc,
+    initialVideoSrc,
+  ]);
+  const [pendingVideoIndex, setPendingVideoIndex] = useState<number | null>(
+    null
+  );
 
-  // Scroll to center the selected month
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const buttons = container.querySelectorAll("button");
-      if (buttons.length > 0) {
-        // The middle button (index 2) is always the selected one
-        const selectedButton = buttons[2];
-        const containerWidth = container.clientWidth;
-        const buttonOffsetLeft = (selectedButton as HTMLElement).offsetLeft;
-        const buttonWidth = (selectedButton as HTMLElement).offsetWidth;
+  const currentMonthIndex =
+    ((selectedIndex % MONTH_COUNT) + MONTH_COUNT) % MONTH_COUNT;
 
-        // Calculate scroll position to center the button
-        const scrollPosition =
-          buttonOffsetLeft - containerWidth / 2 + buttonWidth / 2;
+  const findClosestIndex = (monthIndex: number) => {
+    let closest = selectedIndex;
+    let minDistance = Number.POSITIVE_INFINITY;
 
-        container.scrollLeft = scrollPosition;
+    extendedMonths.forEach((month, index) => {
+      if (month.baseIndex !== monthIndex) return;
+      const distance = Math.abs(index - selectedIndex);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closest = index;
       }
-    }
-  }, [selectedMonth]);
+    });
 
-  // Handle video transition with fade effect
-  const handleMonthChange = (newMonth: number) => {
-    setVideoOpacity(0.5);
-    setSelectedMonth(newMonth);
-    setTimeout(() => {
-      setVideoOpacity(1);
-    }, 50);
+    return closest;
   };
 
-  const videoSrc = `https://calendar.myswitzerland.com/20190321/month/${baseMonths[selectedMonth].num}_${baseMonths[selectedMonth].name}_1920x1080.mp4`;
+  const handleMonthChange = (monthIndex: number) => {
+    const targetIndex = findClosestIndex(monthIndex);
+    if (targetIndex === selectedIndex) return;
+    setSelectedIndex(targetIndex);
+  };
+
+  const handleOffsetChange = (direction: number) => {
+    const nextIndex = selectedIndex + direction;
+    if (nextIndex < 0 || nextIndex >= extendedMonths.length) return;
+    setSelectedIndex(nextIndex);
+  };
+
+  // Scroll to center the selected month with smooth animation
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const selectedButton = container.querySelector<HTMLButtonElement>(
+      `button[data-index="${selectedIndex}"]`
+    );
+    if (!selectedButton) return;
+
+    const containerWidth = container.clientWidth;
+    const buttonOffsetLeft = selectedButton.offsetLeft;
+    const buttonWidth = selectedButton.offsetWidth;
+
+    // Calculate scroll position to center the button
+    const targetScrollPosition =
+      buttonOffsetLeft - containerWidth / 2 + buttonWidth / 2;
+
+    const startScrollLeft = container.scrollLeft;
+    const distance = targetScrollPosition - startScrollLeft;
+    if (!initialScrollSetRef.current) {
+      container.scrollLeft = targetScrollPosition;
+      initialScrollSetRef.current = true;
+      setSliderReady(true);
+      return;
+    }
+    if (Math.abs(distance) < 1) {
+      container.scrollLeft = targetScrollPosition;
+      return;
+    }
+
+    const duration = 1800;
+    let startTime: number | null = null;
+
+    if (scrollAnimationRef.current) {
+      cancelAnimationFrame(scrollAnimationRef.current);
+      scrollAnimationRef.current = null;
+    }
+
+    const animateScroll = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const easeProgress = 0.5 - Math.cos(progress * Math.PI) / 2;
+
+      container.scrollLeft = startScrollLeft + distance * easeProgress;
+
+      if (progress < 1) {
+        scrollAnimationRef.current = requestAnimationFrame(animateScroll);
+      } else {
+        scrollAnimationRef.current = null;
+        if (!sliderReady) setSliderReady(true);
+      }
+    };
+
+    scrollAnimationRef.current = requestAnimationFrame(animateScroll);
+  }, [selectedIndex, sliderReady]);
+
+  useEffect(() => {
+    const nextVideoSrc = `https://calendar.myswitzerland.com/20190321/month/${BASE_MONTHS[currentMonthIndex].num}_${BASE_MONTHS[currentMonthIndex].name}_1920x1080.mp4`;
+    const inactiveIndex = (activeVideoRef.current + 1) % 2;
+
+    setPendingVideoIndex(inactiveIndex);
+    setVideoSources((prev) => {
+      const updated = [...prev] as [string, string];
+      updated[inactiveIndex] = nextVideoSrc;
+      return updated;
+    });
+  }, [currentMonthIndex]);
+
+  useEffect(() => {
+    if (pendingVideoIndex === null) return;
+    const videoEl = videoRefs.current[pendingVideoIndex];
+    if (!videoEl) return;
+
+    const handleCanPlay = () => {
+      videoEl.play().catch(() => {});
+      setActiveVideoIndex(pendingVideoIndex);
+      activeVideoRef.current = pendingVideoIndex;
+      setPendingVideoIndex(null);
+    };
+
+    videoEl.addEventListener("canplay", handleCanPlay);
+    videoEl.load();
+
+    return () => {
+      videoEl.removeEventListener("canplay", handleCanPlay);
+    };
+  }, [pendingVideoIndex]);
 
   return (
     <div className='relative h-screen w-full overflow-hidden'>
-      <video
-        key={videoSrc}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className='absolute top-0 left-0 min-h-full min-w-full object-cover z-0 transition-opacity duration-100'
-        style={{ opacity: videoOpacity }}
-      >
-        <source src={videoSrc} type='video/mp4' />
-        Your browser does not support the video tag.
-      </video>
+      {[0, 1].map((index) => (
+        <video
+          key={`hero-video-${index}`}
+          ref={(el) => {
+            videoRefs.current[index] = el;
+          }}
+          src={videoSources[index]}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={`absolute top-0 left-0 min-h-full min-w-full object-cover z-0 transition-opacity duration-700 ${
+            activeVideoIndex === index ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          Your browser does not support the video tag.
+        </video>
+      ))}
 
       <div className='absolute inset-0 bg-black/20 z-10'></div>
 
@@ -102,8 +211,9 @@ export default function Hero() {
           <div className='flex items-center justify-center gap-4'>
             {/* Left Arrow */}
             <button
-              onClick={() => handleMonthChange((selectedMonth - 1 + 12) % 12)}
-              className='flex items-center justify-center text-white hover:text-(--accent-hover) transition-colors shrink-0'
+              onClick={() => handleOffsetChange(-1)}
+              className='flex items-center justify-center text-white transition-colors shrink-0 hover:opacity-80'
+              style={{ color: "currentColor" }}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -124,13 +234,16 @@ export default function Hero() {
             {/* Month Slider */}
             <div
               ref={scrollContainerRef}
-              className='flex-1 flex items-center gap-6 overflow-x-auto scroll-smooth max-w-md'
+              className={`flex-1 flex items-center gap-6 overflow-x-auto max-w-md transition-opacity duration-300 ${
+                sliderReady ? "opacity-100" : "opacity-0"
+              }`}
               style={{
-                scrollBehavior: "smooth",
+                scrollBehavior: "auto",
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
-                paddingLeft: "40%",
-                paddingRight: "40%",
+                paddingLeft: "30%",
+                paddingRight: "0%",
+                pointerEvents: sliderReady ? "auto" : "none",
               }}
             >
               <style>{`
@@ -138,32 +251,41 @@ export default function Hero() {
                   display: none;
                 }
               `}</style>
-              {displayMonths.map((month, index) => (
-                <div
-                  key={`${month.actualIndex}-${month.offsetFromSelected}`}
-                  className='flex flex-col items-center shrink-0'
-                >
-                  <button
-                    onClick={() => handleMonthChange(month.actualIndex)}
-                    className={`px-3 py-2 rounded font-semibold text-base md:text-lg transition-all duration-300 whitespace-nowrap ${
-                      month.offsetFromSelected === 0
-                        ? "text-white scale-110"
-                        : "text-white/60 hover:text-white"
-                    }`}
+              {extendedMonths.map((month, index) => {
+                const baseIndex = month.baseIndex;
+                const isActive = selectedIndex === index;
+                return (
+                  <div
+                    key={`${month.name}-${index}`}
+                    className='flex flex-col items-center shrink-0'
                   >
-                    {month.name.charAt(0).toUpperCase() + month.name.slice(1)}
-                  </button>
-                  {month.offsetFromSelected === 0 && (
-                    <div className='h-1 w-6 bg-(--accent-hover) mt-1 rounded transition-all duration-300'></div>
-                  )}
-                </div>
-              ))}
+                    <button
+                      data-index={index}
+                      onClick={() => handleMonthChange(baseIndex)}
+                      className={`px-3 py-2 rounded font-semibold text-lg md:text-2xl transition-all duration-500 whitespace-nowrap ${
+                        isActive
+                          ? "text-white scale-110"
+                          : "text-white/60 hover:text-white"
+                      }`}
+                    >
+                      {month.name.charAt(0).toUpperCase() + month.name.slice(1)}
+                    </button>
+                    {isActive && (
+                      <div
+                        className='h-1 w-6 mt-1 rounded transition-all duration-300'
+                        style={{ backgroundColor: "var(--accent-hover)" }}
+                      ></div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Right Arrow */}
             <button
-              onClick={() => handleMonthChange((selectedMonth + 1) % 12)}
-              className='flex items-center justify-center text-white hover:text-(--accent-hover) transition-colors shrink-0'
+              onClick={() => handleOffsetChange(1)}
+              className='flex items-center justify-center text-white transition-colors shrink-0 hover:opacity-80'
+              style={{ color: "currentColor" }}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
