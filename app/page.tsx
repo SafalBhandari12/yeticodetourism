@@ -17,8 +17,9 @@ export default function Home() {
       <NepalSplash onAnimationComplete={() => setSplashComplete(true)} />
       <div className='flex flex-col min-h-screen'>
         <Hero />
-        <Partnerships />
         <TopDestinations />
+        <Partnerships />
+
         <Recommendations />
         <TopAttractions />
         <ExpertTips />
