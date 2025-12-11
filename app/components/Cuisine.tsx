@@ -51,7 +51,7 @@ export default function Cuisine() {
             <div className='absolute top-10 right-0 w-3/5 h-3/5 z-10 transform rotate-3 hover:rotate-0 transition-transform duration-500'>
               <div className='relative w-full h-full rounded-3xl overflow-hidden'>
                 <Image
-                  src='https://images.unsplash.com/photo-1626804475297-411d863b5285?q=80&w=800'
+                  src='/foods/momos.jpg'
                   alt='Momo'
                   fill
                   className='object-cover'
@@ -61,7 +61,7 @@ export default function Cuisine() {
             <div className='absolute bottom-10 left-10 w-3/5 h-3/5 z-20 transform -rotate-3 hover:rotate-0 transition-transform duration-500'>
               <div className='relative w-full h-full rounded-3xl overflow-hidden border-4 border-white'>
                 <Image
-                  src='https://images.unsplash.com/photo-1585937421612-70a008356f36?q=80&w=800'
+                  src='/foods/dalBhat.jpg'
                   alt='Dal Bhat'
                   fill
                   className='object-cover'

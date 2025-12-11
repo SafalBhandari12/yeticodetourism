@@ -85,19 +85,19 @@ export default function EventsFestivals() {
         <EventCard
           title='Dashain'
           date='October'
-          image='https://images.unsplash.com/photo-1569235186275-626cb53b831d?q=80&w=1200'
+          image='/festival/dashain.jpg'
           description='The biggest and most auspicious festival in Nepal, celebrating the victory of good over evil. Families reunite, receive blessings (Tika), and fly kites.'
         />
         <EventCard
           title='Tihar (Deepawali)'
           date='November'
-          image='https://images.unsplash.com/photo-1574096079513-d8259312b785?q=80&w=1200'
+          image='/festival/tihar.jpg'
           description='The festival of lights, where crows, dogs, cows, and oxen are worshipped. The city sparkles with oil lamps and colorful rangolis.'
         />
         <EventCard
           title='Holi'
           date='March'
-          image='https://images.unsplash.com/photo-1584444538299-294367516306?q=80&w=1200'
+          image='/festival/holi.jpg'
           description='The vibrant festival of colors. People smear each other with colored powder and water, celebrating the arrival of spring.'
         />
         <EventCard

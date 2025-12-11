@@ -91,7 +91,7 @@ export default function AccommodationHighlights() {
             <div className='group flex gap-6 items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl'>
               <div className='relative w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
                 <Image
-                  src='https://images.unsplash.com/photo-1571896349842-68c2531f2602?q=80&w=400'
+                  src='/hotels/tigerTops.jpg'
                   alt='Tiger Tops'
                   fill
                   className='object-cover group-hover:scale-110 transition-transform duration-300'
