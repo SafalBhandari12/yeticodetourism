@@ -105,19 +105,19 @@ export default function TopDestinations() {
       />
 
       {/* Content Container */}
-      <div className='relative z-10 max-w-7xl mx-auto px-8 w-full h-full flex flex-col justify-center items-center text-center pt-32 md:pt-40'>
+      <div className='relative z-10 max-w-7xl mx-auto px-4 md:px-8 w-full h-full flex flex-col justify-center items-center text-center pt-20 md:pt-32 lg:pt-40'>
         {/* Main Title */}
-        <h1 className='text-6xl md:text-7xl font-extrabold text-white  tracking-tight'>
+        <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight'>
           DESTINATIONS
         </h1>
 
         {/* Subtitle */}
-        <p className='text-lg md:text-2xl text-white mb-40 md:mb-52 font-light'>
+        <p className='text-base sm:text-lg md:text-lg lg:text-2xl text-white mb-12 md:mb-40 lg:mb-52 font-light'>
           for every bucket list
         </p>
 
         {/* Destination Navigation with Name */}
-        <div className='flex items-center justify-center gap-6 md:gap-12 mb-2 md:mb-3'>
+        <div className='flex items-center justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-12 mb-2 md:mb-3'>
           {/* Previous Button */}
           <button
             onClick={handlePrev}
@@ -126,7 +126,7 @@ export default function TopDestinations() {
             aria-label='Previous destination'
           >
             <svg
-              className='w-10 h-10 md:w-12 md:h-12'
+              className='w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -142,7 +142,7 @@ export default function TopDestinations() {
 
           {/* Destination Name */}
           <h2
-            className={`text-3xl md:text-4xl font-black text-white transition-all duration-500 ${
+            className={`text-xl sm:text-3xl md:text-3xl lg:text-4xl font-black text-white transition-all duration-500 ${
               isTransitioning ? "opacity-50" : "opacity-100"
             }`}
           >
@@ -157,7 +157,7 @@ export default function TopDestinations() {
             aria-label='Next destination'
           >
             <svg
-              className='w-10 h-10 md:w-12 md:h-12'
+              className='w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -173,15 +173,15 @@ export default function TopDestinations() {
         </div>
 
         {/* Discover More Button */}
-        <div className='mb-16 md:mb-20'>
-          <button className='bg-[#c41e3a] hover:bg-[#a01830] text-white font-bold py-1.5 px-5 md:py-2 md:px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-base md:text-lg cursor-pointer'>
+        <div className='mb-8 md:mb-16 lg:mb-20'>
+          <button className='bg-[#c41e3a] hover:bg-[#a01830] text-white font-bold py-2 px-4 sm:py-2 sm:px-5 md:py-2 md:px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base md:text-base lg:text-lg cursor-pointer'>
             Discover more
           </button>
         </div>
 
         {/* Description */}
         <p
-          className={`text-base md:text-lg text-gray-300 mb-12 md:mb-16 max-w-2xl leading-relaxed transition-all duration-500 ${
+          className={`text-sm sm:text-base md:text-base lg:text-lg text-gray-300 mb-8 md:mb-12 lg:mb-16 max-w-xs sm:max-w-sm md:max-w-2xl leading-relaxed transition-all duration-500 ${
             isTransitioning ? "opacity-50" : "opacity-100"
           }`}
         >

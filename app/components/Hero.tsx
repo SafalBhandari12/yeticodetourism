@@ -204,9 +204,9 @@ export default function Hero() {
       <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white z-20 px-4'></div>
 
       {/* Month Selector Slider */}
-      <div className='absolute bottom-0 left-0 z-30 py-8 px-8 w-1/2'>
+      <div className='absolute bottom-0 left-0 z-30 py-4 md:py-8 px-4 md:px-8 w-full md:w-1/2'>
         <div className='w-full'>
-          <div className='flex items-center justify-center gap-4'>
+          <div className='flex items-center justify-center gap-2 md:gap-4'>
             {/* Left Arrow */}
             <button
               onClick={() => handleOffsetChange(-1)}
@@ -219,7 +219,7 @@ export default function Hero() {
                 viewBox='0 0 24 24'
                 strokeWidth={2.5}
                 stroke='currentColor'
-                className='w-6 h-6'
+                className='w-4 h-4 md:w-6 md:h-6'
               >
                 <path
                   strokeLinecap='round'
@@ -232,7 +232,7 @@ export default function Hero() {
             {/* Month Slider */}
             <div
               ref={scrollContainerRef}
-              className={`flex-1 flex items-center gap-6 overflow-x-auto max-w-md transition-opacity duration-300 ${
+              className={`flex-1 flex items-center gap-2 md:gap-6 overflow-x-auto max-w-xs md:max-w-md transition-opacity duration-300 ${
                 sliderReady ? "opacity-100" : "opacity-0"
               }`}
               style={{
@@ -260,7 +260,7 @@ export default function Hero() {
                     <button
                       data-index={index}
                       onClick={() => handleMonthChange(baseIndex)}
-                      className={`px-3 py-2 rounded font-semibold text-lg md:text-2xl transition-all duration-500 whitespace-nowrap ${
+                      className={`px-2 md:px-3 py-1 md:py-2 rounded font-semibold text-xs md:text-lg lg:text-2xl transition-all duration-500 whitespace-nowrap ${
                         isActive
                           ? "text-white scale-110"
                           : "text-white/60 hover:text-white"
@@ -270,7 +270,7 @@ export default function Hero() {
                     </button>
                     {isActive && (
                       <div
-                        className='h-1 w-6 mt-1 rounded transition-all duration-300'
+                        className='h-1 w-4 md:w-6 mt-1 rounded transition-all duration-300'
                         style={{ backgroundColor: "var(--accent-hover)" }}
                       ></div>
                     )}
@@ -291,7 +291,7 @@ export default function Hero() {
                 viewBox='0 0 24 24'
                 strokeWidth={2.5}
                 stroke='currentColor'
-                className='w-6 h-6'
+                className='w-4 h-4 md:w-6 md:h-6'
               >
                 <path
                   strokeLinecap='round'

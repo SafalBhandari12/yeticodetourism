@@ -8,6 +8,7 @@ import NavDropdown from "./NavDropdown";
 export default function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +18,19 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu and prevent scroll when menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
 
   const dropdownContent = {
     Destinations: [
@@ -236,7 +250,7 @@ export default function Navbar() {
             return (
               <button
                 key={item.href}
-                onClick={() => setActiveDropdown(item.label)}
+                onClick={() => setActiveDropdown(isActive ? null : item.label)}
                 className={`relative font-medium tracking-wide group overflow-hidden transition-all duration-300 ${
                   hasScrolled ? "text-base" : "text-lg"
                 } ${
@@ -257,7 +271,63 @@ export default function Navbar() {
             );
           })}
         </div>
-        |{/* Right Actions */}
+
+        {/* Mobile Navigation Items */}
+        {mobileMenuOpen && (
+          <>
+            {/* Mobile Menu Backdrop - Full Screen Coverage */}
+            <div
+              className='fixed top-0 left-0 right-0 bottom-0 bg-black/70 z-30 md:hidden'
+              onClick={() => setMobileMenuOpen(false)}
+            />
+
+            {/* Mobile Menu Panel */}
+            <div className='fixed top-16 left-0 right-0 z-40 md:hidden bg-[#180109] border-b border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-300'>
+              <div className='flex flex-col gap-0 px-4 py-4 max-h-[calc(100vh-80px)] overflow-y-auto'>
+                {/* Close Button */}
+                <div className='flex justify-end mb-4'>
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className='text-white hover:text-[#d4344f] transition-colors duration-300 p-2 hover:bg-white/10 rounded'
+                    aria-label='Close menu'
+                  >
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth={2}
+                      stroke='currentColor'
+                      className='w-6 h-6'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M6 18L18 6M6 6l12 12'
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Menu Items */}
+                {navItems.map((item) => (
+                  <button
+                    key={item.href}
+                    onClick={() => {
+                      setActiveDropdown(item.label);
+                      setMobileMenuOpen(false);
+                    }}
+                    className='text-white hover:text-[#d4344f] transition-colors duration-300 font-medium tracking-wide text-left py-3 px-4 border-b border-white/5 hover:bg-white/5 rounded'
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+        {/* End Mobile Navigation */}
+
+        {/* Right Actions */}
         <div
           className={`flex items-center transition-all duration-500 ${
             hasScrolled ? "gap-4 md:gap-6" : "gap-6 md:gap-8"
@@ -337,7 +407,10 @@ export default function Navbar() {
           </button>
 
           {/* Mobile Menu */}
-          <button className='flex md:hidden items-center text-white hover:text-slate-300 transition-colors duration-300 group'>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className='flex md:hidden items-center text-white hover:text-slate-300 transition-colors duration-300 group'
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -354,6 +427,24 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
+
+        {/* Mobile Navigation Items */}
+        {mobileMenuOpen && (
+          <div className='md:hidden flex flex-col items-start gap-4 px-8 pb-4 border-t border-white/10'>
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => {
+                  setActiveDropdown(item.label);
+                  setMobileMenuOpen(false);
+                }}
+                className='text-white hover:text-[#d4344f] transition-colors duration-300 font-medium tracking-wide text-left'
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Dropdowns */}
@@ -368,6 +459,60 @@ export default function Navbar() {
           }
         />
       ))}
+
+      {/* Mobile Menu Backdrop and Panel - Outside of nav for proper z-stacking */}
+      {mobileMenuOpen && (
+        <>
+          {/* Mobile Menu Backdrop - Full Screen Coverage */}
+          <div
+            className='fixed top-0 left-0 right-0 bottom-0 bg-black/80 z-40'
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          {/* Mobile Menu Panel */}
+          <div className='fixed top-16 left-0 right-0 z-50 bg-[#180109] border-b border-white/10 shadow-2xl md:hidden animate-in fade-in slide-in-from-top-2 duration-300'>
+            <div className='flex flex-col gap-0 px-4 py-4 max-h-[calc(100vh-80px)] overflow-y-auto'>
+              {/* Close Button */}
+              <div className='flex justify-end mb-4'>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className='text-white hover:text-[#d4344f] transition-colors duration-300 p-2 hover:bg-white/10 rounded'
+                  aria-label='Close menu'
+                >
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    strokeWidth={2}
+                    stroke='currentColor'
+                    className='w-6 h-6'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      d='M6 18L18 6M6 6l12 12'
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Menu Items */}
+              {navItems.map((item) => (
+                <button
+                  key={item.href}
+                  onClick={() => {
+                    setActiveDropdown(item.label);
+                    setMobileMenuOpen(false);
+                  }}
+                  className='text-white hover:text-[#d4344f] transition-colors duration-300 font-medium tracking-wide text-left py-3 px-4 border-b border-white/5 hover:bg-white/5 rounded'
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </nav>
   );
 }
