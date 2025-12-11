@@ -10,7 +10,6 @@ import AccommodationHighlights from "./components/AccommodationHighlights";
 import Cuisine from "./components/Cuisine";
 import EventsFestivals from "./components/EventsFestivals";
 import EssentialInfo from "./components/EssentialInfo";
-import Partnerships from "./components/Partnerships";
 import NepalSplash from "./components/NepalSplash";
 
 export default function Home() {
@@ -29,7 +28,6 @@ export default function Home() {
         <Cuisine />
         <EventsFestivals />
         <EssentialInfo />
-        <Partnerships />
       </div>
     </>
   );
