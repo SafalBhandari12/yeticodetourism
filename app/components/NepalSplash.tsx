@@ -38,10 +38,14 @@ export default function NepalSplash({
             "nepalSplash 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
         }}
       >
+        {/* Show text on mobile, image on desktop */}
+        <h1 className='block md:hidden text-5xl font-bold text-white tracking-wide text-center px-4'>
+          Welcome to Nepal
+        </h1>
         <img
           src='/nepal_text.svg'
           alt='Nepal'
-          className='w-full h-full object-cover'
+          className='hidden md:block md:w-64 md:h-64 lg:w-full lg:h-full object-contain md:object-cover'
           style={{
             mixBlendMode: "multiply",
           }}
