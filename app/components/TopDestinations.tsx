@@ -32,14 +32,6 @@ export default function TopDestinations() {
       image: "/topDestination/kathmandu.avif",
     },
     {
-      id: 3,
-      name: "Pokhara",
-      description: "",
-      subtitle: "Lake & mountain paradise",
-      image:
-        "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
       id: 4,
       name: "Chitwan National Park",
       description: "",
@@ -52,14 +44,6 @@ export default function TopDestinations() {
       name: "Annapurna Circuit",
       description: "",
       subtitle: "Legendary trek",
-      image:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      id: 6,
-      name: "Langtang Valley",
-      description: "",
-      subtitle: "Alpine wilderness",
       image:
         "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200&auto=format&fit=crop",
     },

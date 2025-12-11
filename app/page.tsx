@@ -2,11 +2,15 @@
 
 import { useState } from "react";
 import Hero from "./components/Hero";
-import Partnerships from "./components/Partnerships";
 import TopDestinations from "./components/TopDestinations";
-import Recommendations from "./components/Recommendations";
-import TopAttractions from "./components/TopAttractions";
-import ExpertTips from "./components/ExpertTips";
+import WelcomeSection from "./components/WelcomeSection";
+import AdventureWildlife from "./components/AdventureWildlife";
+import Itineraries from "./components/Itineraries";
+import AccommodationHighlights from "./components/AccommodationHighlights";
+import Cuisine from "./components/Cuisine";
+import EventsFestivals from "./components/EventsFestivals";
+import EssentialInfo from "./components/EssentialInfo";
+import Partnerships from "./components/Partnerships";
 import NepalSplash from "./components/NepalSplash";
 
 export default function Home() {
@@ -18,11 +22,14 @@ export default function Home() {
       <div className='flex flex-col min-h-screen'>
         <Hero />
         <TopDestinations />
+        <WelcomeSection />
+        <AdventureWildlife />
+        <Itineraries />
+        <AccommodationHighlights />
+        <Cuisine />
+        <EventsFestivals />
+        <EssentialInfo />
         <Partnerships />
-
-        <Recommendations />
-        <TopAttractions />
-        <ExpertTips />
       </div>
     </>
   );

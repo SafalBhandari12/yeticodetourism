@@ -49,12 +49,12 @@ const summerItems = [
 
 export default function Recommendations() {
   return (
-    <div className='py-20 bg-white'>
+    <div className='py-20 bg-[#661620]'>
       <div className='container mx-auto px-4'>
         {/* Winter Section */}
         <div className='mb-20'>
           <div className='flex items-baseline justify-between mb-10'>
-            <h2 className='text-5xl font-bold text-gray-900 tracking-tight'>
+            <h2 className='text-5xl font-bold text-white tracking-tight'>
               Recommendation winter
             </h2>
             <Link
@@ -90,7 +90,7 @@ export default function Recommendations() {
                   />
                   <div className='absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors'></div>
                 </div>
-                <h3 className='text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors leading-tight'>
+                <h3 className='text-2xl font-bold text-white group-hover:text-red-400 transition-colors leading-tight'>
                   {item.title}
                 </h3>
               </Link>
@@ -101,7 +101,7 @@ export default function Recommendations() {
         {/* Summer Section */}
         <div>
           <div className='flex items-baseline justify-between mb-10'>
-            <h2 className='text-5xl font-bold text-gray-900 tracking-tight'>
+            <h2 className='text-5xl font-bold text-white tracking-tight'>
               Recommendation summer
             </h2>
             <Link
@@ -137,7 +137,7 @@ export default function Recommendations() {
                   />
                   <div className='absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors'></div>
                 </div>
-                <h3 className='text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors leading-tight'>
+                <h3 className='text-2xl font-bold text-white group-hover:text-red-400 transition-colors leading-tight'>
                   {item.title}
                 </h3>
               </Link>

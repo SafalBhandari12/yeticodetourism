@@ -19,7 +19,7 @@ export default function CloseButton({
     >
       {/* X Icon with smooth animation */}
       <svg
-        className='w-8 h-8 text-white/60 group-hover:text-white transition-all duration-300 group-hover:scale-110'
+        className='w-8 h-8 text-gray-400 group-hover:text-[#d4344f] transition-all duration-300 group-hover:scale-110'
         fill='none'
         stroke='currentColor'
         viewBox='0 0 24 24'

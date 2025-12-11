@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function TopAttractions() {
   return (
-    <div className='py-20 bg-white'>
+    <div className='py-20 bg-grid'>
       <div className='container mx-auto px-4'>
-        <h2 className='text-5xl font-bold text-gray-900 mb-10 tracking-tight'>
+        <h2 className='text-5xl font-bold text-white mb-10 tracking-tight'>
           Top attractions
         </h2>
 

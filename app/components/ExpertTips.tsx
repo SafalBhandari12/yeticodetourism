@@ -27,9 +27,9 @@ const tips = [
 
 export default function ExpertTips() {
   return (
-    <div className='py-20 bg-gray-50'>
+    <div className='py-20 bg-grid'>
       <div className='container mx-auto px-4'>
-        <h2 className='text-5xl font-bold text-gray-900 mb-12 tracking-tight'>
+        <h2 className='text-5xl font-bold text-white mb-12 tracking-tight'>
           Expert tips
         </h2>
 
@@ -38,7 +38,7 @@ export default function ExpertTips() {
             <Link
               key={tip.title}
               href='#'
-              className='group block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1'
+              className='group block bg-[#7d2426] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1'
             >
               <div className='relative h-72 overflow-hidden'>
                 <Image
@@ -52,10 +52,10 @@ export default function ExpertTips() {
                 </div>
               </div>
               <div className='p-8'>
-                <h3 className='text-2xl font-bold text-gray-900 mb-4 group-hover:text-red-600 transition-colors leading-tight'>
+                <h3 className='text-2xl font-bold text-white mb-4 group-hover:text-red-400 transition-colors leading-tight'>
                   {tip.title}
                 </h3>
-                <p className='text-gray-600 leading-relaxed mb-6 text-lg'>
+                <p className='text-gray-300 leading-relaxed mb-6 text-lg'>
                   {tip.description}
                 </p>
                 <span className='inline-flex items-center gap-2 text-red-600 font-bold group-hover:gap-3 transition-all'>

@@ -100,16 +100,16 @@ const partners = [
 
 export default function Partnerships() {
   return (
-    <div className='bg-white py-6 border-b border-gray-200 shadow-sm relative z-20'>
+    <div className='bg-grid py-6 border-b border-gray-800 relative z-20'>
       <div className='container mx-auto px-4'>
         <div className='flex flex-wrap justify-center md:justify-between items-center gap-6 md:gap-4'>
           {partners.map((partner) => (
             <Link
               key={partner.name}
               href='#'
-              className='flex items-center gap-3 text-gray-600 hover:text-red-600 transition-colors font-semibold group'
+              className='flex items-center gap-3 text-gray-300 hover:text-red-400 transition-colors font-semibold group'
             >
-              <span className='text-gray-400 group-hover:text-red-600 transition-colors'>
+              <span className='text-gray-400 group-hover:text-red-400 transition-colors'>
                 {partner.icon}
               </span>
               <span className='text-sm uppercase tracking-wide'>

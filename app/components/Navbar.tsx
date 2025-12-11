@@ -241,8 +241,8 @@ export default function Navbar() {
                   hasScrolled ? "text-base" : "text-lg"
                 } ${
                   isActive
-                    ? "text-[#c41e3a]"
-                    : "text-white hover:text-[#c41e3a]"
+                    ? "text-[#d4344f]"
+                    : "text-white hover:text-[#d4344f]"
                 }`}
               >
                 <span className='relative inline-block hover:cursor-pointer'>
