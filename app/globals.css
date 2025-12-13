@@ -116,4 +116,12 @@ main {
     background-attachment: fixed !important;
     background-color: #661620;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

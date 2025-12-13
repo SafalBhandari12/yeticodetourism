@@ -15,9 +15,10 @@ const PlanCard = ({
   image: string;
   highlights: string[];
 }) => (
-  <div className='bg-[#7d2426] rounded-xl overflow-hidden border border-[#8b3a3d] flex flex-col h-full hover:border-red-400 transition-colors duration-300 group'>
-    <div className='relative h-64 overflow-hidden'>
-      <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10' />
+  <div className='group relative overflow-hidden rounded-xl border border-[#8b3a3d] transition-colors duration-300 min-w-[80vw] snap-start h-[500px] md:h-auto md:min-w-0 md:flex md:flex-col md:bg-[#7d2426] hover:border-red-400'>
+    {/* Image Container */}
+    <div className='absolute inset-0 md:relative md:h-64 md:inset-auto'>
+      <div className='absolute inset-0 bg-black/40 md:bg-black/20 group-hover:bg-black/50 md:group-hover:bg-black/10 transition-colors z-10' />
       <Image
         src={image}
         alt={title}
@@ -28,15 +29,18 @@ const PlanCard = ({
         {duration}
       </div>
     </div>
-    <div className='p-8 flex flex-col flex-grow'>
-      <h3 className='text-2xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors'>
+
+    {/* Content Container */}
+    <div className='absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black via-black/60 to-transparent md:relative md:inset-auto md:bg-none md:p-8 md:flex-grow'>
+      <h3 className='text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-red-400 transition-colors'>
         {title}
       </h3>
-      <p className='text-gray-300 mb-6 leading-relaxed flex-grow'>
+      <p className='text-gray-200 md:text-gray-300 mb-4 md:mb-6 leading-relaxed line-clamp-3 md:line-clamp-none'>
         {description}
       </p>
 
-      <div className='mb-6'>
+      {/* Desktop Highlights */}
+      <div className='mb-6 hidden md:block'>
         <h4 className='text-sm font-bold text-gray-400 uppercase tracking-wider mb-3'>
           Highlights
         </h4>
@@ -52,7 +56,19 @@ const PlanCard = ({
         </div>
       </div>
 
-      <button className='w-full py-3 border-2 border-red-400 text-red-400 font-bold rounded-lg hover:bg-red-400 hover:text-white transition-colors duration-300 cursor-pointer'>
+      {/* Mobile Highlights */}
+      <div className='mb-4 md:hidden flex flex-wrap gap-2'>
+        {highlights.slice(0, 3).map((tag, i) => (
+          <span
+            key={i}
+            className='bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium'
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <button className='w-full py-3 border-2 border-white/50 md:border-red-400 text-white md:text-red-400 font-bold rounded-lg hover:bg-red-400 hover:text-white hover:border-red-400 transition-colors duration-300 cursor-pointer'>
         View Full Itinerary
       </button>
     </div>
@@ -91,7 +107,7 @@ export default function Itineraries() {
           </button>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+        <div className='flex overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:mx-0 md:px-0 scrollbar-hide'>
           <PlanCard
             title='The Golden Triangle'
             duration='1 Week'
@@ -128,6 +144,24 @@ export default function Itineraries() {
               "Kala Patthar",
             ]}
           />
+        </div>
+
+        {/* Mobile Scroll Hint */}
+        <div className='mt-4 flex items-center justify-center gap-2 text-sm text-gray-400 md:hidden animate-pulse'>
+          <span>Swipe to explore</span>
+          <svg
+            className='w-4 h-4'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M17 8l4 4m0 0l-4 4m4-4H3'
+            />
+          </svg>
         </div>
       </div>
     </section>

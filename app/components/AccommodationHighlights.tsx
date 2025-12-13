@@ -3,6 +3,41 @@
 import Image from "next/image";
 
 export default function AccommodationHighlights() {
+  const accommodations = [
+    {
+      title: "Hotel Everest View",
+      subtitle: "Syangboche, Nepal (3,880m)",
+      description:
+        "Listed in the Guinness Book of World Records as the highest placed hotel in the world. Enjoy a 360-degree view of Mt. Everest from your breakfast table.",
+      image:
+        "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200",
+      tag: "WORLD RECORD HOLDER",
+    },
+    {
+      title: "Yeti Mountain Home",
+      subtitle: "Luxury Lodge Network",
+      description:
+        "Comfortable lodges spread across the Everest region offering warm hospitality and hot showers.",
+      image:
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=400",
+    },
+    {
+      title: "Dwarika's Hotel",
+      subtitle: "Kathmandu Heritage",
+      description:
+        "A living museum of Nepali architecture. Experience royal hospitality in the heart of the capital.",
+      image:
+        "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=400",
+    },
+    {
+      title: "Tiger Tops",
+      subtitle: "Chitwan Jungle Lodge",
+      description:
+        "Pioneers of eco-tourism. Stay in the heart of the jungle and wake up to the sounds of the wild.",
+      image: "/hotels/tigerTops.jpg",
+    },
+  ];
+
   return (
     <section className='py-24 bg-grid'>
       <div className='max-w-7xl mx-auto px-8'>
@@ -16,7 +51,59 @@ export default function AccommodationHighlights() {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
+        {/* Mobile View */}
+        <div className='flex md:hidden overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 scrollbar-hide'>
+          {accommodations.map((item, index) => (
+            <div
+              key={index}
+              className='relative h-[500px] min-w-[80vw] snap-start rounded-xl overflow-hidden border border-[#8b3a3d] group'
+            >
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className='object-cover'
+              />
+              <div className='absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent p-6 flex flex-col justify-end'>
+                {item.tag && (
+                  <div className='bg-[#d4344f] text-xs font-bold px-3 py-1 rounded-full inline-block mb-4 self-start'>
+                    {item.tag}
+                  </div>
+                )}
+                <h3 className='text-2xl font-bold text-white mb-2'>
+                  {item.title}
+                </h3>
+                <p className='text-red-300 text-xs font-bold uppercase mb-2'>
+                  {item.subtitle}
+                </p>
+                <p className='text-gray-200 line-clamp-3'>
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile Scroll Hint */}
+        <div className='mt-4 flex items-center justify-center gap-2 text-sm text-gray-400 md:hidden animate-pulse'>
+          <span>Swipe to explore</span>
+          <svg
+            className='w-4 h-4'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M17 8l4 4m0 0l-4 4m4-4H3'
+            />
+          </svg>
+        </div>
+
+        {/* Desktop View */}
+        <div className='hidden md:grid grid-cols-1 lg:grid-cols-2 gap-12'>
           {/* Featured Hotel: Everest View */}
           <div className='relative h-[500px] rounded-3xl overflow-hidden group cursor-pointer'>
             <div className='absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors z-10' />
