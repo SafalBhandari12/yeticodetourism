@@ -102,7 +102,7 @@ export default function Footer() {
         </div>
 
         <div className='mt-16 pt-8 border-t border-gray-800 text-center text-gray-500'>
-          <p>&copy; 2025 Switzerland Tourism. All rights reserved.</p>
+          <p>&copy; 2025 Nepal Tourism. All rights reserved.</p>
         </div>
       </div>
     </footer>

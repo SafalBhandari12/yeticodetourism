@@ -3,9 +3,9 @@ import Link from "next/link";
 
 const tips = [
   {
-    title: "Christmas in Switzerland",
+    title: "Christmas in Nepal",
     description:
-      "Christmas magic in Switzerland: mulled wine and fondue, Christmas lights and markets.",
+      "Christmas magic in Nepal: mulled wine and fondue, Christmas lights and markets.",
     image:
       "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=800&auto=format&fit=crop",
   },

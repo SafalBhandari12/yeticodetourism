@@ -45,7 +45,7 @@ const InfoCategory: React.FC<{
         ${
           isMinimal
             ? "cursor-pointer bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20"
-            : "bg-black/40 backdrop-blur-md p-4 md:p-8 border border-white/10"
+            : "bg-[#3f0d12] p-8 border border-white/5"
         }
       `}
         style={
@@ -102,42 +102,46 @@ const InfoCategory: React.FC<{
             />
           </>
         ) : (
-          // Full Card View
+          // Full Card View (Desktop)
           <>
             {/* Header */}
-            <div className='flex items-center gap-3 md:gap-5 mb-6 md:mb-8'>
+            <div className='flex items-start gap-4 mb-8'>
               <div
-                className={`text-4xl md:text-5xl ${data.color} p-2 md:p-3 bg-white/5 rounded-xl`}
+                className={`text-4xl ${data.color} p-3 bg-white/5 rounded-2xl border border-white/10`}
               >
                 {data.icon}
               </div>
-              <h3 className='text-xl md:text-3xl font-bold text-white group-hover:text-red-300 transition-colors break-words'>
-                {data.title}
+              <h3 className='text-3xl font-bold text-white leading-tight'>
+                {data.title.split(" ").map((word, i) => (
+                  <span key={i} className='block'>
+                    {word}
+                  </span>
+                ))}
               </h3>
             </div>
 
             {/* Highlight Box */}
             {data.highlight && (
-              <div className='bg-linear-to-r from-red-900/40 to-transparent border-l-4 border-red-500 p-3 md:p-5 mb-6 md:mb-8 rounded-r-lg'>
-                <p className='text-red-200 text-xs md:text-sm font-bold uppercase tracking-widest mb-1'>
+              <div className='bg-gradient-to-r from-red-900/60 to-transparent border-l-4 border-red-500 p-4 mb-8 rounded-r-lg'>
+                <p className='text-red-200 text-xs font-bold uppercase tracking-widest mb-1'>
                   {data.highlight.label}
                 </p>
-                <p className='text-white font-bold text-lg md:text-2xl break-words'>
+                <p className='text-white font-bold text-2xl'>
                   {data.highlight.value}
                 </p>
               </div>
             )}
 
             {/* Items */}
-            <ul className='space-y-5'>
+            <ul className='space-y-6'>
               {data.items.map((item, idx) => (
-                <li key={idx} className='flex gap-4 items-start min-w-0'>
-                  <span className='text-red-500 font-bold mt-1 shrink-0 text-xl'>
-                    •
+                <li key={idx} className='flex gap-3 items-start'>
+                  <span className='text-red-500 font-bold mt-1.5 shrink-0 text-xs'>
+                    ●
                   </span>
-                  <div className='flex-1 min-w-0'>
+                  <div className='flex-1'>
                     {item.label && (
-                      <p className='text-white font-bold text-sm md:text-lg mb-1 break-words'>
+                      <p className='text-white font-bold text-lg mb-1'>
                         {item.label}
                       </p>
                     )}
@@ -145,8 +149,8 @@ const InfoCategory: React.FC<{
                       className={`${
                         item.highlight
                           ? "text-red-300 font-semibold"
-                          : "text-gray-200"
-                      } text-sm md:text-base leading-relaxed break-words`}
+                          : "text-gray-300"
+                      } text-base leading-relaxed`}
                     >
                       {item.text}
                     </p>
@@ -397,8 +401,8 @@ export default function EssentialInfo() {
               and currency to local customs and safety tips.
             </p>
           </div>
-          {/* Categories Grid */}
-          <div className='grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 lg:gap-8 hover:cursor-pointer'>
+          {/* Mobile Categories Grid */}
+          <div className='grid grid-cols-2 md:hidden gap-3 hover:cursor-pointer'>
             {categories.map((category, idx) => (
               <InfoCategory
                 key={idx}
@@ -406,6 +410,13 @@ export default function EssentialInfo() {
                 isMinimal={true}
                 onOpen={() => setSelectedCategory(category)}
               />
+            ))}
+          </div>
+
+          {/* Desktop Categories Grid */}
+          <div className='hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
+            {categories.map((category, idx) => (
+              <InfoCategory key={idx} data={category} isMinimal={false} />
             ))}
           </div>
         </div>

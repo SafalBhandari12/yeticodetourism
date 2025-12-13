@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Switzerland Tourism - Vacation, Holiday, Travel",
+  title: "Nepal Tourism - Vacation, Holiday, Travel",
   description:
-    "Official website of Switzerland Tourism. Information on holidays, travel, and conferences in Switzerland.",
+    "Official website of Nepal Tourism. Information on holidays, travel, and conferences in Nepal.",
 };
 
 export default function RootLayout({

@@ -13,7 +13,7 @@ const winterItems = [
       "https://images.unsplash.com/photo-1580137189272-c9379f8864fd?q=80&w=800&auto=format&fit=crop",
   },
   {
-    title: "Christmas in Switzerland",
+    title: "Christmas in Nepal",
     image:
       "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=800&auto=format&fit=crop",
   },
