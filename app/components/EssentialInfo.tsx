@@ -385,20 +385,20 @@ export default function EssentialInfo() {
 
   return (
     <>
-      <section className='py-24 bg-grid'>
-        <div className='max-w-7xl mx-auto px-8'>
+      <section className='pt-16 md:pt-20 lg:pt-28 pb-2 md:pb-3 lg:pb-4 bg-grid'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>
           {/* Header */}
-          <div className='text-center mb-16'>
-            <h2 className='text-5xl md:text-6xl font-bold text-white mb-6'>
+          <div className='text-center mb-12 md:mb-14 lg:mb-16'>
+            <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 md:mb-5'>
               Essential Information
             </h2>
-            <p className='text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
+            <p className='text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
               Everything you need to know before traveling to Nepal. From visas
               and currency to local customs and safety tips.
             </p>
           </div>
           {/* Categories Grid */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hover:cursor-pointer'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7 lg:gap-8 hover:cursor-pointer'>
             {categories.map((category, idx) => (
               <InfoCategory
                 key={idx}

@@ -1,111 +1,166 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
+import { CalendarDays, Sparkles, ArrowRight } from "lucide-react";
 
-const EventCard = ({
-  title,
-  date,
-  description,
-  image,
-}: {
+interface Festival {
   title: string;
   date: string;
   description: string;
   image: string;
-}) => (
-  <div className='min-w-[300px] md:min-w-[400px] snap-center'>
-    <div className='relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden mb-6 group cursor-pointer'>
-      <div className='absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent z-10' />
-      <Image
-        src={image}
-        alt={title}
-        fill
-        className='object-cover transform group-hover:scale-110 transition-transform duration-700'
-      />
-      <div className='absolute bottom-0 left-0 p-8 z-20'>
-        <span className='inline-block px-3 py-1 bg-[#d4344f] text-white text-xs font-bold uppercase tracking-wider rounded-full mb-3'>
-          {date}
-        </span>
-        <h3 className='text-2xl md:text-3xl font-bold text-white mb-2'>
-          {title}
-        </h3>
+  highlight: string;
+}
+
+const FestivalCard = ({
+  title,
+  date,
+  description,
+  image,
+  highlight,
+  index,
+}: Festival & { index: number }) => {
+  return (
+    <div className='group relative'>
+      {/* Timeline dot and line */}
+      <div className='hidden lg:flex absolute -left-16 top-8 flex-col items-center'>
+        <div className='w-4 h-4 rounded-full bg-[#d4344f] ring-4 ring-[#d4344f]/20 mb-4' />
+        {index !== 3 && (
+          <div className='w-1 h-32 bg-gradient-to-b from-[#d4344f] to-transparent' />
+        )}
+      </div>
+
+      {/* Card Container */}
+      <div className='bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#d4344f]/50 rounded-xl overflow-hidden group transition-all duration-500'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-0 min-h-64'>
+          {/* Image */}
+          <div className='relative h-64 md:h-full overflow-hidden md:col-span-1 bg-gradient-to-br from-[#d4344f]/20 to-transparent'>
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className='object-cover group-hover:scale-110 transition-transform duration-700'
+            />
+            <div className='absolute inset-0 bg-gradient-to-r from-black/40 to-transparent' />
+          </div>
+
+          {/* Content */}
+          <div className='p-6 md:p-8 md:col-span-2 flex flex-col justify-between'>
+            {/* Top Section */}
+            <div>
+              <div className='flex items-center gap-2 mb-3'>
+                <CalendarDays className='w-4 h-4 text-[#d4344f]' />
+                <span className='text-xs font-bold uppercase tracking-widest text-[#d4344f]'>
+                  {date}
+                </span>
+              </div>
+
+              <div className='flex items-start justify-between mb-3'>
+                <div>
+                  <h3 className='text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-[#d4344f] transition-colors'>
+                    {title}
+                  </h3>
+                  <div className='flex items-center gap-2'>
+                    <Sparkles className='w-4 h-4 text-yellow-400' />
+                    <span className='text-sm font-semibold text-gray-300'>
+                      {highlight}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <p className='text-gray-300 text-sm md:text-base leading-relaxed'>
+                {description}
+              </p>
+            </div>
+
+            {/* CTA */}
+            <button className='mt-6 self-start px-4 py-2 text-sm font-bold text-[#d4344f] hover:text-white bg-transparent hover:bg-[#d4344f] border border-[#d4344f] rounded-lg transition-all duration-300'>
+              Explore Festival →
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    <p className='text-gray-300 leading-relaxed pr-4'>{description}</p>
-  </div>
-);
+  );
+};
 
 export default function EventsFestivals() {
+  const router = useRouter();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const festivals: Festival[] = [
+    {
+      title: "Dashain",
+      date: "September - October",
+      image: "/festival/dashain.jpg",
+      description:
+        "The biggest and most auspicious festival in Nepal, celebrating the victory of good over evil. Families reunite to celebrate for 15 days, receive blessings (Tika), and fly colorful kites. Witness the joyous atmosphere in cities and villages alike.",
+      highlight: "Biggest Festival",
+    },
+    {
+      title: "Tihar (Deepawali)",
+      date: "October - November",
+      image: "/festival/tihar.jpg",
+      description:
+        "The festival of lights spanning five days. Crows, dogs, cows, and oxen are worshipped each day. The city sparkles with oil lamps (diyas), colorful rangolis, and decorations. It's a time of gratitude and celebration of life.",
+      highlight: "Festival of Lights",
+    },
+    {
+      title: "Holi",
+      date: "March",
+      image: "/festival/holi.jpg",
+      description:
+        "The vibrant festival of colors celebrating the arrival of spring. People smear each other with colored powder and water, exchange sweets, and reconnect with loved ones. The entire nation erupts in a burst of colors and joy.",
+      highlight: "Festival of Colors",
+    },
+    {
+      title: "Indra Jatra",
+      date: "September",
+      image:
+        "https://images.unsplash.com/photo-1567593810070-7a3d471af022?q=80&w=1200",
+      description:
+        "A massive street festival in Kathmandu lasting eight days. Features the impressive chariot procession of the Living Goddess Kumari through the streets of Kathmandu Durbar Square, traditional mask dances, and cultural performances.",
+      highlight: "Chariot Festival",
+    },
+  ];
+
   return (
-    <section className='py-24 bg-grid overflow-hidden'>
-      <div className='max-w-7xl mx-auto px-8 mb-12 flex flex-col md:flex-row justify-between items-end'>
-        <div>
-          <h2 className='text-4xl md:text-5xl font-bold text-white mb-4'>
+    <section className='py-2 md:py-3 lg:py-4  bg-grid overflow-hidden'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16'>
+        {/* Header */}
+        <div className='mb-8 md:mb-10 lg:mb-14'>
+          <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 md:mb-4'>
             Festivals & Events
           </h2>
-          <p className='text-xl text-gray-200'>
-            Celebrate with the gods in the land of festivals.
+          <p className='text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl'>
+            Celebrate with the gods in the land of festivals. Experience Nepal's
+            vibrant cultural calendar filled with color, joy, and spiritual
+            significance.
           </p>
         </div>
-        <div className='hidden md:flex gap-4'>
-          <button className='w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors'>
-            <svg
-              className='w-6 h-6'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M15 19l-7-7 7-7'
-              />
-            </svg>
-          </button>
-          <button className='w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors'>
-            <svg
-              className='w-6 h-6'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M9 5l7 7-7 7'
-              />
-            </svg>
+
+        {/* Festival Items - Timeline */}
+        <div
+          ref={containerRef}
+          className='lg:pl-8 space-y-6 md:space-y-8 mb-16 md:mb-20'
+        >
+          {festivals.map((festival, index) => (
+            <FestivalCard key={festival.title} {...festival} index={index} />
+          ))}
+        </div>
+
+        {/* View More Button */}
+        <div className='flex justify-center'>
+          <button
+            onClick={() => router.push("/experiences")}
+            className='group px-8 py-3 md:px-10 md:py-4 bg-[#d4344f] hover:bg-[#c02a41] text-white font-bold rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl'
+          >
+            View More Festivals
+            <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform' />
           </button>
         </div>
-      </div>
-
-      <div className='pl-8 md:pl-[max(2rem,calc((100vw-80rem)/2))] overflow-x-auto pb-12 hide-scrollbar flex gap-8 snap-x'>
-        <EventCard
-          title='Dashain'
-          date='October'
-          image='/festival/dashain.jpg'
-          description='The biggest and most auspicious festival in Nepal, celebrating the victory of good over evil. Families reunite, receive blessings (Tika), and fly kites.'
-        />
-        <EventCard
-          title='Tihar (Deepawali)'
-          date='November'
-          image='/festival/tihar.jpg'
-          description='The festival of lights, where crows, dogs, cows, and oxen are worshipped. The city sparkles with oil lamps and colorful rangolis.'
-        />
-        <EventCard
-          title='Holi'
-          date='March'
-          image='/festival/holi.jpg'
-          description='The vibrant festival of colors. People smear each other with colored powder and water, celebrating the arrival of spring.'
-        />
-        <EventCard
-          title='Indra Jatra'
-          date='September'
-          image='https://images.unsplash.com/photo-1567593810070-7a3d471af022?q=80&w=1200'
-          description='A massive street festival in Kathmandu featuring the chariot procession of the Living Goddess Kumari and traditional mask dances.'
-        />
       </div>
     </section>
   );
