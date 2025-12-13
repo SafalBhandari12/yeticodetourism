@@ -41,9 +41,10 @@ export default function AccommodationHighlights() {
           </div>
 
           {/* Other Options */}
-          <div className='grid grid-cols-1 gap-6'>
-            <div className='group flex gap-6 items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl'>
-              <div className='relative w-28 h-28 shrink-0 rounded-lg overflow-hidden border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
+          <div className='grid grid-cols-1 gap-3 lg:gap-6'>
+            {/* Card 1: Yeti Mountain Home */}
+            <div className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'>
+              <div className='relative w-full lg:w-28 lg:h-28 lg:shrink-0 h-48 rounded-none lg:rounded-lg overflow-hidden border-0 lg:border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
                 <Image
                   src='https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=400'
                   alt='Yeti Mountain Home'
@@ -51,22 +52,23 @@ export default function AccommodationHighlights() {
                   className='object-cover group-hover:scale-110 transition-transform duration-300'
                 />
               </div>
-              <div className='flex-1'>
-                <h3 className='text-lg font-bold text-white mb-1 group-hover:text-red-100 transition-colors'>
+              <div className='flex-1 p-6 lg:p-0'>
+                <h3 className='text-2xl lg:text-lg font-bold text-white mb-2 group-hover:text-red-100 transition-colors'>
                   Yeti Mountain Home
                 </h3>
-                <p className='text-xs text-red-300 font-semibold mb-3 tracking-wide uppercase'>
+                <p className='text-xs text-red-300 font-semibold mb-4 lg:mb-3 tracking-wide uppercase'>
                   Luxury Lodge Network
                 </p>
-                <p className='text-gray-200 text-sm leading-relaxed'>
+                <p className='text-gray-200 text-sm lg:text-sm leading-relaxed'>
                   Comfortable lodges spread across the Everest region offering
                   warm hospitality and hot showers.
                 </p>
               </div>
             </div>
 
-            <div className='group flex gap-6 items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl'>
-              <div className='relative w-28 h-28  rounded-lg overflow-hidden border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
+            {/* Card 2: Dwarika's Hotel */}
+            <div className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'>
+              <div className='relative w-full lg:w-28 lg:h-28 h-48 rounded-none lg:rounded-lg overflow-hidden border-0 lg:border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
                 <Image
                   src='https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=400'
                   alt="Dwarika's Hotel"
@@ -74,22 +76,23 @@ export default function AccommodationHighlights() {
                   className='object-cover group-hover:scale-110 transition-transform duration-300'
                 />
               </div>
-              <div className='flex-1'>
-                <h3 className='text-lg font-bold text-white mb-1 group-hover:text-red-100 transition-colors'>
+              <div className='flex-1 p-6 lg:p-0'>
+                <h3 className='text-2xl lg:text-lg font-bold text-white mb-2 group-hover:text-red-100 transition-colors'>
                   Dwarika's Hotel
                 </h3>
-                <p className='text-xs text-red-300 font-semibold mb-3 tracking-wide uppercase'>
+                <p className='text-xs text-red-300 font-semibold mb-4 lg:mb-3 tracking-wide uppercase'>
                   Kathmandu Heritage
                 </p>
-                <p className='text-gray-200 text-sm leading-relaxed'>
+                <p className='text-gray-200 text-sm lg:text-sm leading-relaxed'>
                   A living museum of Nepali architecture. Experience royal
                   hospitality in the heart of the capital.
                 </p>
               </div>
             </div>
 
-            <div className='group flex gap-6 items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl'>
-              <div className='relative w-28 h-28  rounded-lg overflow-hidden border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
+            {/* Card 3: Tiger Tops */}
+            <div className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'>
+              <div className='relative w-full lg:w-28 lg:h-28 h-48 rounded-none lg:rounded-lg overflow-hidden border-0 lg:border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
                 <Image
                   src='/hotels/tigerTops.jpg'
                   alt='Tiger Tops'
@@ -97,14 +100,14 @@ export default function AccommodationHighlights() {
                   className='object-cover group-hover:scale-110 transition-transform duration-300'
                 />
               </div>
-              <div className='flex-1'>
-                <h3 className='text-lg font-bold text-white mb-1 group-hover:text-red-100 transition-colors'>
+              <div className='flex-1 p-6 lg:p-0'>
+                <h3 className='text-2xl lg:text-lg font-bold text-white mb-2 group-hover:text-red-100 transition-colors'>
                   Tiger Tops
                 </h3>
-                <p className='text-xs text-red-300 font-semibold mb-3 tracking-wide uppercase'>
+                <p className='text-xs text-red-300 font-semibold mb-4 lg:mb-3 tracking-wide uppercase'>
                   Chitwan Jungle Lodge
                 </p>
-                <p className='text-gray-200 text-sm leading-relaxed'>
+                <p className='text-gray-200 text-sm lg:text-sm leading-relaxed'>
                   Pioneers of eco-tourism. Stay in the heart of the jungle and
                   wake up to the sounds of the wild.
                 </p>
