@@ -39,9 +39,9 @@ export default function AccommodationHighlights() {
   ];
 
   return (
-    <section className='py-24 bg-grid'>
+    <section className='py-12 bg-grid'>
       <div className='max-w-7xl mx-auto px-8'>
-        <div className='text-center mb-16'>
+        <div className='text-center mb-12'>
           <h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
             Stay Above the Clouds
           </h2>
@@ -76,9 +76,7 @@ export default function AccommodationHighlights() {
                 <p className='text-red-300 text-xs font-bold uppercase mb-2'>
                   {item.subtitle}
                 </p>
-                <p className='text-gray-200 line-clamp-3'>
-                  {item.description}
-                </p>
+                <p className='text-gray-200 line-clamp-3'>{item.description}</p>
               </div>
             </div>
           ))}

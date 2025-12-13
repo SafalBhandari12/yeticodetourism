@@ -47,7 +47,7 @@ export default function Cuisine() {
           </div>
 
           {/* Visuals */}
-          <div className='lg:col-span-7 order-1 lg:order-2 relative h-[600px]'>
+          <div className='hidden lg:block lg:col-span-7 order-1 lg:order-2 relative h-[600px]'>
             <div className='absolute top-10 right-0 w-3/5 h-3/5 z-10 transform rotate-3 hover:rotate-0 transition-transform duration-500'>
               <div className='relative w-full h-full rounded-3xl overflow-hidden'>
                 <Image

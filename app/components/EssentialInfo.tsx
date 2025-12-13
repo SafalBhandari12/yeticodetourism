@@ -65,24 +65,24 @@ const InfoCategory: React.FC<{
             />
 
             {/* Content Container */}
-            <div className='relative z-10 flex flex-col items-center justify-center h-full p-8 gap-6'>
+            <div className='relative z-10 flex flex-col items-center justify-center h-full px-2 py-4 gap-3'>
               {/* Icon with animated background */}
               <div className='relative'>
                 <div
                   className={`absolute inset-0 bg-${colorName} blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-full`}
                 />
                 <div
-                  className={`text-5xl md:text-6xl ${data.color} p-4 bg-white/5 rounded-2xl border border-white/10 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500`}
+                  className={`text-4xl md:text-5xl ${data.color} p-2 bg-white/5 rounded-2xl border border-white/10 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500`}
                 >
                   {data.icon}
                 </div>
               </div>
 
               <div className='text-center space-y-2'>
-                <h3 className='text-2xl font-bold text-white group-hover:text-white transition-colors'>
+                <h3 className='text-lg md:text-2xl font-bold text-white group-hover:text-white transition-colors'>
                   {data.title}
                 </h3>
-                <p className='text-sm text-gray-400 font-medium max-w-[200px] mx-auto leading-relaxed group-hover:text-gray-200 transition-colors'>
+                <p className='text-xs md:text-sm text-gray-400 font-medium max-w-[200px] mx-auto leading-relaxed group-hover:text-gray-200 transition-colors'>
                   {data.summary}
                 </p>
               </div>
@@ -385,7 +385,7 @@ export default function EssentialInfo() {
 
   return (
     <>
-      <section className='pt-16 md:pt-20 lg:pt-28 pb-2 md:pb-3 lg:pb-4 bg-grid'>
+      <section className='pt-16 md:pt-20 lg:pt-28 pb-24 md:pb-32 lg:pb-40 bg-grid'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>
           {/* Header */}
           <div className='text-center mb-12 md:mb-14 lg:mb-16'>
@@ -398,7 +398,7 @@ export default function EssentialInfo() {
             </p>
           </div>
           {/* Categories Grid */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7 lg:gap-8 hover:cursor-pointer'>
+          <div className='grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 lg:gap-8 hover:cursor-pointer'>
             {categories.map((category, idx) => (
               <InfoCategory
                 key={idx}
