@@ -39,10 +39,18 @@ export const itinerariesData: Record<string, Itinerary> = {
     title: "The Golden Triangle",
     duration: "7 Days",
     durationDays: 7,
-    description: "The perfect introduction to Nepal. Experience the ancient culture of Kathmandu, the wildlife of Chitwan, and the lakeside serenity of Pokhara.",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200",
-    overview: "Discover Nepal's most iconic trio of destinations in just one week. This itinerary combines cultural immersion in Kathmandu, jungle safari in Chitwan National Park, and mountain views from Pokhara. Perfect for first-time visitors who want a comprehensive Nepal experience without the high altitude.",
-    bestFor: ["First-time visitors", "Culture enthusiasts", "Wildlife lovers", "Beach/lake relaxation"],
+    description:
+      "The perfect introduction to Nepal. Experience the ancient culture of Kathmandu, the wildlife of Chitwan, and the lakeside serenity of Pokhara.",
+    image:
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200",
+    overview:
+      "Discover Nepal's most iconic trio of destinations in just one week. This itinerary combines cultural immersion in Kathmandu, jungle safari in Chitwan National Park, and mountain views from Pokhara. Perfect for first-time visitors who want a comprehensive Nepal experience without the high altitude.",
+    bestFor: [
+      "First-time visitors",
+      "Culture enthusiasts",
+      "Wildlife lovers",
+      "Beach/lake relaxation",
+    ],
     difficulty: "Easy",
     totalCost: "USD 1,200-1,800 per person",
     includedInCost: [
@@ -68,7 +76,8 @@ export const itinerariesData: Record<string, Itinerary> = {
       "Phewa Lake Boating",
       "Temple of Pashupatinath",
     ],
-    whatToExpect: "Dynamic mix of ancient temples, wildlife encounters, and serene lakeside views. Expect busy streets in Kathmandu, adventure in the jungle, and peaceful relaxation in Pokhara. Weather varies by season—bring layers.",
+    whatToExpect:
+      "Dynamic mix of ancient temples, wildlife encounters, and serene lakeside views. Expect busy streets in Kathmandu, adventure in the jungle, and peaceful relaxation in Pokhara. Weather varies by season—bring layers.",
     packing: [
       "Lightweight, breathable clothing",
       "Comfortable walking shoes",
@@ -103,7 +112,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Hotel in Kathmandu (mid-range, 4-star equivalent)",
         cost: "USD 150-200/night",
-        notes: "Arrive fresh, rest and acclimate to 1,300m altitude. Light activities only today.",
+        notes:
+          "Arrive fresh, rest and acclimate to 1,300m altitude. Light activities only today.",
       },
       {
         day: 2,
@@ -123,7 +133,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Hotel in Kathmandu",
         cost: "USD 150-200/night",
-        notes: "Full day of cultural sites. Wear modest clothing for temples. Guides speak English. All entrance fees included.",
+        notes:
+          "Full day of cultural sites. Wear modest clothing for temples. Guides speak English. All entrance fees included.",
       },
       {
         day: 3,
@@ -143,7 +154,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Jungle lodge in Chitwan (3-4 star)",
         cost: "USD 100-150/night",
-        notes: "Domestic flight included. Jungle walk is relatively easy—no physical strain. Bring binoculars and camera with zoom.",
+        notes:
+          "Domestic flight included. Jungle walk is relatively easy—no physical strain. Bring binoculars and camera with zoom.",
       },
       {
         day: 4,
@@ -163,7 +175,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Jungle lodge in Chitwan",
         cost: "USD 100-150/night",
-        notes: "Best day for wildlife viewing. Expect to see rhinos, deer, monkeys. Tigers rarely seen but possible. All activities guided.",
+        notes:
+          "Best day for wildlife viewing. Expect to see rhinos, deer, monkeys. Tigers rarely seen but possible. All activities guided.",
       },
       {
         day: 5,
@@ -183,7 +196,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Lake-view hotel in Pokhara",
         cost: "USD 120-180/night",
-        notes: "Transition day to relaxation. Domestic flight included. Sunset boat ride is magical. Restaurant options excellent and affordable.",
+        notes:
+          "Transition day to relaxation. Domestic flight included. Sunset boat ride is magical. Restaurant options excellent and affordable.",
       },
       {
         day: 6,
@@ -204,7 +218,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Lake-view hotel in Pokhara",
         cost: "USD 120-180/night",
-        notes: "Sarangkot sunrise is spectacular—bring warm layer and camera. Cave visit is unique experience. Paragliding optional but recommended (weather dependent).",
+        notes:
+          "Sarangkot sunrise is spectacular—bring warm layer and camera. Cave visit is unique experience. Paragliding optional but recommended (weather dependent).",
       },
       {
         day: 7,
@@ -222,7 +237,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "None (departure day)",
         cost: "Variable (domestic flight USD 60-80)",
-        notes: "Early morning domestic flight back to Kathmandu. Airport transfer included. Check flight times in advance.",
+        notes:
+          "Early morning domestic flight back to Kathmandu. Airport transfer included. Check flight times in advance.",
       },
     ],
   },
@@ -232,10 +248,18 @@ export const itinerariesData: Record<string, Itinerary> = {
     title: "Himalayan Glimpse",
     duration: "14 Days",
     durationDays: 14,
-    description: "Combine culture with a taste of the mountains. Includes a short trek in the Annapurna region to witness the giants up close.",
-    image: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=1200",
-    overview: "Experience Nepal's best with added mountain trekking. This 2-week itinerary starts with Kathmandu's cultural sites, moves to Pokhara's lakeside beauty, then takes you on the stunning Poon Hill Trek—one of Nepal's most rewarding short treks. Perfect for those wanting mountain views without extreme altitude.",
-    bestFor: ["Mountain lovers", "Moderate trekkers", "Culture & nature enthusiasts", "Photography enthusiasts"],
+    description:
+      "Combine culture with a taste of the mountains. Includes a short trek in the Annapurna region to witness the giants up close.",
+    image:
+      "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=1200",
+    overview:
+      "Experience Nepal's best with added mountain trekking. This 2-week itinerary starts with Kathmandu's cultural sites, moves to Pokhara's lakeside beauty, then takes you on the stunning Poon Hill Trek—one of Nepal's most rewarding short treks. Perfect for those wanting mountain views without extreme altitude.",
+    bestFor: [
+      "Mountain lovers",
+      "Moderate trekkers",
+      "Culture & nature enthusiasts",
+      "Photography enthusiasts",
+    ],
     difficulty: "Moderate",
     totalCost: "USD 1,800-2,500 per person",
     includedInCost: [
@@ -262,7 +286,8 @@ export const itinerariesData: Record<string, Itinerary> = {
       "Rhododendron forests",
       "Panoramic Himalayan views",
     ],
-    whatToExpect: "Perfect blend of culture and mountains. First week explores Kathmandu and Pokhara. Second week involves moderate trekking on well-maintained trails. Daily elevation gain 400-600m. Expect tea house accommodations on trek (basic but charming). Stunning sunrises and mountain vistas.",
+    whatToExpect:
+      "Perfect blend of culture and mountains. First week explores Kathmandu and Pokhara. Second week involves moderate trekking on well-maintained trails. Daily elevation gain 400-600m. Expect tea house accommodations on trek (basic but charming). Stunning sunrises and mountain vistas.",
     packing: [
       "Layered clothing (thin layers key for altitude temperature changes)",
       "Trekking boots (break in before departure)",
@@ -377,7 +402,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Hotel in Pokhara",
         cost: "USD 120-180/night",
-        notes: "Final acclimatization and preparation day. Get full night sleep before trek starts tomorrow.",
+        notes:
+          "Final acclimatization and preparation day. Get full night sleep before trek starts tomorrow.",
       },
       {
         day: 6,
@@ -398,7 +424,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house in Nayapul (basic, clean)",
         cost: "USD 20-30/night",
-        notes: "Easy first day. Only 4 hours walking. Beautiful village paths. Tea house experience begins.",
+        notes:
+          "Easy first day. Only 4 hours walking. Beautiful village paths. Tea house experience begins.",
       },
       {
         day: 7,
@@ -418,7 +445,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house in Tikhedhunga",
         cost: "USD 20-30/night",
-        notes: "More elevation gain today (400m). Forest is beautiful. Water sources abundant.",
+        notes:
+          "More elevation gain today (400m). Forest is beautiful. Water sources abundant.",
       },
       {
         day: 8,
@@ -439,7 +467,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house in Ghorepani",
         cost: "USD 20-30/night",
-        notes: "Most challenging day (5-6 hours, steep). But worth it. Sleep early for 3:30 AM Poon Hill wake up.",
+        notes:
+          "Most challenging day (5-6 hours, steep). But worth it. Sleep early for 3:30 AM Poon Hill wake up.",
       },
       {
         day: 9,
@@ -459,7 +488,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house in Tatopani",
         cost: "USD 20-30/night",
-        notes: "Trek's most rewarding day. Poon Hill sunrise is unforgettable. Downhill walk in afternoon is easy. Hot springs available in Tatopani.",
+        notes:
+          "Trek's most rewarding day. Poon Hill sunrise is unforgettable. Downhill walk in afternoon is easy. Hot springs available in Tatopani.",
       },
       {
         day: 10,
@@ -479,7 +509,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Lake-view hotel in Pokhara",
         cost: "USD 120-180/night",
-        notes: "Exit trek with easier downhill walk. Rejoin civilization. Well-deserved rest day.",
+        notes:
+          "Exit trek with easier downhill walk. Rejoin civilization. Well-deserved rest day.",
       },
       {
         day: 11,
@@ -500,7 +531,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Lake-view hotel in Pokhara",
         cost: "USD 120-180/night",
-        notes: "Relaxation day after trek. Paragliding optional (weather dependent). Legs may be sore—light activities recommended.",
+        notes:
+          "Relaxation day after trek. Paragliding optional (weather dependent). Legs may be sore—light activities recommended.",
       },
       {
         day: 12,
@@ -520,7 +552,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Lake-view hotel in Pokhara",
         cost: "USD 120-180/night",
-        notes: "Museum is excellent and worth visit. Lakeside shopping has souvenirs and handicrafts.",
+        notes:
+          "Museum is excellent and worth visit. Lakeside shopping has souvenirs and handicrafts.",
       },
       {
         day: 13,
@@ -566,10 +599,18 @@ export const itinerariesData: Record<string, Itinerary> = {
     title: "The Grand Adventure",
     duration: "21 Days",
     durationDays: 21,
-    description: "For the ultimate explorer. Tackle the legendary Everest Base Camp trek or the Annapurna Circuit, immersing yourself deep in the Himalayas.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200",
-    overview: "The ultimate Nepal adventure for experienced trekkers. This 3-week itinerary includes cultural immersion in Kathmandu, then a choice of two epic mountain treks: Everest Base Camp Trek (highest altitude) or Annapurna Circuit (most scenic). Both offer authentic mountain village experiences, extreme altitude challenges, and unforgettable Himalayan encounters.",
-    bestFor: ["Serious trekkers", "Mountain enthusiasts", "Adventure seekers", "Photography professionals"],
+    description:
+      "For the ultimate explorer. Tackle the legendary Everest Base Camp trek or the Annapurna Circuit, immersing yourself deep in the Himalayas.",
+    image:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200",
+    overview:
+      "The ultimate Nepal adventure for experienced trekkers. This 3-week itinerary includes cultural immersion in Kathmandu, then a choice of two epic mountain treks: Everest Base Camp Trek (highest altitude) or Annapurna Circuit (most scenic). Both offer authentic mountain village experiences, extreme altitude challenges, and unforgettable Himalayan encounters.",
+    bestFor: [
+      "Serious trekkers",
+      "Mountain enthusiasts",
+      "Adventure seekers",
+      "Photography professionals",
+    ],
     difficulty: "Challenging",
     totalCost: "USD 2,500-3,500 per person",
     includedInCost: [
@@ -597,7 +638,8 @@ export const itinerariesData: Record<string, Itinerary> = {
       "Thorung La Pass (5,416m - Annapurna Circuit)",
       "Kathmandu cultural sites",
     ],
-    whatToExpect: "Extreme altitude challenges (up to 5,500m), daily 5-7 hour treks, potential altitude sickness, basic tea house accommodations, minimal facilities, life-changing mountain experiences. Requires good fitness and altitude acclimatization strategy.",
+    whatToExpect:
+      "Extreme altitude challenges (up to 5,500m), daily 5-7 hour treks, potential altitude sickness, basic tea house accommodations, minimal facilities, life-changing mountain experiences. Requires good fitness and altitude acclimatization strategy.",
     packing: [
       "Heavy duty trekking boots (critical at altitude)",
       "Multiple layers including thermal underwear",
@@ -679,7 +721,8 @@ export const itinerariesData: Record<string, Itinerary> = {
       },
       {
         day: 4,
-        title: "Fly to Lukla - Enter Everest Region OR Fly to Pokhara - Annapurna Start",
+        title:
+          "Fly to Lukla - Enter Everest Region OR Fly to Pokhara - Annapurna Start",
         location: "Lukla (5,200m) or Pokhara (800m)",
         activities: [
           "Choose trek: Everest Base Camp OR Annapurna Circuit",
@@ -694,11 +737,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house in Phakding (EBC) or Besisahar area (AC)",
         cost: "USD 25-35/night",
-        notes: "Trek begins. Different routes chosen here. Both are challenging.",
+        notes:
+          "Trek begins. Different routes chosen here. Both are challenging.",
       },
       {
         day: 5,
-        title: "EBC Trek Day 1: Lukla to Phakding OR AC Day 1: Besisahar to Chyamche",
+        title:
+          "EBC Trek Day 1: Lukla to Phakding OR AC Day 1: Besisahar to Chyamche",
         location: "Phakding (2,600m) or Chyamche (1,550m)",
         activities: [
           "EBC: Easy 3-hour trek to Phakding via Monjo",
@@ -717,7 +762,8 @@ export const itinerariesData: Record<string, Itinerary> = {
       },
       {
         day: 6,
-        title: "EBC Trek Day 2: Phakding to Namche Bazaar OR AC Day 2: Chyamche to Jagat",
+        title:
+          "EBC Trek Day 2: Phakding to Namche Bazaar OR AC Day 2: Chyamche to Jagat",
         location: "Namche Bazaar (3,440m) or Jagat (1,520m)",
         activities: [
           "EBC: Challenging uphill trek to Namche Bazaar",
@@ -731,11 +777,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "EBC trek gets significant elevation gain today. AC more gradual.",
+        notes:
+          "EBC trek gets significant elevation gain today. AC more gradual.",
       },
       {
         day: 7,
-        title: "Acclimatization Day in Namche Bazaar (EBC) OR AC Day 3: Jagat to Chamje",
+        title:
+          "Acclimatization Day in Namche Bazaar (EBC) OR AC Day 3: Jagat to Chamje",
         location: "Namche Bazaar or Chamje",
         activities: [
           "EBC: Rest day in Namche - explore village, climb Sagarmatha View Point (3,880m)",
@@ -749,11 +797,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "Critical acclimatization rest day for EBC. AC trek continues steadily.",
+        notes:
+          "Critical acclimatization rest day for EBC. AC trek continues steadily.",
       },
       {
         day: 8,
-        title: "EBC Trek Day 3: Namche to Tengboche OR AC Day 4: Chamje to Isor",
+        title:
+          "EBC Trek Day 3: Namche to Tengboche OR AC Day 4: Chamje to Isor",
         location: "Tengboche (3,860m) or Isor (1,950m)",
         activities: [
           "EBC: Trek to Tengboche, visit famous monastery",
@@ -767,11 +817,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "EBC: Tengboche monastery is spiritually significant. AC starts steady climb.",
+        notes:
+          "EBC: Tengboche monastery is spiritually significant. AC starts steady climb.",
       },
       {
         day: 9,
-        title: "EBC Trek Day 4: Tengboche to Dingboche OR AC Day 5: Isor to Dharapani",
+        title:
+          "EBC Trek Day 4: Tengboche to Dingboche OR AC Day 5: Isor to Dharapani",
         location: "Dingboche (4,410m) or Dharapani (2,000m)",
         activities: [
           "EBC: Trek through rhododendron forest",
@@ -785,11 +837,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "EBC altitude now significant—watch for altitude sickness symptoms.",
+        notes:
+          "EBC altitude now significant—watch for altitude sickness symptoms.",
       },
       {
         day: 10,
-        title: "EBC Trek Day 5: Dingboche Acclimatization OR AC Day 6: Dharapani to Besisahar",
+        title:
+          "EBC Trek Day 5: Dingboche Acclimatization OR AC Day 6: Dharapani to Besisahar",
         location: "Dingboche (4,410m) or Besisahar (820m)",
         activities: [
           "EBC: Acclimatization hike to Nagjuma La or Chukkung (4,730m)",
@@ -803,11 +857,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "EBC: Critical acclimatization day. Altitude sickness risk increases.",
+        notes:
+          "EBC: Critical acclimatization day. Altitude sickness risk increases.",
       },
       {
         day: 11,
-        title: "EBC Trek Day 6: Dingboche to Lobuche OR AC Day 7: Besisahar to Manang",
+        title:
+          "EBC Trek Day 6: Dingboche to Lobuche OR AC Day 7: Besisahar to Manang",
         location: "Lobuche (4,940m) or Manang (3,540m)",
         activities: [
           "EBC: Trek above 4,500m—severe altitude",
@@ -821,11 +877,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "EBC: Severe altitude—many experience symptoms. Descend if necessary.",
+        notes:
+          "EBC: Severe altitude—many experience symptoms. Descend if necessary.",
       },
       {
         day: 12,
-        title: "EBC Trek Day 7: Lobuche to Gorak Shep to Everest Base Camp OR AC Day 8: Manang to Tanki Gyu",
+        title:
+          "EBC Trek Day 7: Lobuche to Gorak Shep to Everest Base Camp OR AC Day 8: Manang to Tanki Gyu",
         location: "Gorak Shep (5,160m) or Tanki Gyu (3,600m)",
         activities: [
           "EBC: Trek to Everest Base Camp (5,364m)—TREK HIGHLIGHT",
@@ -840,11 +898,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house at Gorak Shep",
         cost: "USD 20-30/night",
-        notes: "EBC: Summit moment—extreme altitude, extreme emotions. AC continues toward Thorung La.",
+        notes:
+          "EBC: Summit moment—extreme altitude, extreme emotions. AC continues toward Thorung La.",
       },
       {
         day: 13,
-        title: "EBC Trek Day 8: Gorak Shep to Kala Patthar to Pheriche OR AC Day 9: Tanki Gyu to Thorung Phedi",
+        title:
+          "EBC Trek Day 8: Gorak Shep to Kala Patthar to Pheriche OR AC Day 9: Tanki Gyu to Thorung Phedi",
         location: "Pheriche (4,280m) or Thorung Phedi (4,540m)",
         activities: [
           "EBC: Pre-dawn climb to Kala Patthar (5,545m)",
@@ -859,11 +919,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "EBC: Kala Patthar sunrise is final trek highlight. AC prepares for pass crossing.",
+        notes:
+          "EBC: Kala Patthar sunrise is final trek highlight. AC prepares for pass crossing.",
       },
       {
         day: 14,
-        title: "EBC Trek Day 9: Pheriche to Namche OR AC Day 10: Thorung Phedi to Thorung La to Muktinath",
+        title:
+          "EBC Trek Day 9: Pheriche to Namche OR AC Day 10: Thorung Phedi to Thorung La to Muktinath",
         location: "Namche Bazaar or Muktinath (3,760m)",
         activities: [
           "EBC: Long descent back to Namche Bazaar",
@@ -878,11 +940,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "EBC: Altitude relief begins. AC: Thorung La pass is grueling but rewarding.",
+        notes:
+          "EBC: Altitude relief begins. AC: Thorung La pass is grueling but rewarding.",
       },
       {
         day: 15,
-        title: "EBC Trek Day 10: Namche to Lukla OR AC Day 11: Muktinath to Jomsom",
+        title:
+          "EBC Trek Day 10: Namche to Lukla OR AC Day 11: Muktinath to Jomsom",
         location: "Lukla (2,600m) or Jomsom (2,720m)",
         activities: [
           "EBC: Trek back down to Lukla",
@@ -896,11 +960,13 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Tea house",
         cost: "USD 20-30/night",
-        notes: "EBC: Long descent—knees feel trek. AC: Different landscape, ancient culture.",
+        notes:
+          "EBC: Long descent—knees feel trek. AC: Different landscape, ancient culture.",
       },
       {
         day: 16,
-        title: "EBC Trek Day 11: Lukla to Kathmandu OR AC Day 12: Jomsom to Tatopani",
+        title:
+          "EBC Trek Day 11: Lukla to Kathmandu OR AC Day 12: Jomsom to Tatopani",
         location: "Kathmandu or Tatopani (1,190m)",
         activities: [
           "EBC: Scenic flight back to Kathmandu",
@@ -914,7 +980,8 @@ export const itinerariesData: Record<string, Itinerary> = {
         },
         accommodation: "Hotel in Kathmandu (EBC) or Tea house (AC)",
         cost: "USD 150-200/night (EBC) or USD 20-30/night (AC)",
-        notes: "EBC: Trek complete—celebration dinner. AC: Final trekking days.",
+        notes:
+          "EBC: Trek complete—celebration dinner. AC: Final trekking days.",
       },
       {
         day: 17,
@@ -990,10 +1057,7 @@ export const itinerariesData: Record<string, Itinerary> = {
         day: 21,
         title: "Depart Nepal",
         location: "Tribhuvan International Airport",
-        activities: [
-          "Transfer to airport",
-          "International departure",
-        ],
+        activities: ["Transfer to airport", "International departure"],
         meals: {
           breakfast: "Hotel (if time)",
         },
