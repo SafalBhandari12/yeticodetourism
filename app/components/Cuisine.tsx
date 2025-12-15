@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "@/lib/useTranslation";
 
 export default function Cuisine() {
+  const t = useTranslation();
+
   return (
     <section className='py-24 bg-grid'>
       <div className='max-w-7xl mx-auto px-8'>
@@ -10,38 +13,30 @@ export default function Cuisine() {
           {/* Text Content */}
           <div className='lg:col-span-5 order-2 lg:order-1'>
             <span className='text-red-400 font-bold tracking-widest uppercase mb-4 block'>
-              Taste of Nepal
+              {t.cuisine.tag}
             </span>
             <h2 className='text-4xl md:text-6xl font-black text-white mb-8 leading-tight'>
-              Spices, Soul & <br />
+              {t.cuisine.title} <br />
               <span className='text-transparent bg-clip-text bg-linear-to-r from-[#d4344f] to-orange-500'>
-                Everything Bold.
+                {t.cuisine.titleHighlight}
               </span>
             </h2>
             <p className='text-xl text-gray-200 mb-8 leading-relaxed'>
-              Nepalese cuisine is a vibrant fusion of Himalayan flavors and
-              South Asian spices. It's not just food; it's a celebration of
-              culture on a plate.
+              {t.cuisine.description}
             </p>
 
             <div className='space-y-6'>
               <div className='bg-[#7d2426] p-6 rounded-xl border border-[#8b3a3d] border-l-4 border-l-red-400 hover:border-red-300 transition-colors'>
                 <h3 className='text-xl font-bold mb-2 text-white'>
-                  Momo Mania
+                  {t.cuisine.momo.title}
                 </h3>
-                <p className='text-gray-300'>
-                  Steamed dumplings filled with juicy meat or veggies, served
-                  with a spicy tomato achar. The unofficial national dish.
-                </p>
+                <p className='text-gray-300'>{t.cuisine.momo.description}</p>
               </div>
               <div className='bg-[#7d2426] p-6 rounded-xl border border-[#8b3a3d] border-l-4 border-l-orange-400 hover:border-orange-300 transition-colors'>
                 <h3 className='text-xl font-bold mb-2 text-white'>
-                  Dal Bhat Power
+                  {t.cuisine.dalBhat.title}
                 </h3>
-                <p className='text-gray-300'>
-                  Lentil soup, rice, and seasonal curry. The wholesome staple
-                  that powers trekkers up the mountains.
-                </p>
+                <p className='text-gray-300'>{t.cuisine.dalBhat.description}</p>
               </div>
             </div>
           </div>

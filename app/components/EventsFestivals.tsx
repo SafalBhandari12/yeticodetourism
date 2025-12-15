@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { CalendarDays, Sparkles, ArrowRight } from "lucide-react";
+import { useTranslation } from "@/lib/useTranslation";
 
 interface Festival {
   title: string;
@@ -20,7 +21,8 @@ const FestivalCard = ({
   image,
   highlight,
   index,
-}: Festival & { index: number }) => {
+  exploreText,
+}: Festival & { index: number; exploreText: string }) => {
   return (
     <div className='group relative'>
       {/* Timeline dot and line */}
@@ -77,7 +79,7 @@ const FestivalCard = ({
 
             {/* CTA */}
             <button className='mt-6 self-start px-4 py-2 text-sm font-bold text-[#d4344f] hover:text-white bg-transparent hover:bg-[#d4344f] border border-[#d4344f] rounded-lg transition-all duration-300'>
-              Explore Festival →
+              {exploreText} →
             </button>
           </div>
         </div>
@@ -89,40 +91,37 @@ const FestivalCard = ({
 export default function EventsFestivals() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
+  const t = useTranslation();
 
   const festivals: Festival[] = [
     {
-      title: "Dashain",
-      date: "September - October",
+      title: t.events.dashain.title,
+      date: t.events.dashain.date,
       image: "/festival/dashain.jpg",
-      description:
-        "The biggest and most auspicious festival in Nepal, celebrating the victory of good over evil. Families reunite to celebrate for 15 days, receive blessings (Tika), and fly colorful kites. Witness the joyous atmosphere in cities and villages alike.",
-      highlight: "Biggest Festival",
+      description: t.events.dashain.description,
+      highlight: t.events.dashain.highlight,
     },
     {
-      title: "Tihar (Deepawali)",
-      date: "October - November",
+      title: t.events.tihar.title,
+      date: t.events.tihar.date,
       image: "/festival/tihar.jpg",
-      description:
-        "The festival of lights spanning five days. Crows, dogs, cows, and oxen are worshipped each day. The city sparkles with oil lamps (diyas), colorful rangolis, and decorations. It's a time of gratitude and celebration of life.",
-      highlight: "Festival of Lights",
+      description: t.events.tihar.description,
+      highlight: t.events.tihar.highlight,
     },
     {
-      title: "Holi",
-      date: "March",
+      title: t.events.holi.title,
+      date: t.events.holi.date,
       image: "/festival/holi.jpg",
-      description:
-        "The vibrant festival of colors celebrating the arrival of spring. People smear each other with colored powder and water, exchange sweets, and reconnect with loved ones. The entire nation erupts in a burst of colors and joy.",
-      highlight: "Festival of Colors",
+      description: t.events.holi.description,
+      highlight: t.events.holi.highlight,
     },
     {
-      title: "Indra Jatra",
-      date: "September",
+      title: t.events.indraJatra.title,
+      date: t.events.indraJatra.date,
       image:
         "https://images.unsplash.com/photo-1567593810070-7a3d471af022?q=80&w=1200",
-      description:
-        "A massive street festival in Kathmandu lasting eight days. Features the impressive chariot procession of the Living Goddess Kumari through the streets of Kathmandu Durbar Square, traditional mask dances, and cultural performances.",
-      highlight: "Chariot Festival",
+      description: t.events.indraJatra.description,
+      highlight: t.events.indraJatra.highlight,
     },
   ];
 
@@ -132,12 +131,10 @@ export default function EventsFestivals() {
         {/* Header */}
         <div className='mb-8 md:mb-10 lg:mb-14'>
           <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 md:mb-4'>
-            Festivals & Events
+            {t.events.title}
           </h2>
           <p className='text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl'>
-            Celebrate with the gods in the land of festivals. Experience Nepal's
-            vibrant cultural calendar filled with color, joy, and spiritual
-            significance.
+            {t.events.subtitle}
           </p>
         </div>
 
@@ -147,7 +144,12 @@ export default function EventsFestivals() {
           className='lg:pl-8 space-y-6 md:space-y-8 mb-16 md:mb-20'
         >
           {festivals.map((festival, index) => (
-            <FestivalCard key={festival.title} {...festival} index={index} />
+            <FestivalCard
+              key={festival.title}
+              {...festival}
+              index={index}
+              exploreText={t.events.explore}
+            />
           ))}
         </div>
 
@@ -157,7 +159,7 @@ export default function EventsFestivals() {
             onClick={() => router.push("/experiences")}
             className='group px-8 py-3 md:px-10 md:py-4 bg-[#d4344f] hover:bg-[#c02a41] text-white font-bold rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl'
           >
-            View More Festivals
+            {t.events.viewMore}
             <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform' />
           </button>
         </div>

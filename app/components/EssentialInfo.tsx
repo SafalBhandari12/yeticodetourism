@@ -11,6 +11,7 @@ import {
   X,
   ArrowRight,
 } from "lucide-react";
+import { useTranslation } from "@/lib/useTranslation";
 
 interface InfoCategory {
   title: string;
@@ -32,7 +33,8 @@ const InfoCategory: React.FC<{
   data: InfoCategory;
   isMinimal?: boolean;
   onOpen?: () => void;
-}> = ({ data, isMinimal = false, onOpen }) => {
+  exploreText: string;
+}> = ({ data, isMinimal = false, onOpen, exploreText }) => {
   // Extract the color class for border/glow effects (e.g., "text-yellow-400" -> "yellow-400")
   const colorName = data.color.replace("text-", "");
 
@@ -91,7 +93,7 @@ const InfoCategory: React.FC<{
               <div
                 className={`flex items-center gap-2 text-sm font-bold uppercase tracking-wider ${data.color} opacity-60 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300`}
               >
-                <span>Explore</span>
+                <span>{exploreText}</span>
                 <ArrowRight className='w-4 h-4' />
               </div>
             </div>
@@ -254,6 +256,7 @@ export default function EssentialInfo() {
   const [selectedCategory, setSelectedCategory] = useState<InfoCategory | null>(
     null
   );
+  const t = useTranslation();
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -269,121 +272,50 @@ export default function EssentialInfo() {
 
   const categories: InfoCategory[] = [
     {
-      title: "Currency & Payments",
+      title: t.essentialInfo.currency.title,
       icon: <Wallet className='w-12 h-12' />,
       color: "text-yellow-400",
-      summary: "NPR, ATMs & Exchange Rates",
+      summary: t.essentialInfo.currency.summary,
       highlight: {
-        label: "Exchange Rate",
-        value: "$1 USD ≈ 130-135 NPR",
+        label: t.essentialInfo.currency.highlightLabel,
+        value: t.essentialInfo.currency.highlightValue,
       },
-      items: [
-        {
-          label: "Currency",
-          text: "Nepalese Rupee (NPR) is the official currency",
-        },
-        { text: "ATMs widely available in Kathmandu and Pokhara" },
-        { text: "Credit cards accepted in major hotels and restaurants" },
-        { text: "Carry cash for trekking and remote areas" },
-      ],
+      items: t.essentialInfo.currency.items,
     },
     {
-      title: "SIM & Network",
+      title: t.essentialInfo.sim.title,
       icon: <Smartphone className='w-12 h-12' />,
       color: "text-blue-400",
-      summary: "Ncell, NTC & Connectivity",
-      items: [
-        {
-          label: "Providers",
-          text: "Ncell and Nepal Telecom (NTC) are the major options",
-        },
-        { text: "Available at the airport (bring passport & photo)" },
-        { text: "4G coverage is good in cities; variable in remote areas" },
-        { text: "Free Wi-Fi in most hotels, cafes, and restaurants" },
-      ],
+      summary: t.essentialInfo.sim.summary,
+      items: t.essentialInfo.sim.items,
     },
     {
-      title: "Travel Options",
+      title: t.essentialInfo.travel.title,
       icon: <Bus className='w-12 h-12' />,
       color: "text-green-400",
-      summary: "Bus, Taxi & Domestic Flights",
-      items: [
-        {
-          label: "Public Bus",
-          text: "Economical option but can be crowded during peak hours",
-        },
-        {
-          label: "Tourist Bus",
-          text: "More comfortable for inter-city travel (Kathmandu ↔ Pokhara)",
-        },
-        {
-          label: "Taxis",
-          text: "Negotiate fares or use Pathao/InDrive apps for safety",
-        },
-        {
-          label: "Flights",
-          text: "Fastest way to reach remote areas like Lukla and Jomsom",
-        },
-      ],
+      summary: t.essentialInfo.travel.summary,
+      items: t.essentialInfo.travel.items,
     },
     {
-      title: "Visa & Entry",
+      title: t.essentialInfo.visa.title,
       icon: <FileCheck className='w-12 h-12' />,
       color: "text-purple-400",
-      summary: "On-Arrival Visa & Fees",
-      items: [
-        {
-          label: "On-Arrival Visa",
-          text: "Available at Tribhuvan International Airport",
-        },
-        { label: "15 Days", text: "$30 USD" },
-        { label: "30 Days", text: "$50 USD" },
-        { label: "90 Days", text: "$125 USD" },
-        {
-          text: "Bring passport (6+ months validity) and ID photos",
-        },
-        { text: "Online pre-registration available (15 days prior)" },
-      ],
+      summary: t.essentialInfo.visa.summary,
+      items: t.essentialInfo.visa.items,
     },
     {
-      title: "Local Phrases",
+      title: t.essentialInfo.phrases.title,
       icon: <Languages className='w-12 h-12' />,
       color: "text-pink-400",
-      summary: "Namaste & Basic Greetings",
-      items: [
-        {
-          label: "Namaste",
-          text: "Hello / Greetings / Goodbye (most common)",
-        },
-        {
-          label: "Dhanyabad",
-          text: "Thank you - locals appreciate the effort",
-        },
-        {
-          label: "Mitho Cha",
-          text: "It's delicious - perfect for praising meals",
-        },
-        { label: "Jam Jam", text: "Let's go / Hurry up" },
-        {
-          label: "Dai / Didi",
-          text: "Brother / Sister - respectful address for anyone",
-        },
-      ],
+      summary: t.essentialInfo.phrases.summary,
+      items: t.essentialInfo.phrases.items,
     },
     {
-      title: "Safety & Etiquette",
+      title: t.essentialInfo.safety.title,
       icon: <Shield className='w-12 h-12' />,
       color: "text-red-400",
-      summary: "Emergency Contacts & Customs",
-      items: [
-        { label: "Emergency", text: "Police: 100 | Ambulance: 102" },
-        { label: "Tourist Police", text: "1144 (dedicated hotline)" },
-        { text: "Dress modestly, especially at religious temples" },
-        { text: "Always ask permission before photographing locals" },
-        {
-          text: "Remove shoes before entering temples, monasteries, or homes",
-        },
-      ],
+      summary: t.essentialInfo.safety.summary,
+      items: t.essentialInfo.safety.items,
     },
   ];
 
@@ -394,11 +326,10 @@ export default function EssentialInfo() {
           {/* Header */}
           <div className='text-center mb-12 md:mb-14 lg:mb-16'>
             <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 md:mb-5'>
-              Essential Information
+              {t.essentialInfo.title}
             </h2>
             <p className='text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed'>
-              Everything you need to know before traveling to Nepal. From visas
-              and currency to local customs and safety tips.
+              {t.essentialInfo.subtitle}
             </p>
           </div>
           {/* Mobile Categories Grid */}
@@ -409,6 +340,7 @@ export default function EssentialInfo() {
                 data={category}
                 isMinimal={true}
                 onOpen={() => setSelectedCategory(category)}
+                exploreText={t.essentialInfo.explore}
               />
             ))}
           </div>
@@ -416,7 +348,12 @@ export default function EssentialInfo() {
           {/* Desktop Categories Grid */}
           <div className='hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
             {categories.map((category, idx) => (
-              <InfoCategory key={idx} data={category} isMinimal={false} />
+              <InfoCategory
+                key={idx}
+                data={category}
+                isMinimal={false}
+                exploreText={t.essentialInfo.explore}
+              />
             ))}
           </div>
         </div>

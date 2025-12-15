@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "@/lib/useTranslation";
 
 export default function AdventureWildlife() {
+  const t = useTranslation();
+
   return (
     <section className='py-24 bg-grid text-white overflow-hidden'>
       <div className='max-w-7xl mx-auto px-8'>
@@ -11,12 +14,10 @@ export default function AdventureWildlife() {
           <div className='space-y-12'>
             <div>
               <h2 className='text-4xl md:text-6xl font-bold mb-6 tracking-tight'>
-                Wild & Free
+                {t.adventure.title}
               </h2>
               <p className='text-xl text-gray-200 leading-relaxed'>
-                Nepal is not just about mountains. It's a playground for
-                adrenaline junkies and nature lovers alike. From the roar of the
-                tiger to the rush of the rapids.
+                {t.adventure.subtitle}
               </p>
             </div>
 
@@ -39,11 +40,10 @@ export default function AdventureWildlife() {
                 </div>
                 <div>
                   <h3 className='text-2xl font-bold mb-2 text-white group-hover:text-red-400 transition-colors'>
-                    Jungle Safari
+                    {t.adventure.jungleSafari}
                   </h3>
                   <p className='text-gray-300'>
-                    Encounter one-horned rhinos, Bengal tigers, and wild
-                    elephants in Chitwan and Bardia National Parks.
+                    {t.adventure.jungleSafariDesc}
                   </p>
                 </div>
               </div>
@@ -66,11 +66,10 @@ export default function AdventureWildlife() {
                 </div>
                 <div>
                   <h3 className='text-2xl font-bold mb-2 text-white group-hover:text-red-400 transition-colors'>
-                    Adventure Sports
+                    {t.adventure.adventureSports}
                   </h3>
                   <p className='text-gray-300'>
-                    Paragliding in Pokhara, Bungee jumping in The Last Resort,
-                    and White Water Rafting in the Bhote Koshi.
+                    {t.adventure.adventureSportsDesc}
                   </p>
                 </div>
               </div>
@@ -93,12 +92,9 @@ export default function AdventureWildlife() {
                 </div>
                 <div>
                   <h3 className='text-2xl font-bold mb-2 text-white group-hover:text-red-400 transition-colors'>
-                    Trekking & Mountaineering
+                    {t.adventure.trekking}
                   </h3>
-                  <p className='text-gray-300'>
-                    From the Annapurna Circuit to the Great Himalaya Trail, walk
-                    the paths of legends.
-                  </p>
+                  <p className='text-gray-300'>{t.adventure.trekkingDesc}</p>
                 </div>
               </div>
             </div>

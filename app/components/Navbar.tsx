@@ -4,8 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import NavDropdown from "./NavDropdown";
+import LanguageSelector from "./LanguageSelector";
+import { useTranslation } from "@/lib/useTranslation";
 
 export default function Navbar() {
+  const t = useTranslation();
   const [hasScrolled, setHasScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -200,10 +203,10 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { label: "Destinations", href: "/destinations" },
-    { label: "Experiences", href: "/experiences" },
-    { label: "Accommodation", href: "/accommodation" },
-    { label: "Planning", href: "/planning" },
+    { label: t.nav.destinations, href: "/destinations" },
+    { label: t.nav.experiences, href: "/experiences" },
+    { label: t.nav.accommodation, href: "/accommodation" },
+    { label: t.nav.planning, href: "/planning" },
   ];
 
   return (
@@ -357,33 +360,17 @@ export default function Navbar() {
                 />
               </svg>
               <span className='hidden lg:inline text-sm font-medium'>
-                Search
+                {t.nav.search}
               </span>
             </button>
 
             {/* Meetings */}
             <button className='hidden md:flex items-center gap-2 text-whitetransition-colors duration-300 group hover:cursor-pointer hover:text-(--accent-hover) active:text-(--accent-hover)'>
-              <span className='text-sm font-medium'>Mountains</span>
+              <span className='text-sm font-medium'>{t.nav.mountains}</span>
             </button>
 
             {/* Language Dropdown */}
-            <div className='hidden md:flex items-center gap-2 text-white hover:text-(--accent-hover) active:text-(--accent-hover) transition-colors duration-300 group cursor-pointer'>
-              <span className='text-sm font-medium'>Language</span>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={2}
-                stroke='currentColor'
-                className='w-4 h-4 group-hover:scale-110 transition-transform duration-300'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M19.5 8.25l-7.5 7.5-7.5-7.5'
-                />
-              </svg>
-            </div>
+            <LanguageSelector />
 
             {/* Map */}
             <button className='flex items-center text-white hover:text-(--accent-hover) active:text-(--accent-hover) transition-colors duration-300 group hover:cursor-pointer'>
@@ -626,7 +613,7 @@ export default function Navbar() {
 
                 {/* Call to Action Button */}
                 <button className='w-full bg-linear-to-r from-[#d4344f] to-[#c41e3a] hover:from-[#e54562] hover:to-[#d42740] text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg mt-4'>
-                  Book Your Adventure
+                  {t.nav.bookAdventure}
                 </button>
               </div>
             </div>

@@ -1,17 +1,22 @@
+"use client";
+
 import Link from "next/link";
+import { useTranslation } from "@/lib/useTranslation";
 
 export default function Footer() {
+  const t = useTranslation();
+
   return (
     <footer className='bg-gray-900 text-white py-16'>
       <div className='container mx-auto px-4'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12'>
           {/* Search */}
           <div>
-            <h3 className='text-xl font-bold mb-6'>Search</h3>
+            <h3 className='text-xl font-bold mb-6'>{t.footer.search}</h3>
             <div className='relative'>
               <input
                 type='text'
-                placeholder='Search'
+                placeholder={t.footer.search}
                 className='w-full bg-gray-800 border border-gray-700 rounded-full py-3 px-6 text-white focus:outline-none focus:border-red-600'
               />
               <button className='absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white'>
@@ -22,26 +27,28 @@ export default function Footer() {
 
           {/* Legal & More */}
           <div>
-            <h3 className='text-xl font-bold mb-6'>Legal information</h3>
+            <h3 className='text-xl font-bold mb-6'>
+              {t.footer.legalInformation}
+            </h3>
             <ul className='space-y-3 text-gray-400'>
               <li>
                 <Link href='#' className='hover:text-white transition-colors'>
-                  Terms of use
+                  {t.footer.termsOfUse}
                 </Link>
               </li>
               <li>
                 <Link href='#' className='hover:text-white transition-colors'>
-                  Data protection
+                  {t.footer.dataProtection}
                 </Link>
               </li>
               <li>
                 <Link href='#' className='hover:text-white transition-colors'>
-                  Cookies
+                  {t.footer.cookies}
                 </Link>
               </li>
               <li>
                 <Link href='#' className='hover:text-white transition-colors'>
-                  Imprint
+                  {t.footer.imprint}
                 </Link>
               </li>
             </ul>
@@ -49,26 +56,26 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className='text-xl font-bold mb-6'>Contact</h3>
+            <h3 className='text-xl font-bold mb-6'>{t.footer.contact}</h3>
             <ul className='space-y-3 text-gray-400'>
               <li>
                 <Link href='#' className='hover:text-white transition-colors'>
-                  Address
+                  {t.footer.address}
                 </Link>
               </li>
               <li>
                 <Link href='#' className='hover:text-white transition-colors'>
-                  Help center
+                  {t.footer.helpCenter}
                 </Link>
               </li>
               <li>
                 <Link href='#' className='hover:text-white transition-colors'>
-                  Media Corner
+                  {t.footer.mediaCorner}
                 </Link>
               </li>
               <li>
                 <Link href='#' className='hover:text-white transition-colors'>
-                  Trade Corner
+                  {t.footer.tradeCorner}
                 </Link>
               </li>
             </ul>
@@ -76,7 +83,7 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className='text-xl font-bold mb-6'>Newsletter</h3>
+            <h3 className='text-xl font-bold mb-6'>{t.footer.newsletter}</h3>
             <p className='text-gray-400 mb-4'>
               Subscribe to our newsletter for the latest updates.
             </p>
@@ -85,7 +92,7 @@ export default function Footer() {
             </button>
 
             <div className='mt-8'>
-              <h4 className='font-bold mb-4'>Follow us</h4>
+              <h4 className='font-bold mb-4'>{t.footer.followUs}</h4>
               <div className='flex gap-4'>
                 <Link href='#' className='text-2xl hover:text-red-500'>
                   FB

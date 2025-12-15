@@ -1,27 +1,81 @@
 "use client";
 
 import { useState, useRef, useEffect, useMemo } from "react";
-
-const BASE_MONTHS = [
-  { num: "01", name: "jan", displayName: "Himalayas" },
-  { num: "02", name: "feb", displayName: "Heritage" },
-  { num: "03", name: "mar", displayName: "Spirituality" },
-  { num: "04", name: "apr", displayName: "Adventure" },
-  { num: "05", name: "may", displayName: "Wildlife" },
-  { num: "06", name: "jun", displayName: "Trekking" },
-  { num: "07", name: "jul", displayName: "Culture" },
-  { num: "08", name: "aug", displayName: "Festivals" },
-  { num: "09", name: "sep", displayName: "Cuisine" },
-  { num: "10", name: "oct", displayName: "Hospitality" },
-  { num: "11", name: "nov", displayName: "Diversity" },
-  { num: "12", name: "dec", displayName: "Serenity" },
-];
-
-const LOOP_MULTIPLIER = 25;
-const MONTH_COUNT = BASE_MONTHS.length;
-const MIDDLE_LOOP_OFFSET = MONTH_COUNT * Math.floor(LOOP_MULTIPLIER / 2);
+import { useTranslation } from "@/lib/useTranslation";
 
 export default function Hero() {
+  const t = useTranslation();
+
+  const BASE_MONTHS = useMemo(
+    () => [
+      {
+        num: "01",
+        name: "jan",
+        displayName: t.hero.themes?.himalayas || "Himalayas",
+      },
+      {
+        num: "02",
+        name: "feb",
+        displayName: t.hero.themes?.heritage || "Heritage",
+      },
+      {
+        num: "03",
+        name: "mar",
+        displayName: t.hero.themes?.spirituality || "Spirituality",
+      },
+      {
+        num: "04",
+        name: "apr",
+        displayName: t.hero.themes?.adventure || "Adventure",
+      },
+      {
+        num: "05",
+        name: "may",
+        displayName: t.hero.themes?.wildlife || "Wildlife",
+      },
+      {
+        num: "06",
+        name: "jun",
+        displayName: t.hero.themes?.trekking || "Trekking",
+      },
+      {
+        num: "07",
+        name: "jul",
+        displayName: t.hero.themes?.culture || "Culture",
+      },
+      {
+        num: "08",
+        name: "aug",
+        displayName: t.hero.themes?.festivals || "Festivals",
+      },
+      {
+        num: "09",
+        name: "sep",
+        displayName: t.hero.themes?.cuisine || "Cuisine",
+      },
+      {
+        num: "10",
+        name: "oct",
+        displayName: t.hero.themes?.hospitality || "Hospitality",
+      },
+      {
+        num: "11",
+        name: "nov",
+        displayName: t.hero.themes?.diversity || "Diversity",
+      },
+      {
+        num: "12",
+        name: "dec",
+        displayName: t.hero.themes?.serenity || "Serenity",
+      },
+    ],
+    [t]
+  );
+
+  const LOOP_MULTIPLIER = 25;
+  const MONTH_COUNT = BASE_MONTHS.length;
+  const MIDDLE_LOOP_OFFSET = MONTH_COUNT * Math.floor(LOOP_MULTIPLIER / 2);
+
   const initialMonthIndex = 11;
   const initialVideoSrc = `https://calendar.myswitzerland.com/20190321/month/${BASE_MONTHS[initialMonthIndex].num}_${BASE_MONTHS[initialMonthIndex].name}_1920x1080.mp4`;
   const extendedMonths = useMemo(() => {
@@ -37,7 +91,7 @@ export default function Hero() {
       });
     }
     return months;
-  }, []);
+  }, [BASE_MONTHS]);
 
   const initialIndex = MIDDLE_LOOP_OFFSET + initialMonthIndex;
   const [selectedIndex, setSelectedIndex] = useState(initialIndex);
@@ -55,6 +109,7 @@ export default function Hero() {
   const [pendingVideoIndex, setPendingVideoIndex] = useState<number | null>(
     null
   );
+  const prevSelectedIndexRef = useRef(initialIndex);
 
   const currentMonthIndex =
     ((selectedIndex % MONTH_COUNT) + MONTH_COUNT) % MONTH_COUNT;
@@ -107,12 +162,19 @@ export default function Hero() {
 
     const startScrollLeft = container.scrollLeft;
     const distance = targetScrollPosition - startScrollLeft;
-    if (!initialScrollSetRef.current) {
+
+    const isIndexChange = prevSelectedIndexRef.current !== selectedIndex;
+    prevSelectedIndexRef.current = selectedIndex;
+
+    if (!initialScrollSetRef.current || !isIndexChange) {
       container.scrollLeft = targetScrollPosition;
-      initialScrollSetRef.current = true;
-      setSliderReady(true);
+      if (!initialScrollSetRef.current) {
+        initialScrollSetRef.current = true;
+        setSliderReady(true);
+      }
       return;
     }
+
     if (Math.abs(distance) < 1) {
       container.scrollLeft = targetScrollPosition;
       return;
@@ -144,7 +206,7 @@ export default function Hero() {
     };
 
     scrollAnimationRef.current = requestAnimationFrame(animateScroll);
-  }, [selectedIndex, sliderReady]);
+  }, [selectedIndex, sliderReady, extendedMonths]);
 
   useEffect(() => {
     const nextVideoSrc = `https://calendar.myswitzerland.com/20190321/month/${BASE_MONTHS[currentMonthIndex].num}_${BASE_MONTHS[currentMonthIndex].name}_1920x1080.mp4`;
@@ -200,8 +262,6 @@ export default function Hero() {
       ))}
 
       <div className='absolute inset-0 bg-black/20 z-10'></div>
-
-      <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white z-20 px-4'></div>
 
       {/* Month Selector Slider */}
       <div className='absolute bottom-12 md:bottom-0 left-0 z-30 py-4 md:py-8 px-4 md:px-8 w-full md:w-1/2'>

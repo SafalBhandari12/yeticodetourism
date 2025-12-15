@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "@/lib/useTranslation";
 
 const PlanCard = ({
   title,
@@ -8,12 +9,16 @@ const PlanCard = ({
   description,
   image,
   highlights,
+  viewItineraryText,
+  highlightsText,
 }: {
   title: string;
   duration: string;
   description: string;
   image: string;
   highlights: string[];
+  viewItineraryText: string;
+  highlightsText: string;
 }) => (
   <div className='group relative overflow-hidden rounded-xl border border-[#8b3a3d] transition-colors duration-300 min-w-[80vw] snap-start h-[500px] md:h-auto md:min-w-0 md:flex md:flex-col md:bg-[#7d2426] hover:border-red-400'>
     {/* Image Container */}
@@ -42,7 +47,7 @@ const PlanCard = ({
       {/* Desktop Highlights */}
       <div className='mb-6 hidden md:block'>
         <h4 className='text-sm font-bold text-gray-400 uppercase tracking-wider mb-3'>
-          Highlights
+          {highlightsText}
         </h4>
         <div className='flex flex-wrap gap-2'>
           {highlights.map((tag, i) => (
@@ -69,28 +74,27 @@ const PlanCard = ({
       </div>
 
       <button className='w-full py-3 border-2 border-white/50 md:border-red-400 text-white md:text-red-400 font-bold rounded-lg hover:bg-red-400 hover:text-white hover:border-red-400 transition-colors duration-300 cursor-pointer'>
-        View Full Itinerary
+        {viewItineraryText}
       </button>
     </div>
   </div>
 );
 
 export default function Itineraries() {
+  const t = useTranslation();
+
   return (
     <section className='py-24 bg-grid'>
       <div className='max-w-7xl mx-auto px-8'>
         <div className='flex flex-col md:flex-row justify-between items-end mb-16 gap-6'>
           <div className='max-w-2xl'>
             <h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
-              Curated Itineraries
+              {t.itineraries.title}
             </h2>
-            <p className='text-xl text-gray-200'>
-              Whether you have a week or a month, we have the perfect plan for
-              your journey.
-            </p>
+            <p className='text-xl text-gray-200'>{t.itineraries.subtitle}</p>
           </div>
           <button className='text-red-400 font-bold text-lg hover:underline flex items-center whitespace-nowrap cursor-pointer'>
-            View all plans
+            {t.itineraries.viewAll}
             <svg
               className='w-5 h-5 ml-2'
               fill='none'
@@ -109,46 +113,37 @@ export default function Itineraries() {
 
         <div className='flex overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:mx-0 md:px-0 scrollbar-hide'>
           <PlanCard
-            title='The Golden Triangle'
-            duration='1 Week'
+            title={t.itineraries.goldenTriangle.title}
+            duration={t.itineraries.goldenTriangle.duration}
             image='https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200'
-            description='The perfect introduction to Nepal. Experience the ancient culture of Kathmandu, the wildlife of Chitwan, and the lakeside serenity of Pokhara.'
-            highlights={[
-              "Kathmandu Durbar Square",
-              "Chitwan Jungle Safari",
-              "Pokhara Lakeside",
-              "Sarangkot Sunrise",
-            ]}
+            description={t.itineraries.goldenTriangle.description}
+            highlights={t.itineraries.goldenTriangle.highlights}
+            viewItineraryText={t.itineraries.viewItinerary}
+            highlightsText={t.itineraries.highlights}
           />
           <PlanCard
-            title='Himalayan Glimpse'
-            duration='2 Weeks'
+            title={t.itineraries.himalayanGlimpse.title}
+            duration={t.itineraries.himalayanGlimpse.duration}
             image='https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=1200'
-            description='Combine culture with a taste of the mountains. Includes a short trek in the Annapurna region to witness the giants up close.'
-            highlights={[
-              "Poon Hill Trek",
-              "Bhaktapur",
-              "Phewa Lake Boating",
-              "World Peace Pagoda",
-            ]}
+            description={t.itineraries.himalayanGlimpse.description}
+            highlights={t.itineraries.himalayanGlimpse.highlights}
+            viewItineraryText={t.itineraries.viewItinerary}
+            highlightsText={t.itineraries.highlights}
           />
           <PlanCard
-            title='The Grand Adventure'
-            duration='3 Weeks'
+            title={t.itineraries.grandAdventure.title}
+            duration={t.itineraries.grandAdventure.duration}
             image='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200'
-            description='For the ultimate explorer. Tackle the legendary Everest Base Camp trek or the Annapurna Circuit, immersing yourself deep in the Himalayas.'
-            highlights={[
-              "Everest Base Camp",
-              "Namche Bazaar",
-              "Tengboche Monastery",
-              "Kala Patthar",
-            ]}
+            description={t.itineraries.grandAdventure.description}
+            highlights={t.itineraries.grandAdventure.highlights}
+            viewItineraryText={t.itineraries.viewItinerary}
+            highlightsText={t.itineraries.highlights}
           />
         </div>
 
         {/* Mobile Scroll Hint */}
         <div className='mt-4 flex items-center justify-center gap-2 text-sm text-gray-400 md:hidden animate-pulse'>
-          <span>Swipe to explore</span>
+          <span>{t.itineraries.swipeToExplore}</span>
           <svg
             className='w-4 h-4'
             fill='none'

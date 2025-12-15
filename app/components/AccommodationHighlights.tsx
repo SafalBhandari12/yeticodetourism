@@ -1,39 +1,38 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "@/lib/useTranslation";
 
 export default function AccommodationHighlights() {
+  const t = useTranslation();
+
   const accommodations = [
     {
-      title: "Hotel Everest View",
-      subtitle: "Syangboche, Nepal (3,880m)",
-      description:
-        "Listed in the Guinness Book of World Records as the highest placed hotel in the world. Enjoy a 360-degree view of Mt. Everest from your breakfast table.",
+      title: t.accommodation.everestView.title,
+      subtitle: t.accommodation.everestView.subtitle,
+      description: t.accommodation.everestView.description,
       image:
         "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200",
-      tag: "WORLD RECORD HOLDER",
+      tag: t.accommodation.everestView.tag,
     },
     {
-      title: "Yeti Mountain Home",
-      subtitle: "Luxury Lodge Network",
-      description:
-        "Comfortable lodges spread across the Everest region offering warm hospitality and hot showers.",
+      title: t.accommodation.yetiHome.title,
+      subtitle: t.accommodation.yetiHome.subtitle,
+      description: t.accommodation.yetiHome.description,
       image:
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=400",
     },
     {
-      title: "Dwarika's Hotel",
-      subtitle: "Kathmandu Heritage",
-      description:
-        "A living museum of Nepali architecture. Experience royal hospitality in the heart of the capital.",
+      title: t.accommodation.dwarikas.title,
+      subtitle: t.accommodation.dwarikas.subtitle,
+      description: t.accommodation.dwarikas.description,
       image:
         "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=400",
     },
     {
-      title: "Tiger Tops",
-      subtitle: "Chitwan Jungle Lodge",
-      description:
-        "Pioneers of eco-tourism. Stay in the heart of the jungle and wake up to the sounds of the wild.",
+      title: t.accommodation.tigerTops.title,
+      subtitle: t.accommodation.tigerTops.subtitle,
+      description: t.accommodation.tigerTops.description,
       image: "/hotels/tigerTops.jpg",
     },
   ];
@@ -43,11 +42,10 @@ export default function AccommodationHighlights() {
       <div className='max-w-7xl mx-auto px-8'>
         <div className='text-center mb-12'>
           <h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
-            Stay Above the Clouds
+            {t.accommodation.title}
           </h2>
           <p className='text-xl text-gray-200 max-w-3xl mx-auto'>
-            From luxury heritage hotels in the city to the highest placed hotel
-            in the world.
+            {t.accommodation.subtitle}
           </p>
         </div>
 
@@ -84,7 +82,7 @@ export default function AccommodationHighlights() {
 
         {/* Mobile Scroll Hint */}
         <div className='mt-4 flex items-center justify-center gap-2 text-sm text-gray-400 md:hidden animate-pulse'>
-          <span>Swipe to explore</span>
+          <span>{t.accommodation.swipeToExplore}</span>
           <svg
             className='w-4 h-4'
             fill='none'

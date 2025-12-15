@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "@/lib/useTranslation";
 
 interface Destination {
   id: number;
@@ -11,6 +12,7 @@ interface Destination {
 }
 
 export default function TopDestinations() {
+  const t = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -19,31 +21,31 @@ export default function TopDestinations() {
   const destinations: Destination[] = [
     {
       id: 1,
-      name: "Everest Base Camp",
+      name: t.destinations.everestBaseCamp,
       description: "",
-      subtitle: "Mountain adventure",
+      subtitle: t.destinations.mountainAdventure,
       image: "/topDestination/mountain.jpg",
     },
     {
       id: 2,
-      name: "Kathmandu Valley",
+      name: t.destinations.kathmandu,
       description: "",
-      subtitle: "Ancient temples & culture",
+      subtitle: t.destinations.kathmanduSubtitle,
       image: "/topDestination/kathmandu.avif",
     },
     {
       id: 4,
-      name: "Chitwan National Park",
+      name: t.destinations.chitwan,
       description: "",
-      subtitle: "Wildlife adventure",
+      subtitle: t.destinations.chitwanSubtitle,
       image:
         "https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: 5,
-      name: "Annapurna Circuit",
+      name: t.destinations.annapurna,
       description: "",
-      subtitle: "Legendary trek",
+      subtitle: t.destinations.annapurnaSubtitle,
       image:
         "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200&auto=format&fit=crop",
     },

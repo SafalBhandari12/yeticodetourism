@@ -1,18 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "@/lib/useTranslation";
 
 export default function WelcomeSection() {
+  const t = useTranslation();
+
   return (
     <section className='py-20 bg-grid'>
       <div className='max-w-7xl mx-auto px-8'>
         <div className='text-center mb-16'>
           <h2 className='text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight'>
-            Welcome to Nepal
+            {t.welcome.title}
           </h2>
           <p className='text-xl text-gray-200 max-w-3xl mx-auto'>
-            A land of snowy peaks and sherpas, yaks and yetis, monasteries and
-            mantras.
+            {t.welcome.subtitle}
           </p>
         </div>
 
@@ -29,16 +31,13 @@ export default function WelcomeSection() {
               />
             </div>
             <h3 className='text-3xl font-bold text-white mb-4 group-hover:text-red-400 transition-colors'>
-              What can I do?
+              {t.welcome.whatCanIDo}
             </h3>
             <p className='text-gray-200 text-lg leading-relaxed mb-4'>
-              From scaling the highest peaks to meditating in ancient
-              monasteries, Nepal offers a diverse range of experiences. Trek
-              through the Himalayas, raft on white-water rivers, or explore the
-              rich cultural heritage of the Kathmandu Valley.
+              {t.welcome.whatCanIDoDesc}
             </p>
             <span className='inline-flex items-center text-red-400 font-bold text-lg group-hover:translate-x-2 transition-transform duration-300'>
-              Explore Activities
+              {t.welcome.exploreActivities}
               <svg
                 className='w-5 h-5 ml-2'
                 fill='none'
@@ -67,16 +66,13 @@ export default function WelcomeSection() {
               />
             </div>
             <h3 className='text-3xl font-bold text-white mb-4 group-hover:text-red-400 transition-colors'>
-              Explore Places
+              {t.welcome.explorePlaces}
             </h3>
             <p className='text-gray-200 text-lg leading-relaxed mb-4'>
-              Discover the hidden gems of Nepal. Visit the birthplace of Lord
-              Buddha in Lumbini, the lake city of Pokhara, or the wildlife
-              sanctuary of Chitwan. Each region offers a unique flavor of
-              Nepal's beauty.
+              {t.welcome.explorePlacesDesc}
             </p>
             <span className='inline-flex items-center text-red-400 font-bold text-lg group-hover:translate-x-2 transition-transform duration-300'>
-              View Destinations
+              {t.welcome.viewDestinations}
               <svg
                 className='w-5 h-5 ml-2'
                 fill='none'
