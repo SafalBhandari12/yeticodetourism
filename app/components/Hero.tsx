@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo, useLayoutEffect } from "react";
 import { useTranslation } from "@/lib/useTranslation";
 
 export default function Hero() {
@@ -143,7 +143,7 @@ export default function Hero() {
   };
 
   // Scroll to center the selected month with smooth animation
-  useEffect(() => {
+  useLayoutEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
