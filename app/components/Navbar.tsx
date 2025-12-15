@@ -6,9 +6,11 @@ import { useState, useEffect } from "react";
 import NavDropdown from "./NavDropdown";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslation } from "@/lib/useTranslation";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Navbar() {
   const t = useTranslation();
+  const { language, setLanguage, availableLanguages } = useLanguage();
   const [hasScrolled, setHasScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -282,59 +284,6 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Mobile Navigation Items */}
-          {mobileMenuOpen && !activeDropdown && (
-            <>
-              {/* Mobile Menu Backdrop - Full Screen Coverage */}
-              <div
-                className='fixed top-0 left-0 right-0 bottom-0 bg-black/70 z-30 md:hidden'
-                onClick={() => setMobileMenuOpen(false)}
-              />
-
-              {/* Mobile Menu Panel */}
-              <div className='fixed top-16 left-0 right-0 z-40 md:hidden bg-[#180109] border-b border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-300'>
-                <div className='flex flex-col gap-0 px-4 py-4 max-h-[calc(100vh-80px)] overflow-y-auto'>
-                  {/* Close Button */}
-                  <div className='flex justify-end mb-4'>
-                    <button
-                      onClick={() => setMobileMenuOpen(false)}
-                      className='text-white hover:text-[#d4344f] transition-colors duration-300 p-2 hover:bg-white/10 rounded'
-                      aria-label='Close menu'
-                    >
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='none'
-                        viewBox='0 0 24 24'
-                        strokeWidth={2}
-                        stroke='currentColor'
-                        className='w-6 h-6'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          d='M6 18L18 6M6 6l12 12'
-                        />
-                      </svg>
-                    </button>
-                  </div>
-
-                  {/* Menu Items */}
-                  {navItems.map((item) => (
-                    <button
-                      key={item.href}
-                      onClick={() => {
-                        setActiveDropdown(item.label);
-                        setMobileMenuOpen(false);
-                      }}
-                      className='text-white hover:text-[#d4344f] transition-colors duration-300 font-medium tracking-wide text-left py-3 px-4 border-b border-white/5 hover:bg-white/5 rounded'
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </>
-          )}
           {/* End Mobile Navigation */}
 
           {/* Right Actions */}
@@ -425,22 +374,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Navigation Items */}
-          {mobileMenuOpen && (
-            <div className='md:hidden flex flex-col items-start gap-4 px-8 pb-4 border-t border-white/10'>
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => {
-                    setActiveDropdown(item.label);
-                    setMobileMenuOpen(false);
-                  }}
-                  className='text-white hover:text-[#d4344f] transition-colors duration-300 font-medium tracking-wide text-left'
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          )}
+          {/* Removed duplicate mobile menu */}
         </div>
 
         {/* Mobile Menu Backdrop and Panel - Outside of nav for proper z-stacking */}
@@ -501,6 +435,29 @@ export default function Navbar() {
                   ))}
                 </div>
 
+                {/* Language Selector */}
+                <div className='mb-8 pb-8 border-b border-[#d4344f]/20'>
+                  <p className='text-[#d4344f] text-xs font-bold uppercase tracking-widest mb-4'>
+                    Language
+                  </p>
+                  <div className='grid grid-cols-2 gap-2'>
+                    {availableLanguages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => setLanguage(lang.code)}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
+                          language === lang.code
+                            ? "bg-[#d4344f]/20 text-[#d4344f] border border-[#d4344f]/30"
+                            : "text-gray-300 hover:bg-white/5"
+                        }`}
+                      >
+                        <span className='text-lg'>{lang.flag}</span>
+                        <span className='text-sm font-medium'>{lang.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Quick Links Section */}
                 <div className='mb-8 pb-8 border-b border-[#d4344f]/20'>
                   <p className='text-[#d4344f] text-xs font-bold uppercase tracking-widest mb-4'>
@@ -519,18 +476,6 @@ export default function Navbar() {
                     >
                       Travel Guides
                     </a>
-                    <a
-                      href='#'
-                      className='block text-gray-300 hover:text-[#d4344f] transition-colors duration-300 py-2 px-4 rounded hover:bg-[#d4344f]/5'
-                    >
-                      Best Offers
-                    </a>
-                    <a
-                      href='#'
-                      className='block text-gray-300 hover:text-[#d4344f] transition-colors duration-300 py-2 px-4 rounded hover:bg-[#d4344f]/5'
-                    >
-                      Contact Us
-                    </a>
                   </div>
                 </div>
 
@@ -541,7 +486,6 @@ export default function Navbar() {
                   </p>
                   <div className='space-y-2 text-sm text-gray-300'>
                     <p>📍 Kathmandu, Nepal</p>
-                    <p>📞 +977-1-1234567</p>
                     <p>✉️ info@tourisminnepal.com</p>
                   </div>
                 </div>
@@ -631,6 +575,7 @@ export default function Navbar() {
           categories={
             dropdownContent[item.label as keyof typeof dropdownContent]
           }
+          href={item.href}
         />
       ))}
     </>

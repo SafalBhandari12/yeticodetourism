@@ -12,6 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useTranslation } from "@/lib/useTranslation";
+import Link from "next/link";
 
 interface InfoCategory {
   title: string;
@@ -355,6 +356,17 @@ export default function EssentialInfo() {
                 exploreText={t.essentialInfo.explore}
               />
             ))}
+          </div>
+
+          {/* View Full Guide Button */}
+          <div className='mt-12 text-center'>
+            <Link
+              href='/planning'
+              className='inline-flex items-center gap-2 bg-[#d4344f] hover:bg-[#b92b43] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg'
+            >
+              {t.nav?.planning || "View Full Planning Guide"}
+              <ArrowRight className='w-5 h-5' />
+            </Link>
           </div>
         </div>
       </section>

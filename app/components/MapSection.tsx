@@ -25,16 +25,21 @@ export default function MapSection() {
           </div>
 
           <div className='relative z-10 text-center p-8 bg-white/80 backdrop-blur-md rounded-2xl border border-white/20 shadow-none'>
-            <h3 className='text-2xl font-bold mb-4'>
-              Interactive Map Coming Soon
+            <h3 className='text-2xl font-bold mb-4 text-gray-900'>
+              Explore Nepal's Geography
             </h3>
             <p className='text-gray-600 mb-6'>
-              We are building a comprehensive guide to trails, roads, and
-              landmarks.
+              Navigate through the Himalayas, Hilly regions, and the Terai
+              plains.
             </p>
-            <button className='bg-[#d4344f] hover:bg-[#b92b43] text-white font-bold py-3 px-8 rounded-full transition-colors cursor-pointer'>
-              Download Offline Map (PDF)
-            </button>
+            <a
+              href='https://www.google.com/maps/place/Nepal/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='bg-[#d4344f] hover:bg-[#b92b43] text-white font-bold py-3 px-8 rounded-full transition-colors cursor-pointer inline-block'
+            >
+              View on Google Maps
+            </a>
           </div>
 
           {/* Decorative Points */}

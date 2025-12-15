@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import CloseButton from "./CloseButton";
 
 interface Category {
@@ -13,6 +14,7 @@ interface NavDropdownProps {
   onClose: () => void;
   title: string;
   categories: Category[];
+  href: string;
 }
 
 export default function NavDropdown({
@@ -20,6 +22,7 @@ export default function NavDropdown({
   onClose,
   title,
   categories,
+  href,
 }: NavDropdownProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -55,9 +58,11 @@ export default function NavDropdown({
           <div className='max-w-7xl mx-auto px-6 py-20 md:px-12 md:py-8 h-full flex flex-col'>
             {/* Header */}
             <div className='flex items-center justify-between mb-8 pb-6 border-b border-[#d4344f]/20'>
-              <h2 className='text-4xl font-bold text-white tracking-tight'>
-                {title}
-              </h2>
+              <Link href={href} onClick={onClose}>
+                <h2 className='text-4xl font-bold text-white tracking-tight hover:text-[#d4344f] transition-colors'>
+                  {title}
+                </h2>
+              </Link>
               <CloseButton onClick={onClose} />
             </div>
 
@@ -88,24 +93,32 @@ export default function NavDropdown({
                             <span className='text-[#d4344f] mr-3 mt-0.5 text-lg font-light group-hover:translate-x-1 transition-transform duration-300'>
                               ›
                             </span>
-                            <a
-                              href='#'
+                            <Link
+                              href={`${href}/${item
+                                .toLowerCase()
+                                .replace(/[^a-z0-9]+/g, "-")
+                                .replace(/(^-|-$)+/g, "")}`}
+                              onClick={onClose}
                               className='text-gray-300 text-base group-hover:text-[#d4344f] transition-colors duration-300 leading-relaxed'
                             >
                               {item}
-                            </a>
+                            </Link>
                           </li>
                         );
                       })}
                     </ul>
 
                     {/* Read All Link */}
-                    <button className='text-[#d4344f] font-semibold text-base mt-8 flex items-center group hover:text-[#b92b43] transition-colors duration-300'>
+                    <Link
+                      href={href}
+                      onClick={onClose}
+                      className='text-[#d4344f] font-semibold text-base mt-8 flex items-center group hover:text-[#b92b43] transition-colors duration-300'
+                    >
                       <span>Read all</span>
                       <span className='ml-2 group-hover:translate-x-1 transition-transform duration-300'>
                         →
                       </span>
-                    </button>
+                    </Link>
                   </div>
                 ))
               ) : (

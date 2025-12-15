@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { CalendarDays, Sparkles, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/lib/useTranslation";
+import Link from "next/link";
 
 interface Festival {
   title: string;
@@ -78,9 +79,12 @@ const FestivalCard = ({
             </div>
 
             {/* CTA */}
-            <button className='mt-6 self-start px-4 py-2 text-sm font-bold text-[#d4344f] hover:text-white bg-transparent hover:bg-[#d4344f] border border-[#d4344f] rounded-lg transition-all duration-300'>
+            <Link
+              href='/experiences'
+              className='mt-6 self-start px-4 py-2 text-sm font-bold text-[#d4344f] hover:text-white bg-transparent hover:bg-[#d4344f] border border-[#d4344f] rounded-lg transition-all duration-300 inline-block'
+            >
               {exploreText} →
-            </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -64,7 +64,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href='#' className='hover:text-white transition-colors'>
+                <Link href='/planning' className='hover:text-white transition-colors'>
                   {t.footer.helpCenter}
                 </Link>
               </li>

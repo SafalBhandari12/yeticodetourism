@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "@/lib/useTranslation";
+import Link from "next/link";
 
 interface Destination {
   id: number;
@@ -9,6 +10,7 @@ interface Destination {
   description: string;
   image: string;
   subtitle: string;
+  slug: string;
 }
 
 export default function TopDestinations() {
@@ -25,6 +27,7 @@ export default function TopDestinations() {
       description: "",
       subtitle: t.destinations.mountainAdventure,
       image: "/topDestination/mountain.jpg",
+      slug: "everest-base-camp",
     },
     {
       id: 2,
@@ -32,6 +35,7 @@ export default function TopDestinations() {
       description: "",
       subtitle: t.destinations.kathmanduSubtitle,
       image: "/topDestination/kathmandu.avif",
+      slug: "kathmandu",
     },
     {
       id: 4,
@@ -40,6 +44,7 @@ export default function TopDestinations() {
       subtitle: t.destinations.chitwanSubtitle,
       image:
         "https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200&auto=format&fit=crop",
+      slug: "chitwan-national-park",
     },
     {
       id: 5,
@@ -48,6 +53,7 @@ export default function TopDestinations() {
       subtitle: t.destinations.annapurnaSubtitle,
       image:
         "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200&auto=format&fit=crop",
+      slug: "annapurna-circuit",
     },
   ];
 
@@ -176,9 +182,12 @@ export default function TopDestinations() {
 
         {/* Discover More Button */}
         <div className='mb-8 md:mb-16 lg:mb-20'>
-          <button className='bg-[#c41e3a] hover:bg-[#a01830] text-white font-bold py-2 px-4 sm:py-2 sm:px-5 md:py-2 md:px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base md:text-base lg:text-lg cursor-pointer'>
+          <Link
+            href={`/destinations/${currentDestination.slug}`}
+            className='bg-[#c41e3a] hover:bg-[#a01830] text-white font-bold py-2 px-4 sm:py-2 sm:px-5 md:py-2 md:px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base md:text-base lg:text-lg cursor-pointer inline-block'
+          >
             Discover more
-          </button>
+          </Link>
         </div>
 
         {/* Description */}

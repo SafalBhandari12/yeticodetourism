@@ -45,10 +45,10 @@ export default function LanguageSelector() {
   );
 
   return (
-    <div className='relative' ref={dropdownRef}>
+    <div className='relative hidden md:block' ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='hidden md:flex items-center gap-2 text-white hover:text-[#d4344f] active:text-[#d4344f] transition-colors duration-300 group cursor-pointer'
+        className='flex items-center gap-2 text-white hover:text-[#d4344f] active:text-[#d4344f] transition-colors duration-300 group cursor-pointer'
         aria-label='Change language'
       >
         <span className='text-lg'>{currentLanguage?.flag}</span>

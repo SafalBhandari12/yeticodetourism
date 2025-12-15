@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/lib/useTranslation";
+import Link from "next/link";
 
 export default function AccommodationHighlights() {
   const t = useTranslation();
@@ -52,9 +53,10 @@ export default function AccommodationHighlights() {
         {/* Mobile View */}
         <div className='flex md:hidden overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 scrollbar-hide'>
           {accommodations.map((item, index) => (
-            <div
+            <Link
+              href='/accommodation'
               key={index}
-              className='relative h-[500px] min-w-[80vw] snap-start rounded-xl overflow-hidden border border-[#8b3a3d] group'
+              className='relative h-[500px] min-w-[80vw] snap-start rounded-xl overflow-hidden border border-[#8b3a3d] group block'
             >
               <Image
                 src={item.image}
@@ -76,7 +78,7 @@ export default function AccommodationHighlights() {
                 </p>
                 <p className='text-gray-200 line-clamp-3'>{item.description}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -101,7 +103,10 @@ export default function AccommodationHighlights() {
         {/* Desktop View */}
         <div className='hidden md:grid grid-cols-1 lg:grid-cols-2 gap-12'>
           {/* Featured Hotel: Everest View */}
-          <div className='relative h-[500px] rounded-3xl overflow-hidden group cursor-pointer'>
+          <Link
+            href='/accommodation'
+            className='relative h-[500px] rounded-3xl overflow-hidden group cursor-pointer block'
+          >
             <div className='absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors z-10' />
             <Image
               src='https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200'
@@ -121,12 +126,15 @@ export default function AccommodationHighlights() {
                 Everest from your breakfast table.
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Other Options */}
           <div className='grid grid-cols-1 gap-3 lg:gap-6'>
             {/* Card 1: Yeti Mountain Home */}
-            <div className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'>
+            <Link
+              href='/accommodation'
+              className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'
+            >
               <div className='relative w-full lg:w-28 lg:h-28 lg:shrink-0 h-48 rounded-none lg:rounded-lg overflow-hidden border-0 lg:border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
                 <Image
                   src='https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=400'
@@ -147,10 +155,13 @@ export default function AccommodationHighlights() {
                   warm hospitality and hot showers.
                 </p>
               </div>
-            </div>
+            </Link>
 
             {/* Card 2: Dwarika's Hotel */}
-            <div className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'>
+            <Link
+              href='/accommodation'
+              className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'
+            >
               <div className='relative w-full lg:w-28 lg:h-28 h-48 rounded-none lg:rounded-lg overflow-hidden border-0 lg:border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
                 <Image
                   src='https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=400'
@@ -171,10 +182,13 @@ export default function AccommodationHighlights() {
                   hospitality in the heart of the capital.
                 </p>
               </div>
-            </div>
+            </Link>
 
             {/* Card 3: Tiger Tops */}
-            <div className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'>
+            <Link
+              href='/accommodation'
+              className='group flex lg:flex-row flex-col gap-6 items-start lg:items-center bg-linear-to-r from-[#7d2426] to-[#661620] p-0 lg:p-6 rounded-lg transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl overflow-hidden lg:overflow-visible'
+            >
               <div className='relative w-full lg:w-28 lg:h-28 h-48 rounded-none lg:rounded-lg overflow-hidden border-0 lg:border-2 border-red-400/20 group-hover:border-red-300 transition-colors'>
                 <Image
                   src='/hotels/tigerTops.jpg'
@@ -195,7 +209,7 @@ export default function AccommodationHighlights() {
                   wake up to the sounds of the wild.
                 </p>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

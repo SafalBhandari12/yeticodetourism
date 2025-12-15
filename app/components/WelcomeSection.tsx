@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/lib/useTranslation";
+import Link from "next/link";
 
 export default function WelcomeSection() {
   const t = useTranslation();
@@ -20,7 +21,7 @@ export default function WelcomeSection() {
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-16 items-start'>
           {/* What can I do? */}
-          <div className='group cursor-pointer'>
+          <Link href='/experiences' className='group cursor-pointer block'>
             <div className='relative h-[500px] w-full overflow-hidden rounded-2xl mb-8'>
               <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10' />
               <Image
@@ -52,10 +53,13 @@ export default function WelcomeSection() {
                 />
               </svg>
             </span>
-          </div>
+          </Link>
 
           {/* Explore Places */}
-          <div className='group cursor-pointer md:mt-20'>
+          <Link
+            href='/destinations'
+            className='group cursor-pointer md:mt-20 block'
+          >
             <div className='relative h-[500px] w-full overflow-hidden rounded-2xl mb-8'>
               <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10' />
               <Image
@@ -87,7 +91,7 @@ export default function WelcomeSection() {
                 />
               </svg>
             </span>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

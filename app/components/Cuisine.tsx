@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/lib/useTranslation";
+import Link from "next/link";
 
 export default function Cuisine() {
   const t = useTranslation();
@@ -25,7 +26,7 @@ export default function Cuisine() {
               {t.cuisine.description}
             </p>
 
-            <div className='space-y-6'>
+            <div className='space-y-6 mb-8'>
               <div className='bg-[#7d2426] p-6 rounded-xl border border-[#8b3a3d] border-l-4 border-l-red-400 hover:border-red-300 transition-colors'>
                 <h3 className='text-xl font-bold mb-2 text-white'>
                   {t.cuisine.momo.title}
@@ -39,6 +40,26 @@ export default function Cuisine() {
                 <p className='text-gray-300'>{t.cuisine.dalBhat.description}</p>
               </div>
             </div>
+
+            <Link
+              href='/experiences'
+              className='inline-flex items-center text-[#d4344f] font-bold text-lg hover:underline group'
+            >
+              Explore Food & Culture
+              <svg
+                className='w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M17 8l4 4m0 0l-4 4m4-4H3'
+                />
+              </svg>
+            </Link>
           </div>
 
           {/* Visuals */}

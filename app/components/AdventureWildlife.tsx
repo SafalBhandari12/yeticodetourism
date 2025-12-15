@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/lib/useTranslation";
+import Link from "next/link";
 
 export default function AdventureWildlife() {
   const t = useTranslation();
@@ -22,7 +23,10 @@ export default function AdventureWildlife() {
             </div>
 
             <div className='space-y-8'>
-              <div className='flex gap-6 group cursor-pointer'>
+              <Link
+                href='/experiences'
+                className='flex gap-6 group cursor-pointer'
+              >
                 <div className='w-20 h-20 bg-[#d4344f] rounded-2xl flex items-center justify-center shrink-0 transform group-hover:rotate-6 transition-transform duration-300'>
                   <svg
                     className='w-10 h-10 text-white'
@@ -46,9 +50,12 @@ export default function AdventureWildlife() {
                     {t.adventure.jungleSafariDesc}
                   </p>
                 </div>
-              </div>
+              </Link>
 
-              <div className='flex gap-6 group cursor-pointer'>
+              <Link
+                href='/experiences'
+                className='flex gap-6 group cursor-pointer'
+              >
                 <div className='w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center shrink-0 transform group-hover:rotate-6 transition-transform duration-300'>
                   <svg
                     className='w-10 h-10 text-gray-900'
@@ -72,9 +79,12 @@ export default function AdventureWildlife() {
                     {t.adventure.adventureSportsDesc}
                   </p>
                 </div>
-              </div>
+              </Link>
 
-              <div className='flex gap-6 group cursor-pointer'>
+              <Link
+                href='/experiences'
+                className='flex gap-6 group cursor-pointer'
+              >
                 <div className='w-20 h-20 bg-[#7d2426] rounded-2xl flex items-center justify-center shrink-0 transform group-hover:rotate-6 transition-transform duration-300'>
                   <svg
                     className='w-10 h-10 text-red-400'
@@ -96,7 +106,7 @@ export default function AdventureWildlife() {
                   </h3>
                   <p className='text-gray-300'>{t.adventure.trekkingDesc}</p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
 

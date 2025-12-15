@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/lib/useTranslation";
+import Link from "next/link";
 
 const PlanCard = ({
   title,
@@ -11,6 +12,7 @@ const PlanCard = ({
   highlights,
   viewItineraryText,
   highlightsText,
+  href,
 }: {
   title: string;
   duration: string;
@@ -19,6 +21,7 @@ const PlanCard = ({
   highlights: string[];
   viewItineraryText: string;
   highlightsText: string;
+  href: string;
 }) => (
   <div className='group relative overflow-hidden rounded-xl border border-[#8b3a3d] transition-colors duration-300 min-w-[80vw] snap-start h-[500px] md:h-auto md:min-w-0 md:flex md:flex-col md:bg-[#7d2426] hover:border-red-400'>
     {/* Image Container */}
@@ -73,9 +76,12 @@ const PlanCard = ({
         ))}
       </div>
 
-      <button className='w-full py-3 border-2 border-white/50 md:border-red-400 text-white md:text-red-400 font-bold rounded-lg hover:bg-red-400 hover:text-white hover:border-red-400 transition-colors duration-300 cursor-pointer'>
+      <Link
+        href={href}
+        className='w-full py-3 border-2 border-white/50 md:border-red-400 text-white md:text-red-400 font-bold rounded-lg hover:bg-red-400 hover:text-white hover:border-red-400 transition-colors duration-300 cursor-pointer text-center block'
+      >
         {viewItineraryText}
-      </button>
+      </Link>
     </div>
   </div>
 );
@@ -93,7 +99,10 @@ export default function Itineraries() {
             </h2>
             <p className='text-xl text-gray-200'>{t.itineraries.subtitle}</p>
           </div>
-          <button className='text-red-400 font-bold text-lg hover:underline flex items-center whitespace-nowrap cursor-pointer'>
+          <Link
+            href='/planning'
+            className='text-red-400 font-bold text-lg hover:underline flex items-center whitespace-nowrap cursor-pointer'
+          >
             {t.itineraries.viewAll}
             <svg
               className='w-5 h-5 ml-2'
@@ -108,9 +117,10 @@ export default function Itineraries() {
                 d='M17 8l4 4m0 0l-4 4m4-4H3'
               />
             </svg>
-          </button>
+          </Link>
         </div>
 
+        {/* Mobile Scroll Container */}
         <div className='flex overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:mx-0 md:px-0 scrollbar-hide'>
           <PlanCard
             title={t.itineraries.goldenTriangle.title}
@@ -120,6 +130,7 @@ export default function Itineraries() {
             highlights={t.itineraries.goldenTriangle.highlights}
             viewItineraryText={t.itineraries.viewItinerary}
             highlightsText={t.itineraries.highlights}
+            href='/itineraries/golden-triangle'
           />
           <PlanCard
             title={t.itineraries.himalayanGlimpse.title}
@@ -129,6 +140,7 @@ export default function Itineraries() {
             highlights={t.itineraries.himalayanGlimpse.highlights}
             viewItineraryText={t.itineraries.viewItinerary}
             highlightsText={t.itineraries.highlights}
+            href='/itineraries/himalayan-glimpse'
           />
           <PlanCard
             title={t.itineraries.grandAdventure.title}
@@ -138,6 +150,7 @@ export default function Itineraries() {
             highlights={t.itineraries.grandAdventure.highlights}
             viewItineraryText={t.itineraries.viewItinerary}
             highlightsText={t.itineraries.highlights}
+            href='/itineraries/grand-adventure'
           />
         </div>
 
