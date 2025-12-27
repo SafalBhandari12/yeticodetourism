@@ -214,7 +214,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
           hasScrolled || activeDropdown || mobileMenuOpen ? "bg-[#180109]" : ""
         } hover:bg-[#180109] ${
           activeDropdown ? "hidden md:block md:bg-[#180109]" : ""
