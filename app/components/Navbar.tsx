@@ -226,7 +226,14 @@ export default function Navbar() {
           }`}
         >
           {/* Logo */}
-          <Link href='/' className='flex items-center gap-2 group'>
+          <Link
+            href='/'
+            className='flex items-center gap-2 group'
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setActiveDropdown(null);
+            }}
+          >
             <div
               className={`relative transition-all duration-500 ${
                 hasScrolled
