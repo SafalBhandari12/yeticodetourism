@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Playfair_Display } from "next/font/google";
 import {
   Plane,
@@ -19,6 +20,7 @@ import {
   ChevronUp,
   ArrowRight,
   Info,
+  Lightbulb,
 } from "lucide-react";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
@@ -27,7 +29,7 @@ const REGION_DATA = {
   "NP-BA": {
     name: "Bagmati Province",
     description:
-      "The cultural and political heart of Nepal, home to the Kathmandu Valley. This region is a living museum of ancient history, vibrant festivals, and architectural marvels.",
+      "The cultural and political heart of Nepal, home to the Kathmandu Valley. This region is a living museum of ancient history, vibrant festivals, and architectural marvels. Visitors can explore seven UNESCO World Heritage sites within the valley alone.",
     highlights: ["Kathmandu Durbar Square", "Bhaktapur", "Patan", "Nagarkot"],
     bestTime: "Sep-Dec, Mar-May",
     activities: [
@@ -43,11 +45,17 @@ const REGION_DATA = {
       climate: "Temperate",
       access: "Intl. Airport",
     },
+    slug: "kathmandu",
+    tips: [
+      "Wear a mask in dusty areas of Kathmandu.",
+      "Always negotiate taxi fares or use ride-sharing apps like Pathao.",
+      "Respect local customs at temples; remove shoes and dress modestly.",
+    ],
   },
   "NP-GA": {
     name: "Gandaki Province",
     description:
-      "A paradise for trekkers and nature lovers. Contains the Annapurna range, Pokhara valley, and diverse landscapes ranging from subtropical lowlands to high alpine deserts.",
+      "A paradise for trekkers and nature lovers. Contains the Annapurna range, Pokhara valley, and diverse landscapes ranging from subtropical lowlands to high alpine deserts. It is the gateway to some of the world's most famous treks.",
     highlights: ["Pokhara", "Annapurna Circuit", "Mustang", "Manang"],
     bestTime: "Oct-Nov, Mar-Apr",
     activities: ["Trekking", "Paragliding", "Rafting", "Cave Exploration"],
@@ -58,11 +66,17 @@ const REGION_DATA = {
       climate: "Subtropical to Alpine",
       access: "Intl. Airport (Pokhara)",
     },
+    slug: "pokhara",
+    tips: [
+      "Pokhara is more relaxed than Kathmandu; great for unwinding.",
+      "Book paragliding in advance during peak seasons.",
+      "Carry water purification tablets for treks.",
+    ],
   },
   "NP-SA": {
     name: "Sagarmatha (Everest)",
     description:
-      "The roof of the world. Home to Mount Everest and the Sherpa culture. A rugged, high-altitude region of immense beauty and spiritual significance.",
+      "The roof of the world. Home to Mount Everest and the Sherpa culture. A rugged, high-altitude region of immense beauty and spiritual significance. Experience the legendary hospitality of the Sherpa people.",
     highlights: ["Mt. Everest", "Namche Bazaar", "Tengboche", "Gokyo Lakes"],
     bestTime: "Oct-Nov, Mar-May",
     activities: ["Mountaineering", "Trekking", "Sherpa Culture", "Wildlife"],
@@ -73,11 +87,17 @@ const REGION_DATA = {
       climate: "Alpine / Tundra",
       access: "Lukla Airport",
     },
+    slug: "everest-base-camp-trek",
+    tips: [
+      "Acclimatize properly to avoid altitude sickness.",
+      "Flights to Lukla are weather-dependent; have buffer days.",
+      "Respect the local Sherpa culture and Buddhist monuments.",
+    ],
   },
   "NP-LU": {
     name: "Lumbini Province",
     description:
-      "The birthplace of Lord Buddha. A sacred pilgrimage site with monasteries from around the world and peaceful gardens, offering a spiritual journey.",
+      "The birthplace of Lord Buddha. A sacred pilgrimage site with monasteries from around the world and peaceful gardens, offering a spiritual journey. It is a place of peace and reflection.",
     highlights: ["Maya Devi Temple", "World Peace Pagoda", "Monasteries"],
     bestTime: "Oct-Mar",
     activities: ["Pilgrimage", "Meditation", "Archaeology", "Bird Watching"],
@@ -88,11 +108,17 @@ const REGION_DATA = {
       climate: "Tropical",
       access: "Gautam Buddha Intl. Airport",
     },
+    slug: "lumbini",
+    tips: [
+      "Rent a bicycle to explore the monastic zone.",
+      "Early morning or late afternoon is best to avoid heat.",
+      "Dress conservatively as it is a sacred religious site.",
+    ],
   },
   "NP-KA": {
     name: "Karnali Province",
     description:
-      "The wild west of Nepal. Remote, untouched, and home to the stunning Rara Lake and Shey Phoksundo National Park. A true wilderness experience.",
+      "The wild west of Nepal. Remote, untouched, and home to the stunning Rara Lake and Shey Phoksundo National Park. A true wilderness experience for those seeking solitude and pristine nature.",
     highlights: ["Rara Lake", "Shey Phoksundo", "Jumla", "Dolpo"],
     bestTime: "Apr-Oct",
     activities: ["Trekking", "Wildlife", "Cultural Immersion", "Camping"],
@@ -103,11 +129,17 @@ const REGION_DATA = {
       climate: "Varied",
       access: "Domestic Flights",
     },
+    slug: "rara-lake", // Assuming a slug or generic
+    tips: [
+      "Infrastructure is basic; be prepared for rustic conditions.",
+      "Permits are required for restricted areas like Upper Dolpo.",
+      "Carry enough cash as ATMs are scarce.",
+    ],
   },
   "NP-NA": {
     name: "Narayani (Chitwan)",
     description:
-      "Famous for Chitwan National Park. A region of dense jungles, wildlife safaris, and Tharu culture. One of the best places to see rhinos and tigers.",
+      "Famous for Chitwan National Park. A region of dense jungles, wildlife safaris, and Tharu culture. One of the best places to see rhinos and tigers in their natural habitat.",
     highlights: ["Chitwan National Park", "Narayani River", "Sauraha"],
     bestTime: "Oct-Mar",
     activities: [
@@ -123,11 +155,17 @@ const REGION_DATA = {
       climate: "Tropical",
       access: "Bharatpur Airport",
     },
+    slug: "chitwan-national-park",
+    tips: [
+      "Wear neutral colors during jungle safaris.",
+      "Follow the guide's instructions strictly for safety.",
+      "Winter mornings can be foggy; plan accordingly.",
+    ],
   },
   "NP-JA": {
     name: "Janakpur (Madhesh)",
     description:
-      "The cultural hub of the Mithila region. Known for the grand Janaki Temple and vibrant art and festivals. A center of religious tourism.",
+      "The cultural hub of the Mithila region. Known for the grand Janaki Temple and vibrant art and festivals. A center of religious tourism and unique Maithili culture.",
     highlights: ["Janaki Temple", "Mithila Art", "Vivah Panchami"],
     bestTime: "Oct-Mar",
     activities: ["Temple Visits", "Art Workshops", "Festivals", "Food Tours"],
@@ -138,11 +176,17 @@ const REGION_DATA = {
       climate: "Tropical",
       access: "Janakpur Airport",
     },
+    slug: "janakpur",
+    tips: [
+      "Try the local Mithila cuisine.",
+      "Visit during Vivah Panchami for a grand cultural experience.",
+      "Respect local traditions and dress modestly.",
+    ],
   },
   "NP-ME": {
     name: "Mechi (Eastern)",
     description:
-      "The easternmost region, known for its tea gardens in Ilam and the gateway to Kanchenjunga. Rolling hills and misty landscapes.",
+      "The easternmost region, known for its tea gardens in Ilam and the gateway to Kanchenjunga. Rolling hills and misty landscapes offer a serene escape.",
     highlights: ["Ilam Tea Gardens", "Kanchenjunga", "Pathivara"],
     bestTime: "Mar-May, Oct-Nov",
     activities: ["Tea Tasting", "Trekking", "Sunrise Views", "Bird Watching"],
@@ -153,11 +197,17 @@ const REGION_DATA = {
       climate: "Temperate",
       access: "Bhadrapur Airport",
     },
+    slug: "ilam",
+    tips: [
+      "Don't miss the sunrise from Antu Danda.",
+      "Buy local tea as a souvenir.",
+      "Be prepared for sudden weather changes in the hills.",
+    ],
   },
   "NP-KO": {
     name: "Koshi Province",
     description:
-      "Home to the Koshi Tappu Wildlife Reserve and the mighty Koshi river. A region of wetlands and biodiversity.",
+      "Home to the Koshi Tappu Wildlife Reserve and the mighty Koshi river. A region of wetlands and biodiversity, perfect for bird watchers and nature enthusiasts.",
     highlights: ["Koshi Tappu", "Dharan", "Bhedetar"],
     bestTime: "Oct-Mar",
     activities: ["Bird Watching", "Rafting", "Hiking", "Nature Walks"],
@@ -168,11 +218,17 @@ const REGION_DATA = {
       climate: "Varied",
       access: "Biratnagar Airport",
     },
+    slug: "koshi-tappu",
+    tips: [
+      "Bring binoculars for bird watching.",
+      "Rafting on the Koshi river is a thrilling experience.",
+      "Explore the vibrant city of Dharan.",
+    ],
   },
   "NP-DH": {
     name: "Dhawalagiri",
     description:
-      "Named after the Dhaulagiri mountain. Offers challenging treks and remote landscapes.",
+      "Named after the Dhaulagiri mountain. Offers challenging treks and remote landscapes. It is less crowded than Annapurna but equally stunning.",
     highlights: ["Dhaulagiri", "Baglung", "Mustang (Lower)"],
     bestTime: "Mar-May, Sep-Nov",
     activities: ["Trekking", "Mountaineering", "Suspension Bridges"],
@@ -183,11 +239,17 @@ const REGION_DATA = {
       climate: "Alpine",
       access: "Road / Trek",
     },
+    slug: "dhaulagiri",
+    tips: [
+      "Prepare for challenging terrain.",
+      "Visit the longest suspension bridge in Baglung.",
+      "Experience the unique culture of Lower Mustang.",
+    ],
   },
   "NP-RA": {
     name: "Rapti",
     description:
-      "A mid-western region known for its valleys and agriculture. Gateway to western Nepal.",
+      "A mid-western region known for its valleys and agriculture. Gateway to western Nepal. It offers a glimpse into rural Nepali life.",
     highlights: ["Dang Valley", "Swargadwari", "Rapti River"],
     bestTime: "Oct-Mar",
     activities: ["Pilgrimage", "Nature Walks", "Cultural Tours"],
@@ -198,11 +260,17 @@ const REGION_DATA = {
       climate: "Subtropical",
       access: "Road",
     },
+    slug: "dang",
+    tips: [
+      "Visit Swargadwari for a spiritual experience.",
+      "Explore the Tharu culture in Dang.",
+      "Best visited in winter for pleasant weather.",
+    ],
   },
   "NP-BH": {
     name: "Bheri",
     description:
-      "Features the Bardia National Park, a pristine wilderness area for tiger tracking.",
+      "Features the Bardia National Park, a pristine wilderness area for tiger tracking. It is less commercialized than Chitwan, offering a more authentic jungle experience.",
     highlights: ["Bardia National Park", "Nepalgunj", "Bheri River"],
     bestTime: "Oct-Mar",
     activities: ["Tiger Tracking", "Jungle Safari", "Rafting"],
@@ -213,11 +281,17 @@ const REGION_DATA = {
       climate: "Tropical",
       access: "Nepalgunj Airport",
     },
+    slug: "bardia",
+    tips: [
+      "Bardia is the best place to spot tigers.",
+      "Stay in a jungle lodge for the full experience.",
+      "Bring insect repellent.",
+    ],
   },
   "NP-SE": {
     name: "Seti",
     description:
-      "Far-western region known for Khaptad National Park and its rolling green hills.",
+      "Far-western region known for Khaptad National Park and its rolling green hills. A spiritual haven with ashrams and meditation centers.",
     highlights: ["Khaptad", "Silgadhi", "Api Nampa"],
     bestTime: "Apr-Oct",
     activities: ["Trekking", "Meditation", "Nature Photography"],
@@ -228,11 +302,17 @@ const REGION_DATA = {
       climate: "Temperate",
       access: "Dhangadhi Airport",
     },
+    slug: "khaptad",
+    tips: [
+      "Khaptad is great for meditation and spiritual retreats.",
+      "The rolling hills are perfect for easy trekking.",
+      "Pack warm clothes even in summer.",
+    ],
   },
   "NP-MA": {
     name: "Mahakali",
     description:
-      "The western border region. Remote and culturally distinct, with untouched natural beauty.",
+      "The western border region. Remote and culturally distinct, with untouched natural beauty. Explore the Shuklaphanta National Park for wildlife.",
     highlights: ["Dodhara Chandani", "Shuklaphanta", "Mahakali River"],
     bestTime: "Oct-Mar",
     activities: ["Wildlife", "Bridge Visits", "Cultural Tours"],
@@ -243,32 +323,38 @@ const REGION_DATA = {
       climate: "Tropical",
       access: "Road",
     },
+    slug: "shuklaphanta",
+    tips: [
+      "Visit the Dodhara Chandani suspension bridge.",
+      "Shuklaphanta is home to a large population of swamp deer.",
+      "Experience the unique culture of the far west.",
+    ],
   },
 };
 
 type Category = "all" | "airports" | "cities" | "highlights" | "trekking";
 
 const CATEGORIES: { id: Category; label: string; icon: React.ReactNode }[] = [
-  { id: "all", label: "View All", icon: <Search className='w-4 h-4' /> },
+  { id: "all", label: "View All", icon: <Search className='w-5 h-5' /> },
   {
     id: "airports",
     label: "Intl. Airports",
-    icon: <Plane className='w-4 h-4' />,
+    icon: <Plane className='w-5 h-5' />,
   },
   {
     id: "cities",
     label: "Major Cities",
-    icon: <Building2 className='w-4 h-4' />,
+    icon: <Building2 className='w-5 h-5' />,
   },
   {
     id: "highlights",
     label: "Highlights",
-    icon: <Sparkles className='w-4 h-4' />,
+    icon: <Sparkles className='w-5 h-5' />,
   },
   {
     id: "trekking",
     label: "Trekking",
-    icon: <Footprints className='w-4 h-4' />,
+    icon: <Footprints className='w-5 h-5' />,
   },
 ];
 
@@ -400,6 +486,7 @@ const MARKERS = [
 ];
 
 export default function MapSection() {
+  const router = useRouter();
   const [activeRegion, setActiveRegion] = useState<string | null>("NP-BA");
   const [showDetails, setShowDetails] = useState(false);
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(null);
@@ -409,6 +496,14 @@ export default function MapSection() {
   const handleRegionClick = (id: string) => {
     setActiveRegion(id === activeRegion ? null : id);
     setShowDetails(false);
+  };
+
+  const handleExploreClick = (slug?: string) => {
+    if (slug) {
+      router.push(`/destinations/${slug}`);
+    } else {
+      router.push("/destinations");
+    }
   };
 
   const currentRegion = activeRegion
@@ -647,7 +742,7 @@ export default function MapSection() {
                   >
                     {/* Pulse Effect */}
                     <circle
-                      r='12'
+                      r='14'
                       className={`fill-[#d4344f] opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
                         activeCategory === "airports" &&
                         marker.type === "airports"
@@ -658,19 +753,13 @@ export default function MapSection() {
 
                     {/* Icon Background */}
                     <circle
-                      r='6'
+                      r='8'
                       className='fill-[#0a0605] stroke-[#d4344f] stroke-2'
                     />
 
                     {/* Icons based on type */}
                     {marker.type === "airports" && (
-                      <path
-                        d='M2 12h20M12 2v20' // Placeholder, let's use a better plane path
-                        className='hidden'
-                      />
-                    )}
-                    {marker.type === "airports" && (
-                      <g transform='translate(-6, -6) scale(0.5)'>
+                      <g transform='translate(-8, -8) scale(0.7)'>
                         <path
                           d='M22 16.92v3L12 15v9l3 3v3l-9-3-9 3v-3l3-3v-9L0 19.92v-3l10-6.17V2a2 2 0 0 1 4 0v8.75l10 6.17z'
                           className='fill-white'
@@ -678,13 +767,21 @@ export default function MapSection() {
                       </g>
                     )}
                     {marker.type === "cities" && (
-                      <circle r='2' className='fill-white' />
+                      <circle r='3' className='fill-white' />
                     )}
                     {marker.type === "highlights" && (
                       <path
-                        d='M-3 2 L0 -3 L3 2 Z' // Triangle for mountain/highlight
+                        d='M-4 3 L0 -4 L4 3 Z' // Triangle for mountain/highlight
                         className='fill-white'
                       />
+                    )}
+                    {marker.type === "trekking" && (
+                      <g transform='translate(-6, -6) scale(0.5)'>
+                        <path
+                          d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'
+                          className='fill-white'
+                        />
+                      </g>
                     )}
 
                     {/* Tooltip */}
@@ -696,17 +793,17 @@ export default function MapSection() {
                       } pointer-events-none`}
                     >
                       <rect
-                        x='10'
-                        y='-15'
-                        width='120'
-                        height='30'
+                        x='12'
+                        y='-18'
+                        width='140'
+                        height='34'
                         rx='4'
                         className='fill-black/90 stroke-white/10'
                       />
                       <text
-                        x='18'
-                        y='5'
-                        className='fill-white text-[10px] font-medium'
+                        x='20'
+                        y='4'
+                        className='fill-white text-[11px] font-medium'
                       >
                         {marker.name}
                       </text>
@@ -819,7 +916,7 @@ export default function MapSection() {
                       </div>
 
                       {/* Activities */}
-                      <div>
+                      <div className='mb-6'>
                         <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
                           <Target className='w-3 h-3 text-[#d4344f]' />{" "}
                           Activities
@@ -835,6 +932,27 @@ export default function MapSection() {
                           ))}
                         </div>
                       </div>
+
+                      {/* Tips */}
+                      {currentRegion.tips && (
+                        <div>
+                          <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
+                            <Lightbulb className='w-3 h-3 text-[#d4344f]' />{" "}
+                            Travel Tips
+                          </h4>
+                          <ul className='space-y-2'>
+                            {currentRegion.tips.map((tip, i) => (
+                              <li
+                                key={i}
+                                className='flex items-start text-gray-400 text-sm'
+                              >
+                                <span className='w-1 h-1 bg-[#d4344f] rounded-full mt-2 mr-2 shrink-0'></span>
+                                {tip}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -852,7 +970,10 @@ export default function MapSection() {
                       )}
                     </button>
 
-                    <button className='w-full py-3 bg-[#d4344f] text-white font-bold rounded-lg hover:bg-[#b02b40] transition-all shadow-lg shadow-[#d4344f]/20 flex items-center justify-center gap-2 text-sm uppercase tracking-wide'>
+                    <button
+                      onClick={() => handleExploreClick(currentRegion.slug)}
+                      className='w-full py-3 bg-[#d4344f] text-white font-bold rounded-lg hover:bg-[#b02b40] transition-all shadow-lg shadow-[#d4344f]/20 flex items-center justify-center gap-2 text-sm uppercase tracking-wide'
+                    >
                       Explore Region <ArrowRight className='w-4 h-4' />
                     </button>
                   </div>
@@ -864,12 +985,25 @@ export default function MapSection() {
                   <Info className='w-8 h-8 text-gray-500' />
                 </div>
                 <h3 className='text-xl font-bold text-white mb-2'>
-                  Select a Region
+                  First Time in Nepal?
                 </h3>
-                <p className='text-gray-400 text-sm max-w-xs'>
-                  Click on any region on the map to view detailed information
-                  and highlights.
+                <p className='text-gray-400 text-sm max-w-xs mb-6'>
+                  Nepal offers diverse experiences from the high Himalayas to
+                  the lush jungles. Click on any region on the map to discover
+                  specific highlights, best times to visit, and essential travel
+                  tips.
                 </p>
+                <div className='text-left bg-black/20 p-4 rounded-lg max-w-xs w-full'>
+                  <h4 className='text-[#d4344f] text-xs font-bold uppercase mb-2 flex items-center gap-2'>
+                    <Lightbulb className='w-3 h-3' /> Quick Tips
+                  </h4>
+                  <ul className='text-xs text-gray-400 space-y-2'>
+                    <li>• Visa on arrival is available at TIA.</li>
+                    <li>• Respect local customs and dress modestly.</li>
+                    <li>• Drink bottled or purified water only.</li>
+                    <li>• Carry cash for remote areas.</li>
+                  </ul>
+                </div>
               </div>
             )}
           </div>
