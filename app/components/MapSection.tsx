@@ -3,22 +3,22 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Playfair_Display } from "next/font/google";
-import { 
-  Plane, 
-  Building2, 
-  Mountain, 
-  Footprints, 
-  Search, 
-  MapPin, 
-  Calendar, 
-  Thermometer, 
+import {
+  Plane,
+  Building2,
+  Mountain,
+  Footprints,
+  Search,
+  MapPin,
+  Calendar,
+  Thermometer,
   Navigation,
   Sparkles,
   Target,
   ChevronDown,
   ChevronUp,
   ArrowRight,
-  Info
+  Info,
 } from "lucide-react";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
@@ -30,14 +30,19 @@ const REGION_DATA = {
       "The cultural and political heart of Nepal, home to the Kathmandu Valley. This region is a living museum of ancient history, vibrant festivals, and architectural marvels.",
     highlights: ["Kathmandu Durbar Square", "Bhaktapur", "Patan", "Nagarkot"],
     bestTime: "Sep-Dec, Mar-May",
-    activities: ["Heritage Tours", "Hiking", "Mountain Flights", "Culinary Tours"],
+    activities: [
+      "Heritage Tours",
+      "Hiking",
+      "Mountain Flights",
+      "Culinary Tours",
+    ],
     image:
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800",
     stats: {
-        elevation: "1,400m (Avg)",
-        climate: "Temperate",
-        access: "Intl. Airport"
-    }
+      elevation: "1,400m (Avg)",
+      climate: "Temperate",
+      access: "Intl. Airport",
+    },
   },
   "NP-GA": {
     name: "Gandaki Province",
@@ -49,10 +54,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=800",
     stats: {
-        elevation: "827m - 8,091m",
-        climate: "Subtropical to Alpine",
-        access: "Intl. Airport (Pokhara)"
-    }
+      elevation: "827m - 8,091m",
+      climate: "Subtropical to Alpine",
+      access: "Intl. Airport (Pokhara)",
+    },
   },
   "NP-SA": {
     name: "Sagarmatha (Everest)",
@@ -64,10 +69,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800",
     stats: {
-        elevation: "2,800m - 8,848m",
-        climate: "Alpine / Tundra",
-        access: "Lukla Airport"
-    }
+      elevation: "2,800m - 8,848m",
+      climate: "Alpine / Tundra",
+      access: "Lukla Airport",
+    },
   },
   "NP-LU": {
     name: "Lumbini Province",
@@ -79,10 +84,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?q=80&w=800",
     stats: {
-        elevation: "150m (Avg)",
-        climate: "Tropical",
-        access: "Gautam Buddha Intl. Airport"
-    }
+      elevation: "150m (Avg)",
+      climate: "Tropical",
+      access: "Gautam Buddha Intl. Airport",
+    },
   },
   "NP-KA": {
     name: "Karnali Province",
@@ -94,10 +99,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1623492701902-47dc207df5dc?q=80&w=800",
     stats: {
-        elevation: "300m - 7,000m",
-        climate: "Varied",
-        access: "Domestic Flights"
-    }
+      elevation: "300m - 7,000m",
+      climate: "Varied",
+      access: "Domestic Flights",
+    },
   },
   "NP-NA": {
     name: "Narayani (Chitwan)",
@@ -105,14 +110,19 @@ const REGION_DATA = {
       "Famous for Chitwan National Park. A region of dense jungles, wildlife safaris, and Tharu culture. One of the best places to see rhinos and tigers.",
     highlights: ["Chitwan National Park", "Narayani River", "Sauraha"],
     bestTime: "Oct-Mar",
-    activities: ["Jungle Safari", "Canoeing", "Tharu Culture", "Elephant Bathing"],
+    activities: [
+      "Jungle Safari",
+      "Canoeing",
+      "Tharu Culture",
+      "Elephant Bathing",
+    ],
     image:
       "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?q=80&w=800",
     stats: {
-        elevation: "100m - 815m",
-        climate: "Tropical",
-        access: "Bharatpur Airport"
-    }
+      elevation: "100m - 815m",
+      climate: "Tropical",
+      access: "Bharatpur Airport",
+    },
   },
   "NP-JA": {
     name: "Janakpur (Madhesh)",
@@ -124,10 +134,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?q=80&w=800",
     stats: {
-        elevation: "70m (Avg)",
-        climate: "Tropical",
-        access: "Janakpur Airport"
-    }
+      elevation: "70m (Avg)",
+      climate: "Tropical",
+      access: "Janakpur Airport",
+    },
   },
   "NP-ME": {
     name: "Mechi (Eastern)",
@@ -139,10 +149,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1625762603829-050c91d6268e?q=80&w=800",
     stats: {
-        elevation: "Varied",
-        climate: "Temperate",
-        access: "Bhadrapur Airport"
-    }
+      elevation: "Varied",
+      climate: "Temperate",
+      access: "Bhadrapur Airport",
+    },
   },
   "NP-KO": {
     name: "Koshi Province",
@@ -154,10 +164,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1596423736776-361067356c92?q=80&w=800",
     stats: {
-        elevation: "70m - 8,000m",
-        climate: "Varied",
-        access: "Biratnagar Airport"
-    }
+      elevation: "70m - 8,000m",
+      climate: "Varied",
+      access: "Biratnagar Airport",
+    },
   },
   "NP-DH": {
     name: "Dhawalagiri",
@@ -169,10 +179,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800",
     stats: {
-        elevation: "High Altitude",
-        climate: "Alpine",
-        access: "Road / Trek"
-    }
+      elevation: "High Altitude",
+      climate: "Alpine",
+      access: "Road / Trek",
+    },
   },
   "NP-RA": {
     name: "Rapti",
@@ -184,10 +194,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800",
     stats: {
-        elevation: "Low to Mid",
-        climate: "Subtropical",
-        access: "Road"
-    }
+      elevation: "Low to Mid",
+      climate: "Subtropical",
+      access: "Road",
+    },
   },
   "NP-BH": {
     name: "Bheri",
@@ -199,10 +209,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800",
     stats: {
-        elevation: "Lowlands",
-        climate: "Tropical",
-        access: "Nepalgunj Airport"
-    }
+      elevation: "Lowlands",
+      climate: "Tropical",
+      access: "Nepalgunj Airport",
+    },
   },
   "NP-SE": {
     name: "Seti",
@@ -214,10 +224,10 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800",
     stats: {
-        elevation: "Mid Hills",
-        climate: "Temperate",
-        access: "Dhangadhi Airport"
-    }
+      elevation: "Mid Hills",
+      climate: "Temperate",
+      access: "Dhangadhi Airport",
+    },
   },
   "NP-MA": {
     name: "Mahakali",
@@ -229,21 +239,37 @@ const REGION_DATA = {
     image:
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800",
     stats: {
-        elevation: "Lowlands",
-        climate: "Tropical",
-        access: "Road"
-    }
+      elevation: "Lowlands",
+      climate: "Tropical",
+      access: "Road",
+    },
   },
 };
 
 type Category = "all" | "airports" | "cities" | "highlights" | "trekking";
 
 const CATEGORIES: { id: Category; label: string; icon: React.ReactNode }[] = [
-  { id: "all", label: "View All", icon: <Search className="w-4 h-4" /> },
-  { id: "airports", label: "Intl. Airports", icon: <Plane className="w-4 h-4" /> },
-  { id: "cities", label: "Major Cities", icon: <Building2 className="w-4 h-4" /> },
-  { id: "highlights", label: "Highlights", icon: <Sparkles className="w-4 h-4" /> },
-  { id: "trekking", label: "Trekking", icon: <Footprints className="w-4 h-4" /> },
+  { id: "all", label: "View All", icon: <Search className='w-4 h-4' /> },
+  {
+    id: "airports",
+    label: "Intl. Airports",
+    icon: <Plane className='w-4 h-4' />,
+  },
+  {
+    id: "cities",
+    label: "Major Cities",
+    icon: <Building2 className='w-4 h-4' />,
+  },
+  {
+    id: "highlights",
+    label: "Highlights",
+    icon: <Sparkles className='w-4 h-4' />,
+  },
+  {
+    id: "trekking",
+    label: "Trekking",
+    icon: <Footprints className='w-4 h-4' />,
+  },
 ];
 
 const MARKERS = [
@@ -395,7 +421,7 @@ export default function MapSection() {
 
   return (
     <section className='py-24 relative overflow-hidden bg-background'>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none" />
+      <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none' />
       <div className='max-w-7xl mx-auto px-8 relative z-10'>
         <div className='text-center mb-12'>
           <h2
@@ -711,101 +737,125 @@ export default function MapSection() {
                     className='object-cover'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-[#120a0a] via-black/50 to-transparent' />
-                  <div className="absolute bottom-0 left-0 p-6 w-full">
-                      <h3 className={`${playfair.className} text-3xl text-white font-bold mb-1`}>
-                        {currentRegion.name}
-                      </h3>
-                      <div className="flex items-center gap-2 text-gray-300 text-xs uppercase tracking-wider font-medium">
-                        <MapPin className="w-3 h-3 text-[#d4344f]" /> Nepal
-                      </div>
+                  <div className='absolute bottom-0 left-0 p-6 w-full'>
+                    <h3
+                      className={`${playfair.className} text-3xl text-white font-bold mb-1`}
+                    >
+                      {currentRegion.name}
+                    </h3>
+                    <div className='flex items-center gap-2 text-gray-300 text-xs uppercase tracking-wider font-medium'>
+                      <MapPin className='w-3 h-3 text-[#d4344f]' /> Nepal
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-6">
-                    <p className='text-gray-300 leading-relaxed text-sm mb-6'>
-                        {currentRegion.description}
-                    </p>
+                <div className='p-6'>
+                  <p className='text-gray-300 leading-relaxed text-sm mb-6'>
+                    {currentRegion.description}
+                  </p>
 
-                    {/* Collapsible Content */}
-                    <div className={`grid transition-all duration-500 ease-in-out ${showDetails ? 'grid-rows-[1fr] opacity-100 mb-6' : 'grid-rows-[0fr] opacity-0'}`}>
-                        <div className="overflow-hidden">
-                            {/* Stats */}
-                            <div className="grid grid-cols-2 gap-3 mb-6">
-                                <div className="bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/10 transition-colors">
-                                    <div className="text-[#d4344f] text-xs uppercase font-bold mb-1 flex items-center gap-1.5">
-                                        <Mountain className="w-3 h-3" /> Elevation
-                                    </div>
-                                    <div className="text-white text-xs font-medium">{currentRegion.stats.elevation}</div>
-                                </div>
-                                <div className="bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/10 transition-colors">
-                                    <div className="text-[#d4344f] text-xs uppercase font-bold mb-1 flex items-center gap-1.5">
-                                        <Calendar className="w-3 h-3" /> Best Time
-                                    </div>
-                                    <div className="text-white text-xs font-medium">{currentRegion.bestTime}</div>
-                                </div>
-                                <div className="bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/10 transition-colors">
-                                    <div className="text-[#d4344f] text-xs uppercase font-bold mb-1 flex items-center gap-1.5">
-                                        <Thermometer className="w-3 h-3" /> Climate
-                                    </div>
-                                    <div className="text-white text-xs font-medium">{currentRegion.stats.climate}</div>
-                                </div>
-                                <div className="bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/10 transition-colors">
-                                    <div className="text-[#d4344f] text-xs uppercase font-bold mb-1 flex items-center gap-1.5">
-                                        <Navigation className="w-3 h-3" /> Access
-                                    </div>
-                                    <div className="text-white text-xs font-medium">{currentRegion.stats.access}</div>
-                                </div>
-                            </div>
-
-                            {/* Highlights */}
-                            <div className="mb-6">
-                                <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
-                                    <Sparkles className="w-3 h-3 text-[#d4344f]" /> Highlights
-                                </h4>
-                                <ul className='space-y-2'>
-                                    {currentRegion.highlights.map((h, i) => (
-                                        <li key={i} className='flex items-start text-gray-400 text-sm'>
-                                            <span className='w-1 h-1 bg-[#d4344f] rounded-full mt-2 mr-2 shrink-0'></span>
-                                            {h}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* Activities */}
-                            <div>
-                                <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
-                                    <Target className="w-3 h-3 text-[#d4344f]" /> Activities
-                                </h4>
-                                <div className='flex flex-wrap gap-2'>
-                                    {currentRegion.activities.map((a, i) => (
-                                        <span key={i} className='px-2.5 py-1 bg-white/5 rounded text-[10px] text-gray-300 border border-white/10'>
-                                            {a}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+                  {/* Collapsible Content */}
+                  <div
+                    className={`grid transition-all duration-500 ease-in-out ${
+                      showDetails
+                        ? "grid-rows-[1fr] opacity-100 mb-6"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className='overflow-hidden'>
+                      {/* Stats */}
+                      <div className='grid grid-cols-2 gap-3 mb-6'>
+                        <div className='bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/10 transition-colors'>
+                          <div className='text-[#d4344f] text-xs uppercase font-bold mb-1 flex items-center gap-1.5'>
+                            <Mountain className='w-3 h-3' /> Elevation
+                          </div>
+                          <div className='text-white text-xs font-medium'>
+                            {currentRegion.stats.elevation}
+                          </div>
                         </div>
-                    </div>
+                        <div className='bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/10 transition-colors'>
+                          <div className='text-[#d4344f] text-xs uppercase font-bold mb-1 flex items-center gap-1.5'>
+                            <Calendar className='w-3 h-3' /> Best Time
+                          </div>
+                          <div className='text-white text-xs font-medium'>
+                            {currentRegion.bestTime}
+                          </div>
+                        </div>
+                        <div className='bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/10 transition-colors'>
+                          <div className='text-[#d4344f] text-xs uppercase font-bold mb-1 flex items-center gap-1.5'>
+                            <Thermometer className='w-3 h-3' /> Climate
+                          </div>
+                          <div className='text-white text-xs font-medium'>
+                            {currentRegion.stats.climate}
+                          </div>
+                        </div>
+                        <div className='bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/10 transition-colors'>
+                          <div className='text-[#d4344f] text-xs uppercase font-bold mb-1 flex items-center gap-1.5'>
+                            <Navigation className='w-3 h-3' /> Access
+                          </div>
+                          <div className='text-white text-xs font-medium'>
+                            {currentRegion.stats.access}
+                          </div>
+                        </div>
+                      </div>
 
-                    {/* Actions */}
-                    <div className="flex flex-col gap-3">
-                        <button 
-                            onClick={() => setShowDetails(!showDetails)}
-                            className="w-full py-2.5 border border-white/10 rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-all flex items-center justify-center gap-2 group"
-                        >
-                            {showDetails ? 'Show Less' : 'View Details'}
-                            {showDetails ? (
-                                <ChevronUp className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
-                            ) : (
-                                <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
-                            )}
-                        </button>
-                        
-                        <button className='w-full py-3 bg-[#d4344f] text-white font-bold rounded-lg hover:bg-[#b02b40] transition-all shadow-lg shadow-[#d4344f]/20 flex items-center justify-center gap-2 text-sm uppercase tracking-wide'>
-                          Explore Region <ArrowRight className="w-4 h-4" />
-                        </button>
+                      {/* Highlights */}
+                      <div className='mb-6'>
+                        <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
+                          <Sparkles className='w-3 h-3 text-[#d4344f]' />{" "}
+                          Highlights
+                        </h4>
+                        <ul className='space-y-2'>
+                          {currentRegion.highlights.map((h, i) => (
+                            <li
+                              key={i}
+                              className='flex items-start text-gray-400 text-sm'
+                            >
+                              <span className='w-1 h-1 bg-[#d4344f] rounded-full mt-2 mr-2 shrink-0'></span>
+                              {h}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Activities */}
+                      <div>
+                        <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
+                          <Target className='w-3 h-3 text-[#d4344f]' />{" "}
+                          Activities
+                        </h4>
+                        <div className='flex flex-wrap gap-2'>
+                          {currentRegion.activities.map((a, i) => (
+                            <span
+                              key={i}
+                              className='px-2.5 py-1 bg-white/5 rounded text-[10px] text-gray-300 border border-white/10'
+                            >
+                              {a}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className='flex flex-col gap-3'>
+                    <button
+                      onClick={() => setShowDetails(!showDetails)}
+                      className='w-full py-2.5 border border-white/10 rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-all flex items-center justify-center gap-2 group'
+                    >
+                      {showDetails ? "Show Less" : "View Details"}
+                      {showDetails ? (
+                        <ChevronUp className='w-4 h-4 text-gray-500 group-hover:text-white transition-colors' />
+                      ) : (
+                        <ChevronDown className='w-4 h-4 text-gray-500 group-hover:text-white transition-colors' />
+                      )}
+                    </button>
+
+                    <button className='w-full py-3 bg-[#d4344f] text-white font-bold rounded-lg hover:bg-[#b02b40] transition-all shadow-lg shadow-[#d4344f]/20 flex items-center justify-center gap-2 text-sm uppercase tracking-wide'>
+                      Explore Region <ArrowRight className='w-4 h-4' />
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (
