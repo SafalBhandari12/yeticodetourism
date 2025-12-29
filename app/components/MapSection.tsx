@@ -512,8 +512,8 @@ const MARKERS = [
     id: "ebc",
     name: "Everest Base Camp",
     type: "trekking",
-    x: 680,
-    y: 265,
+    x: 685,
+    y: 270,
     description: "Iconic Trek",
   },
   {
@@ -528,16 +528,16 @@ const MARKERS = [
     id: "langtang",
     name: "Langtang Valley",
     type: "trekking",
-    x: 520,
-    y: 260,
+    x: 525,
+    y: 265,
     description: "Valley of Glaciers",
   },
   {
     id: "kanchenjunga",
     name: "Kanchenjunga Base Camp",
     type: "trekking",
-    x: 755,
-    y: 280,
+    x: 700,
+    y: 285,
     description: "Remote Eastern Trek",
   },
   // Accommodation
@@ -887,7 +887,7 @@ export default function MapSection() {
                         y={marker.y - 16}
                         width={32}
                         height={32}
-                        className="overflow-visible"
+                        className='overflow-visible'
                       >
                         <div className='flex items-center justify-center w-full h-full text-white drop-shadow-md hover:scale-125 transition-transform duration-200'>
                           {category?.icon}
@@ -906,16 +906,28 @@ export default function MapSection() {
               )}
 
               {/* Tooltip for Marker Hover */}
-              {hoveredMarker && (
-                <div className='absolute top-4 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium pointer-events-none z-20 border border-white/10 whitespace-nowrap flex flex-col items-center gap-1'>
-                  <span>
-                    {MARKERS.find((m) => m.id === hoveredMarker)?.name}
-                  </span>
-                  <span className='text-xs text-gray-400 font-normal'>
-                    {MARKERS.find((m) => m.id === hoveredMarker)?.description}
-                  </span>
-                </div>
-              )}
+              {hoveredMarker && (() => {
+                const marker = MARKERS.find((m) => m.id === hoveredMarker);
+                if (!marker) return null;
+                
+                return (
+                  <div 
+                    className='absolute bg-black/90 backdrop-blur-md text-white px-3 py-2 rounded-lg text-sm font-medium pointer-events-none z-20 border border-white/10 flex flex-col gap-0.5 shadow-xl min-w-[150px]'
+                    style={{
+                      left: `${(marker.x / 800.37) * 100}%`,
+                      top: `${(marker.y / 454.29) * 100}%`,
+                      transform: 'translate(12px, -50%)'
+                    }}
+                  >
+                    <span className="font-bold text-[#d4344f] text-xs uppercase tracking-wider">
+                      {marker.name}
+                    </span>
+                    <span className='text-[10px] text-gray-300 font-normal leading-tight'>
+                      {marker.description}
+                    </span>
+                  </div>
+                );
+              })()}
             </div>
           </div>
 
@@ -935,7 +947,8 @@ export default function MapSection() {
                   <div className='absolute bottom-0 left-0 p-6 w-full'>
                     <div className='flex items-center gap-2 mb-2'>
                       <span className='px-2 py-0.5 bg-[#d4344f] text-white text-[10px] font-bold uppercase tracking-wider rounded-full'>
-                        {CATEGORIES.find((c) => c.id === activeCategory)?.label || "Location"}
+                        {CATEGORIES.find((c) => c.id === activeCategory)
+                          ?.label || "Location"}
                       </span>
                     </div>
                     <h3
@@ -974,8 +987,7 @@ export default function MapSection() {
                   {/* Marker Highlights */}
                   <div className='mb-6'>
                     <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
-                      <Sparkles className='w-3 h-3 text-[#d4344f]' />{" "}
-                      Highlights
+                      <Sparkles className='w-3 h-3 text-[#d4344f]' /> Highlights
                     </h4>
                     <ul className='space-y-2'>
                       {selectedMarkerData.highlights.map((h, i) => (
@@ -989,27 +1001,27 @@ export default function MapSection() {
                       ))}
                     </ul>
                   </div>
-                  
+
                   {/* Marker Tips */}
-                   {selectedMarkerData.tips && (
-                        <div>
-                          <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
-                            <Lightbulb className='w-3 h-3 text-[#d4344f]' />{" "}
-                            Travel Tips
-                          </h4>
-                          <ul className='space-y-2'>
-                            {selectedMarkerData.tips.map((tip, i) => (
-                              <li
-                                key={i}
-                                className='flex items-start text-gray-400 text-sm'
-                              >
-                                <span className='w-1 h-1 bg-[#d4344f] rounded-full mt-2 mr-2 shrink-0'></span>
-                                {tip}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                  {selectedMarkerData.tips && (
+                    <div>
+                      <h4 className='text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2'>
+                        <Lightbulb className='w-3 h-3 text-[#d4344f]' /> Travel
+                        Tips
+                      </h4>
+                      <ul className='space-y-2'>
+                        {selectedMarkerData.tips.map((tip, i) => (
+                          <li
+                            key={i}
+                            className='flex items-start text-gray-400 text-sm'
+                          >
+                            <span className='w-1 h-1 bg-[#d4344f] rounded-full mt-2 mr-2 shrink-0'></span>
+                            {tip}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             ) : selectedRegionData ? (
@@ -1161,7 +1173,9 @@ export default function MapSection() {
 
                     {selectedRegionData.slug && (
                       <button
-                        onClick={() => handleExploreClick(selectedRegionData.slug)}
+                        onClick={() =>
+                          handleExploreClick(selectedRegionData.slug)
+                        }
                         className='w-full py-3 bg-[#d4344f] text-white font-bold rounded-lg hover:bg-[#b02b40] transition-all shadow-lg shadow-[#d4344f]/20 flex items-center justify-center gap-2 text-sm uppercase tracking-wide'
                       >
                         Explore Region <ArrowRight className='w-4 h-4' />
