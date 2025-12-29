@@ -401,22 +401,6 @@ const MARKERS = [
     y: 250,
     description: "Pokhara - Gateway to Annapurna",
   },
-  {
-    id: "bwa",
-    name: "Bhadrapur Airport",
-    type: "airports",
-    x: 750,
-    y: 360,
-    description: "Gateway to Eastern Nepal",
-  },
-  {
-    id: "dhi",
-    name: "Dhangadhi Airport",
-    type: "airports",
-    x: 100,
-    y: 280,
-    description: "Gateway to Far West",
-  },
   // Cities
   {
     id: "ktm",

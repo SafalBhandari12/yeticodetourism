@@ -329,7 +329,10 @@ export default function Navbar() {
             <LanguageSelector />
 
             {/* Map */}
-            <button className='flex items-center text-white hover:text-(--accent-hover) active:text-(--accent-hover) transition-colors duration-300 group hover:cursor-pointer'>
+            <Link
+              href='/map'
+              className='flex items-center text-white hover:text-(--accent-hover) active:text-(--accent-hover) transition-colors duration-300 group hover:cursor-pointer'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='currentColor'
@@ -341,7 +344,7 @@ export default function Navbar() {
                   fillRule='evenodd'
                 />
               </svg>
-            </button>
+            </Link>
 
             {/* Help Icon */}
             <button className='flex items-center text-white hover:text-(--accent-hover) active:text-(--accent-hover) transition-colors duration-300 group hover:cursor-pointer'>
@@ -471,6 +474,13 @@ export default function Navbar() {
                     Quick Links
                   </p>
                   <div className='space-y-2'>
+                    <Link
+                      href='/map'
+                      onClick={() => setMobileMenuOpen(false)}
+                      className='block text-gray-300 hover:text-[#d4344f] transition-colors duration-300 py-2 px-4 rounded hover:bg-[#d4344f]/5'
+                    >
+                      Interactive Map
+                    </Link>
                     <a
                       href='#'
                       className='block text-gray-300 hover:text-[#d4344f] transition-colors duration-300 py-2 px-4 rounded hover:bg-[#d4344f]/5'

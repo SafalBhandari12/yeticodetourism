@@ -4,7 +4,6 @@ import { useState } from "react";
 import Hero from "./components/Hero";
 import TopDestinations from "./components/TopDestinations";
 import WelcomeSection from "./components/WelcomeSection";
-import MapSection from "./components/MapSection";
 import AdventureWildlife from "./components/AdventureWildlife";
 import Itineraries from "./components/Itineraries";
 import AccommodationHighlights from "./components/AccommodationHighlights";
@@ -22,7 +21,6 @@ export default function Home() {
       <div className='flex flex-col min-h-screen'>
         <Hero />
         <TopDestinations />
-        <MapSection />
         <WelcomeSection />
         <AdventureWildlife />
         <Itineraries />
