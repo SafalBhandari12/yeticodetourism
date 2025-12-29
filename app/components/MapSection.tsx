@@ -504,31 +504,31 @@ const MARKERS = [
     id: "abc",
     name: "Annapurna Base Camp",
     type: "trekking",
-    x: 370,
-    y: 230,
+    x: 375,
+    y: 235,
     description: "Popular Trek",
   },
   {
     id: "ebc",
     name: "Everest Base Camp",
     type: "trekking",
-    x: 685,
-    y: 270,
+    x: 675,
+    y: 280,
     description: "Iconic Trek",
   },
   {
     id: "manaslu",
     name: "Manaslu Circuit",
     type: "trekking",
-    x: 430,
-    y: 260,
+    x: 425,
+    y: 265,
     description: "Off the beaten path",
   },
   {
     id: "langtang",
     name: "Langtang Valley",
     type: "trekking",
-    x: 525,
+    x: 520,
     y: 265,
     description: "Valley of Glaciers",
   },
@@ -536,7 +536,7 @@ const MARKERS = [
     id: "kanchenjunga",
     name: "Kanchenjunga Base Camp",
     type: "trekking",
-    x: 700,
+    x: 690,
     y: 285,
     description: "Remote Eastern Trek",
   },
@@ -906,28 +906,29 @@ export default function MapSection() {
               )}
 
               {/* Tooltip for Marker Hover */}
-              {hoveredMarker && (() => {
-                const marker = MARKERS.find((m) => m.id === hoveredMarker);
-                if (!marker) return null;
-                
-                return (
-                  <div 
-                    className='absolute bg-black/90 backdrop-blur-md text-white px-3 py-2 rounded-lg text-sm font-medium pointer-events-none z-20 border border-white/10 flex flex-col gap-0.5 shadow-xl min-w-[150px]'
-                    style={{
-                      left: `${(marker.x / 800.37) * 100}%`,
-                      top: `${(marker.y / 454.29) * 100}%`,
-                      transform: 'translate(12px, -50%)'
-                    }}
-                  >
-                    <span className="font-bold text-[#d4344f] text-xs uppercase tracking-wider">
-                      {marker.name}
-                    </span>
-                    <span className='text-[10px] text-gray-300 font-normal leading-tight'>
-                      {marker.description}
-                    </span>
-                  </div>
-                );
-              })()}
+              {hoveredMarker &&
+                (() => {
+                  const marker = MARKERS.find((m) => m.id === hoveredMarker);
+                  if (!marker) return null;
+
+                  return (
+                    <div
+                      className='absolute bg-black/90 backdrop-blur-md text-white px-3 py-2 rounded-lg text-sm font-medium pointer-events-none z-20 border border-white/10 flex flex-col gap-0.5 shadow-xl min-w-[150px]'
+                      style={{
+                        left: `${(marker.x / 800.37) * 100}%`,
+                        top: `${(marker.y / 454.29) * 100}%`,
+                        transform: "translate(12px, -50%)",
+                      }}
+                    >
+                      <span className='font-bold text-[#d4344f] text-xs uppercase tracking-wider'>
+                        {marker.name}
+                      </span>
+                      <span className='text-[10px] text-gray-300 font-normal leading-tight'>
+                        {marker.description}
+                      </span>
+                    </div>
+                  );
+                })()}
             </div>
           </div>
 
