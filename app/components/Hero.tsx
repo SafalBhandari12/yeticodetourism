@@ -363,6 +363,37 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <div
+        className='absolute bottom-2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:bottom-8 md:right-8 z-30 flex flex-col items-center gap-2 cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-500'
+        onClick={() =>
+          window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
+        }
+      >
+        <span className='text-white text-[10px] uppercase tracking-[0.25em] font-light'>
+          Scroll
+        </span>
+        <div className='w-[1px] h-8 md:h-12 bg-white/20 overflow-hidden relative'>
+          <div
+            className='absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-white'
+            style={{
+              animation: "drop 2s cubic-bezier(0.77, 0, 0.175, 1) infinite",
+            }}
+          ></div>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes drop {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(250%);
+          }
+        }
+      `}</style>
     </div>
   );
 }
