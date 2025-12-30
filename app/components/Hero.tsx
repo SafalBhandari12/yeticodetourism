@@ -364,36 +364,22 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator (uses GIF) */}
       <div
         className='absolute bottom-8 right-8 z-30 hidden md:flex flex-col items-center gap-2 cursor-pointer drop-shadow-md hover:scale-105 transition-transform duration-300'
         onClick={() =>
           window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
         }
       >
+        <img
+          src='/scrollDown.gif'
+          alt='Scroll down'
+          className='w-12 h-12 md:w-12 md:h-12'
+        />
         <span className='text-white text-xs uppercase tracking-[0.25em] font-medium'>
           Scroll
         </span>
-        <div className='w-[1px] h-10 md:h-14 bg-white/40 overflow-hidden relative'>
-          <div
-            className='absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-white'
-            style={{
-              animation: "drop 2s cubic-bezier(0.77, 0, 0.175, 1) infinite",
-            }}
-          ></div>
-        </div>
       </div>
-
-      <style>{`
-        @keyframes drop {
-          0% {
-            transform: translateY(-100%);
-          }
-          100% {
-            transform: translateY(250%);
-          }
-        }
-      `}</style>
     </div>
   );
 }
