@@ -374,7 +374,7 @@ export default function Hero() {
         <img
           src='/scrollDown.gif'
           alt='Scroll down'
-          className='w-12 h-12 md:w-12 md:h-12'
+          className='w-40 h-40 md:w-25 md:h-25'
         />
         <span className='text-white text-xs uppercase tracking-[0.25em] font-medium'>
           Scroll
