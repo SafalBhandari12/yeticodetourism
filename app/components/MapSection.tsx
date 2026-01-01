@@ -381,7 +381,7 @@ const MapSection = () => {
       {/* Sidebar Toggle Button */}
       <button
         onClick={() => setSidebarOpen(!isSidebarOpen)}
-        className={`absolute top-24 right-6 z-20 p-3 bg-black/40 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 transition-all duration-300 hover:scale-110 rounded-xl ${
+        className={`absolute top-24 right-4 md:right-6 z-20 p-3 bg-black/40 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 transition-all duration-300 hover:scale-110 rounded-xl ${
           isSidebarOpen
             ? "opacity-0 pointer-events-none translate-x-10"
             : "opacity-100 translate-x-0"
@@ -393,10 +393,10 @@ const MapSection = () => {
 
       {/* Floating Sidebar - Glassmorphism */}
       <div
-        className={`absolute top-24 bottom-4 right-6 w-[400px] bg-black/60 backdrop-blur-2xl border border-white/10 shadow-2xl z-10 flex flex-col transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] transform rounded-2xl overflow-hidden ${
+        className={`absolute top-24 bottom-4 right-4 left-4 md:left-auto md:right-6 md:w-[400px] bg-black/60 backdrop-blur-2xl border border-white/10 shadow-2xl z-10 flex flex-col transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] transform rounded-2xl overflow-hidden ${
           isSidebarOpen
             ? "translate-x-0 opacity-100"
-            : "translate-x-[440px] opacity-0"
+            : "translate-x-[120%] opacity-0"
         }`}
       >
         {/* Header */}
@@ -516,7 +516,7 @@ const MapSection = () => {
 
       {/* Region Detail Overlay - Bottom Left Floating Card */}
       {activeRegionData && (
-        <div className='absolute bottom-8 left-8 max-w-md w-full bg-black/60 backdrop-blur-2xl border border-white/10 p-5 z-10 animate-in slide-in-from-bottom-10 fade-in duration-500 shadow-2xl rounded-2xl'>
+        <div className='absolute bottom-4 left-4 right-4 md:left-8 md:right-auto md:bottom-8 max-w-md w-auto md:w-full bg-black/60 backdrop-blur-2xl border border-white/10 p-5 z-10 animate-in slide-in-from-bottom-10 fade-in duration-500 shadow-2xl rounded-2xl'>
           <button
             onClick={() => setSelectedRegion(null)}
             className='absolute top-4 right-4 p-2 hover:bg-white/10 transition-colors rounded-lg'
