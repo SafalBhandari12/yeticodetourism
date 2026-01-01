@@ -2,8 +2,8 @@ import MapSection from "../components/MapSection";
 
 export default function MapPage() {
   return (
-    <div className='min-h-screen bg-background pt-20'>
+    <main className='h-screen w-full overflow-hidden bg-black'>
       <MapSection />
-    </div>
+    </main>
   );
 }
